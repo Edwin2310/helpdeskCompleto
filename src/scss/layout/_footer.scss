@@ -1,0 +1,22 @@
+.footer{
+    padding: 5rem;
+    background-color: $grisOscuro;
+    margin-bottom: 0; //Quita el espacio blanco de abajo
+    
+    .contenedor-footer{
+        padding-top: 5rem;
+        
+    }
+
+    .navegacion{
+        visibility: visible;
+        opacity: 1;
+        height: auto;
+    }
+    
+    .copyright{
+        color: $blanco;
+        text-align: center;
+    }
+    
+}
