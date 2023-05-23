@@ -88,9 +88,6 @@ $usuarioSalir = $_SESSION['user'];
                                 Tickets</a>
                         </li>
                         <li>
-                            <a href="admin.php?view=reportes"><span class="fa fa-cloud-upload"></span> &nbsp; Reportes</a>
-                        </li>
-                        <li>
                             <a href="admin.php?view=archivoEs"><span class="fa fa-file-text"></span> &nbsp; Archivos</a>
                         </li>
                     <?php } ?>

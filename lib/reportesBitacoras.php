@@ -165,8 +165,6 @@ while ($tik = mysqli_fetch_array($query)) {
   $pdf->Cell(180, 8, utf8_decode("Serie: " . $tik['serie'] . "                                                                          Fecha de creación: " . $tik['fecha']), 'TLR', 1, 'L', 1);
   // $pdf->SetY(57);
   $pdf->SetX(15);
-  $pdf->Cell(180, 8, utf8_decode("Turnos: " . $tik['turnos'] . ".          Atendido por: " . $tik['tecnicos_ticket'] . ".                       Estado: " . $estado_bitacora . ". "), 'LR', 1, 'L', 1);
-
 
   $pdf->SetX(15);
   $pdf->Cell(180, 8, utf8_decode("Departamento: " . $tik['departamento_ticket'] . "."), 'LR', 1, 'L', 1);
@@ -175,13 +173,8 @@ while ($tik = mysqli_fetch_array($query)) {
   $pdf->Cell(180, 8, utf8_decode("Regional: " . $tik['regional_ticket'] . "."), 'LR', 1, 'L', 1);
 
   $pdf->SetX(15);
-  $pdf->Cell(180, 8, utf8_decode("Encargado: " . $tik['encargado'] . "."), 'LR', 1, 'L', 1);
-
 
   $pdf->SetX(15);
-  $pdf->Cell(180, 8, utf8_decode("Area Solicitud: " . $tik['area_solicitud'] . "."), 'LR', 1, 'L', 1);
-
-
   $pdf->SetX(15);
   $pdf->Cell(180, 8, utf8_decode("Descripcion: " . $tik['descripcion_equipos'] . "."), 'LR', 1, 'L', 1);
 

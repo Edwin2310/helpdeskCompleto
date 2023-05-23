@@ -52,7 +52,6 @@ if ((time() - $_SESSION["last_time"]) > $tiempoDesloguear) {
 
       $WhiteList = [
         "ticketadmin",
-        "reportes",
         "archivoEs",
         "archivosDes",
         "archivodesa",
