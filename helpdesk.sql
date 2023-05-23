@@ -11,7 +11,7 @@
  Target Server Version : 100428 (10.4.28-MariaDB)
  File Encoding         : 65001
 
- Date: 21/05/2023 20:44:22
+ Date: 22/05/2023 22:05:51
 */
 
 SET NAMES utf8mb4;
@@ -33,7 +33,7 @@ CREATE TABLE `tbl_admin`  (
   `estado` int NOT NULL,
   PRIMARY KEY (`id_usuario`) USING BTREE,
   UNIQUE INDEX `correo`(`email_usuario` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 25 CHARACTER SET = utf8 COLLATE = utf8_spanish_ci ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB AUTO_INCREMENT = 26 CHARACTER SET = utf8 COLLATE = utf8_spanish_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of tbl_admin
@@ -46,13 +46,11 @@ INSERT INTO `tbl_admin` VALUES (10, 'leonel canaless', 'leonel', '2', 'e10adc394
 INSERT INTO `tbl_admin` VALUES (11, 'pedro Perez', 'perez22', '3', 'e10adc3949ba59abbe56e057f20f883e', 'gustavo_oqueli@hotmail.com', 'IT', '97792533', 1);
 INSERT INTO `tbl_admin` VALUES (12, 'David Fuentes Anariba', 'dfuentes', '1', 'e10adc3949ba59abbe56e057f20f883e', 'afdavid10y7@gmail.com', 'IT', '97792533', 1);
 INSERT INTO `tbl_admin` VALUES (15, 'David Anariba', 'dAnab1', '2', 'e10adc3949ba59abbe56e057f20f883e', 'dfuentes@unah.hn', 'IT', '97792533', 1);
-INSERT INTO `tbl_admin` VALUES (16, 'Maria Perez', 'mPerez', '5', 'e10adc3949ba59abbe56e057f20f883e', 'mperez@911.gob.hn', 'Departamento de Bienes Nacionales', '98969593', 1);
-INSERT INTO `tbl_admin` VALUES (17, 'francisco morazan', 'fmorazan', '5', 'e10adc3949ba59abbe56e057f20f883e', 'fmorazan@911.gob.hn', 'Departamento de Bienes Nacionales', '97792645', 1);
 INSERT INTO `tbl_admin` VALUES (19, 'admin', 'admin', '1', '202cb962ac59075b964b07152d234b70', 'admin@gmail.com', 'IT', '99224556', 1);
 INSERT INTO `tbl_admin` VALUES (20, 'Edwin Martinez', 'edwin', '1', '202cb962ac59075b964b07152d234b70', 'e.martinez@911.gob.hn', 'IT', '99224556', 1);
 INSERT INTO `tbl_admin` VALUES (22, 'Edwin Aron Martinez', 'Tecnico', '2', 'e10adc3949ba59abbe56e057f20f883e', 'tecnico@gmail.com', 'IT', '981245', 1);
 INSERT INTO `tbl_admin` VALUES (23, 'Edwin Martinez', 'desarrollador', '3', '202cb962ac59075b964b07152d234b70', 'desarrolador@911.goh.hn', 'IT', '123412', 1);
-INSERT INTO `tbl_admin` VALUES (24, 'Jasinto Lopez', 'JLopez', '2', 'e10adc3949ba59abbe56e057f20f883e', 'jlopez@gmail.com', 'IT', '9812415', 1);
+INSERT INTO `tbl_admin` VALUES (25, 'Edwin Aron Martinez Cabera', 'EdwinMartinez', '3', 'cfa8989c00fbe74ee45eb1ce3ece72d6', 'aron.martinez@unah.hn', 'IT', '96454635', 1);
 
 -- ----------------------------
 -- Table structure for tbl_archivoespdesa
@@ -66,7 +64,7 @@ CREATE TABLE `tbl_archivoespdesa`  (
   `upload` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `url` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 50 CHARACTER SET = utf8 COLLATE = utf8_spanish_ci ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB AUTO_INCREMENT = 52 CHARACTER SET = utf8 COLLATE = utf8_spanish_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of tbl_archivoespdesa
@@ -75,6 +73,8 @@ INSERT INTO `tbl_archivoespdesa` VALUES (21, '2023-02-01 14:35:12', 'ArchivoWORD
 INSERT INTO `tbl_archivoespdesa` VALUES (45, '2023-02-09 12:55:38', 'ArchivoIMAGEN', 'ArchivoIMAGEN', 'admin', 'filesArchivos/WhatsApp Image 2023-01-31 at 10.16.25 AM.jpeg');
 INSERT INTO `tbl_archivoespdesa` VALUES (48, '2023-05-21 20:37:06', 'ArchivoWORD', 'ArchivoWORD', 'Super Administrador', 'filesArchivos/Dictamen Tecnico Legal.docx');
 INSERT INTO `tbl_archivoespdesa` VALUES (49, '2023-05-21 20:38:08', 'ArchivoPDF', 'ArchivoPDF', 'Super Administrador', 'filesArchivos/Pasos tabla y gráfico dinámico.pdf');
+INSERT INTO `tbl_archivoespdesa` VALUES (50, '2023-05-22 21:47:07', 'Archivo2Word', 'Archivo2Word', 'Super Administrador', 'filesArchivos/NAVICAT.docx');
+INSERT INTO `tbl_archivoespdesa` VALUES (51, '2023-05-22 21:47:32', 'Archivo2PDF', 'Archivo2PDF', 'Super Administrador', 'filesArchivos/Pasos tabla y gráfico dinámico.pdf');
 
 -- ----------------------------
 -- Table structure for tbl_archivos
@@ -172,35 +172,34 @@ CREATE TABLE `tbl_bitacoras`  (
   `id_bitacora` int NOT NULL AUTO_INCREMENT,
   `fecha` datetime NOT NULL,
   `serie` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `turnos` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `departamento_ticket` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `regional_ticket` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `encargado` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `tecnicos_ticket` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `area_solicitud` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `descripcion_equipos` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `problema_presentado` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `solucion` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `estado_bitacora` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id_bitacora`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 14 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 16 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tbl_bitacoras
 -- ----------------------------
-INSERT INTO `tbl_bitacoras` VALUES (1, '2022-11-02 09:22:10', 'BT99C1', 'A', 'Sub Dirección Nacional', 'Dirección Regional CECOP Tegucigalpa', 'Encargado De Turno', 'pedro Perez', 'Otros', 'Otros', 'Problema Presentado', 'Solución de Problema', 'Finalizado');
-INSERT INTO `tbl_bitacoras` VALUES (2, '2022-11-07 11:36:18', 'BT26C2', 'A', 'Sub Dirección Nacional', 'Dirección Regional CECOP Tegucigalpa', 'Keila Pavon', 'David Anariba', 'Video Proteccion', 'Impresora Epson Canon ADVANCE 400i', 'Se caeron todas las UMEP y reportaron problemas en el sigem todas las dependencias del 911. REYTEL y la fibra fue el problema fue a la 1:30 am ', 'Se realiza la descarga de la herramienta cristal disk para ver el estado del disco y esta en peligro se  le realiza comprobacion de disco aver si ayuda al funcionamiento si no se proceder a el formate de la pc', 'Finalizado');
-INSERT INTO `tbl_bitacoras` VALUES (3, '2023-01-12 11:20:37', 'BT80C3', 'A', 'Sub Dirección Nacional', 'Dirección Regional CECOP Tegucigalpa', 'Encargado De Turno', 'Jairon Andino', 'Call Center', 'Otros', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'Finalizado');
-INSERT INTO `tbl_bitacoras` VALUES (4, '2023-01-12 11:23:47', 'BT12C4', '0', '0', '0', 'e', '', '0', '0', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\r\naaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\r\naaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\r\naaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\r\naaaaaaaaaaaaaaaaaaaaaaa', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\r\naaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\r\naaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\r\n', '0');
-INSERT INTO `tbl_bitacoras` VALUES (5, '2023-01-12 11:27:15', 'BT37C5', 'A', 'Sub Dirección Nacional', 'Dirección Regional CECOP Tegucigalpa', 'Encargado De Turno', 'bob esponja', 'Dir.Cecop', 'Otros', '\r\naaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\r\naaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\r\naaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\r\naaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 's', 'Finalizado');
-INSERT INTO `tbl_bitacoras` VALUES (6, '2023-01-12 13:25:55', 'BT16C6', 'A', 'Dirección CECOP Regional Santa Rosa de Copan 911', 'Dirección Regional CECOP Tegucigalpa', 'Encargado De Turno', 'David Anariba - Jairon Andino', 'Call Center', 'Otros', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\r\naaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'Finalizado');
-INSERT INTO `tbl_bitacoras` VALUES (7, '2023-01-12 13:30:21', 'BT78C7', 'A', 'Dirección CECOP Regional San Pedro Sula 911', 'Dirección Regional CECOP Tegucigalpa', 'Encargado De Turno', 'bob esponja', 'Sup.General', 'Ultra IP', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'Finalizado');
-INSERT INTO `tbl_bitacoras` VALUES (8, '2023-01-12 13:34:04', 'BT78C8', 'B', 'Auditoría Interna', 'Dirección Regional CECOP Choluteca', 'Encargado De Turno2', 'bob esponja', 'Sup.General', 'DELL Optiplex 3020', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'Pendiente');
-INSERT INTO `tbl_bitacoras` VALUES (9, '2023-01-12 13:37:49', 'BT18C9', 'B', 'Auditoría Interna', 'Dirección Regional CECOP Tegucigalpa', 'Encargado De Turno', 'pedro Perez', 'Call Center', 'Otros', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'Finalizado');
-INSERT INTO `tbl_bitacoras` VALUES (10, '2023-01-12 13:41:36', 'BT88C10', 'A', 'Dirección CECOP Regional Santa Rosa de Copan 911', 'Dirección Regional CECOP Tegucigalpa', 'aa', 'bob esponja', 'Sup.General', 'Otros', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'Finalizado');
-INSERT INTO `tbl_bitacoras` VALUES (11, '2023-01-12 13:42:59', 'BT71C11', 'A', 'Auditoría Interna', 'Dirección Regional CECOP Choluteca', 'Encargado De Turno', 'bob esponja', 'Dir.Cecop', 'Ultra IP', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'Finalizado');
-INSERT INTO `tbl_bitacoras` VALUES (12, '2023-01-12 13:44:15', 'BT14C12', 'A', 'Sub Dirección Nacional', 'Dirección Regional CECOP Tegucigalpa', 'aaaaa', 'bob esponja', 'Sup.General', 'Ultra IP', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'Finalizado');
-INSERT INTO `tbl_bitacoras` VALUES (13, '2023-01-31 16:14:42', 'BT36C13', 'A', 'Dirección General de CECOP', 'Dirección Regional CECOP Tegucigalpa', 'Encargado De Turno2', 'bob esponja', 'Dir.Cecop', 'Portatil Zbook', 'Se verifico mediante el proceso de desarmar la pantalla para realizar una prueba en la que el monitor no se encuentra en las condiciones de uso, esto debido a que la pantalla ', 'Se verifico mediante el proceso de desarmar la pantalla para realizar una prueba en la que el monitor no se encuentra en las condiciones de uso, esto debido a que la pantalla ', 'Finalizado');
+INSERT INTO `tbl_bitacoras` VALUES (1, '2022-11-02 09:22:10', 'BT99C1', 'Sub Dirección Nacional', 'Dirección Regional CECOP Tegucigalpa', 'pedro Perez', 'Otros', 'Problema Presentado', 'Solución de Problema', 'Finalizado');
+INSERT INTO `tbl_bitacoras` VALUES (2, '2022-11-07 11:36:18', 'BT26C2', 'Sub Dirección Nacional', 'Dirección Regional CECOP Tegucigalpa', 'David Anariba', 'Impresora Epson Canon ADVANCE 400i', 'Se caeron todas las UMEP y reportaron problemas en el sigem todas las dependencias del 911. REYTEL y la fibra fue el problema fue a la 1:30 am ', 'Se realiza la descarga de la herramienta cristal disk para ver el estado del disco y esta en peligro se  le realiza comprobacion de disco aver si ayuda al funcionamiento si no se proceder a el formate de la pc', 'Finalizado');
+INSERT INTO `tbl_bitacoras` VALUES (3, '2023-01-12 11:20:37', 'BT80C3', 'Sub Dirección Nacional', 'Dirección Regional CECOP Tegucigalpa', 'Jairon Andino', 'Otros', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'Finalizado');
+INSERT INTO `tbl_bitacoras` VALUES (4, '2023-01-12 11:23:47', 'BT12C4', '0', '0', '', '0', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\r\naaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\r\naaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\r\naaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\r\naaaaaaaaaaaaaaaaaaaaaaa', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\r\naaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\r\naaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\r\n', '0');
+INSERT INTO `tbl_bitacoras` VALUES (5, '2023-01-12 11:27:15', 'BT37C5', 'Sub Dirección Nacional', 'Dirección Regional CECOP Tegucigalpa', 'bob esponja', 'Otros', '\r\naaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\r\naaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\r\naaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\r\naaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 's', 'Finalizado');
+INSERT INTO `tbl_bitacoras` VALUES (6, '2023-01-12 13:25:55', 'BT16C6', 'Dirección CECOP Regional Santa Rosa de Copan 911', 'Dirección Regional CECOP Tegucigalpa', 'David Anariba - Jairon Andino', 'Otros', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\r\naaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'Finalizado');
+INSERT INTO `tbl_bitacoras` VALUES (7, '2023-01-12 13:30:21', 'BT78C7', 'Dirección CECOP Regional San Pedro Sula 911', 'Dirección Regional CECOP Tegucigalpa', 'bob esponja', 'Ultra IP', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'Finalizado');
+INSERT INTO `tbl_bitacoras` VALUES (8, '2023-01-12 13:34:04', 'BT78C8', 'Auditoría Interna', 'Dirección Regional CECOP Choluteca', 'bob esponja', 'DELL Optiplex 3020', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'Pendiente');
+INSERT INTO `tbl_bitacoras` VALUES (9, '2023-01-12 13:37:49', 'BT18C9', 'Auditoría Interna', 'Dirección Regional CECOP Tegucigalpa', 'pedro Perez', 'Otros', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'Finalizado');
+INSERT INTO `tbl_bitacoras` VALUES (10, '2023-01-12 13:41:36', 'BT88C10', 'Dirección CECOP Regional Santa Rosa de Copan 911', 'Dirección Regional CECOP Tegucigalpa', 'bob esponja', 'Otros', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'Finalizado');
+INSERT INTO `tbl_bitacoras` VALUES (11, '2023-01-12 13:42:59', 'BT71C11', 'Auditoría Interna', 'Dirección Regional CECOP Choluteca', 'bob esponja', 'Ultra IP', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'Finalizado');
+INSERT INTO `tbl_bitacoras` VALUES (12, '2023-01-12 13:44:15', 'BT14C12', 'Sub Dirección Nacional', 'Dirección Regional CECOP Tegucigalpa', 'bob esponja', 'Ultra IP', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'Finalizado');
+INSERT INTO `tbl_bitacoras` VALUES (13, '2023-01-31 16:14:42', 'BT36C13', 'Dirección General de CECOP', 'Dirección Regional CECOP Tegucigalpa', 'bob esponja', 'Portatil Zbook', 'Se verifico mediante el proceso de desarmar la pantalla para realizar una prueba en la que el monitor no se encuentra en las condiciones de uso, esto debido a que la pantalla ', 'Se verifico mediante el proceso de desarmar la pantalla para realizar una prueba en la que el monitor no se encuentra en las condiciones de uso, esto debido a que la pantalla ', 'Finalizado');
+INSERT INTO `tbl_bitacoras` VALUES (14, '2023-05-22 19:15:20', 'BT83C14', 'Video Proteccion', 'Dirección Regional CECOP San Pedro Sula', 'David Anariba', 'DELL Precision Tower 7810', 'Se verifico mediante el proceso de desarmar la pantalla para realizar una prueba en la que el monitor no se encuentra en las condiciones de uso, esto debido a que la pantalla ', 'Se verifico mediante el proceso de desarmar la pantalla para realizar una prueba en la que el monitor no se encuentra en las condiciones de uso, esto debido a que la pantalla ', 'Resuelto');
+INSERT INTO `tbl_bitacoras` VALUES (15, '2023-05-22 21:50:05', 'BT93C15', 'UAFI', 'Dirección Regional CECOP Tegucigalpa', 'Edwin Aron Martinez', 'Otros', 'Problema Se verifico mediante el proceso de desarmar la pantalla para realizar una prueba en la que el monitor no se encuentra en las condiciones de uso, esto debido a que la pantalla', 'Problema Se verifico mediante el proceso de desarmar la pantalla para realizar una prueba en la que el monitor no se encuentra en las condiciones de uso, esto debido a que la pantalla', 'En Proceso');
 
 -- ----------------------------
 -- Table structure for tbl_calendario
@@ -224,13 +223,14 @@ CREATE TABLE `tbl_calendario`  (
   `serie` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `estado_bitacora` varchar(11) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tbl_calendario
 -- ----------------------------
 INSERT INTO `tbl_calendario` VALUES (2, 'Evento Prueba', '#C0C0C0', '2023-05-21', '2023-05-22', '18:21', 'Edwin', 'correo@911.gob.hn', 'Otros', 'Call Center', 'Dirección Regional CECOP Tegucigalpa', 'A', 'Edwin Aron Martinez', 'Problema Prueba', '31kf0mb8ng', 'Pendiente');
 INSERT INTO `tbl_calendario` VALUES (3, 'Evento Prueba2', '#000001', '2023-05-21', '2023-05-22', '20:22', 'Edwin', 'correo@911.gob.hn', 'Sub Dirección Nacional', 'Otros', 'Dirección Regional CECOP Tegucigalpa', 'A', 'Edwin Aron Martinez', 'Problema Prueba', '2ireij2c53', 'En Proceso');
+INSERT INTO `tbl_calendario` VALUES (9, 'TK59N27', '#C0C0C0', '2023-05-22', '2023-05-23', '12:12', 'usuario', 'usuario@gob.hn', 'Gerencia de Tecnología', 'Otros', 'Dirección Regional CECOP Tegucigalpa', 'A', 'pedro Perez - leonel canaless - David Anariba - Edwin Aron Martinez', 'Otro', 'czxthoetre', 'En Proceso');
 
 -- ----------------------------
 -- Table structure for tbl_catalogo
@@ -239,29 +239,30 @@ DROP TABLE IF EXISTS `tbl_catalogo`;
 CREATE TABLE `tbl_catalogo`  (
   `id_catalogo` int NOT NULL,
   `problemas` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
-  `departamento` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   PRIMARY KEY (`id_catalogo`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_spanish_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of tbl_catalogo
 -- ----------------------------
-INSERT INTO `tbl_catalogo` VALUES (1, 'Conexión de Red', '');
-INSERT INTO `tbl_catalogo` VALUES (2, 'Falla de Diadema  ', '');
-INSERT INTO `tbl_catalogo` VALUES (3, 'Acceso de Usuario', '');
-INSERT INTO `tbl_catalogo` VALUES (4, 'Saturación de Programas', '');
-INSERT INTO `tbl_catalogo` VALUES (5, 'Préstamo de Equipo', '');
-INSERT INTO `tbl_catalogo` VALUES (6, 'Desconfiguración de Plataforma', '');
-INSERT INTO `tbl_catalogo` VALUES (7, 'Instalación de Sistemas', '');
-INSERT INTO `tbl_catalogo` VALUES (8, 'Backups', '');
-INSERT INTO `tbl_catalogo` VALUES (9, 'Problemas con el Correo', '');
-INSERT INTO `tbl_catalogo` VALUES (10, 'Manejo de Documentos por Red', '');
-INSERT INTO `tbl_catalogo` VALUES (11, 'Configuración de Equipos de Oficina', '');
-INSERT INTO `tbl_catalogo` VALUES (12, 'Cambio de Periféricos', '');
-INSERT INTO `tbl_catalogo` VALUES (13, 'Traslado de Equipo', '');
-INSERT INTO `tbl_catalogo` VALUES (14, 'Reemplazo de Equipo', '');
-INSERT INTO `tbl_catalogo` VALUES (15, 'Acceso a la red Wi-Fi', '');
-INSERT INTO `tbl_catalogo` VALUES (16, 'Otro', '');
+INSERT INTO `tbl_catalogo` VALUES (1, 'Conexión de Red');
+INSERT INTO `tbl_catalogo` VALUES (2, 'Falla de Diadema  ');
+INSERT INTO `tbl_catalogo` VALUES (3, 'Acceso de Usuario');
+INSERT INTO `tbl_catalogo` VALUES (4, 'Saturación de Programas');
+INSERT INTO `tbl_catalogo` VALUES (5, 'Préstamo de Equipo');
+INSERT INTO `tbl_catalogo` VALUES (6, 'Desconfiguración de Plataforma');
+INSERT INTO `tbl_catalogo` VALUES (7, 'Instalación de Sistemas');
+INSERT INTO `tbl_catalogo` VALUES (8, 'Backups');
+INSERT INTO `tbl_catalogo` VALUES (9, 'Problemas con el Correo');
+INSERT INTO `tbl_catalogo` VALUES (10, 'Manejo de Documentos por Red');
+INSERT INTO `tbl_catalogo` VALUES (11, 'Configuración de Equipos de Oficina');
+INSERT INTO `tbl_catalogo` VALUES (12, 'Cambio de Periféricos');
+INSERT INTO `tbl_catalogo` VALUES (13, 'Traslado de Equipo');
+INSERT INTO `tbl_catalogo` VALUES (14, 'Reemplazo de Equipo');
+INSERT INTO `tbl_catalogo` VALUES (15, 'Acceso a la red Wi-Fi');
+INSERT INTO `tbl_catalogo` VALUES (16, 'Activacion De Office');
+INSERT INTO `tbl_catalogo` VALUES (17, 'Problemas con Impresora');
+INSERT INTO `tbl_catalogo` VALUES (18, 'Otro');
 
 -- ----------------------------
 -- Table structure for tbl_departamento
@@ -291,7 +292,6 @@ INSERT INTO `tbl_departamento` VALUES (12, 'Gerencia de Recursos Humanos');
 INSERT INTO `tbl_departamento` VALUES (13, 'Dirección General de CECOP');
 INSERT INTO `tbl_departamento` VALUES (14, 'Gerencia de Planificación');
 INSERT INTO `tbl_departamento` VALUES (15, 'Gerencia de Proyectos');
-INSERT INTO `tbl_departamento` VALUES (16, 'Otros');
 
 -- ----------------------------
 -- Table structure for tbl_desarrollo
@@ -310,8 +310,8 @@ INSERT INTO `tbl_desarrollo` VALUES (2, 'SIGEM');
 INSERT INTO `tbl_desarrollo` VALUES (3, 'ASCLEPIO');
 INSERT INTO `tbl_desarrollo` VALUES (4, 'Mesa de Ayuda');
 INSERT INTO `tbl_desarrollo` VALUES (5, 'Fallo de PBX');
-INSERT INTO `tbl_desarrollo` VALUES (6, 'Fallo llamadas Tigo');
-INSERT INTO `tbl_desarrollo` VALUES (7, 'Fallo llamadas Claro');
+INSERT INTO `tbl_desarrollo` VALUES (6, 'Mapa De Calor');
+INSERT INTO `tbl_desarrollo` VALUES (7, 'Metabase');
 INSERT INTO `tbl_desarrollo` VALUES (8, 'Otros');
 
 -- ----------------------------
@@ -331,7 +331,7 @@ INSERT INTO `tbl_descripcion` VALUES (1, 'DELL Optiplex 7040');
 INSERT INTO `tbl_descripcion` VALUES (2, 'DELL Optiplex 3020');
 INSERT INTO `tbl_descripcion` VALUES (3, 'DELL Optiplex 5055');
 INSERT INTO `tbl_descripcion` VALUES (4, 'DELL Precision Tower 7810');
-INSERT INTO `tbl_descripcion` VALUES (5, '\r\n\r\nImpresora Epson L555');
+INSERT INTO `tbl_descripcion` VALUES (5, 'Impresora Epson L575');
 INSERT INTO `tbl_descripcion` VALUES (6, 'Impresora Epson Canon ADVANCE 400i');
 INSERT INTO `tbl_descripcion` VALUES (7, 'Monitor');
 INSERT INTO `tbl_descripcion` VALUES (8, 'Mouse');
@@ -358,13 +358,14 @@ CREATE TABLE `tbl_dictamen`  (
   `upload` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `url` varchar(1000) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_spanish_ci ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_spanish_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of tbl_dictamen
 -- ----------------------------
 INSERT INTO `tbl_dictamen` VALUES (1, '2023-02-01 15:08:16', 'Dictamen1', 'Dictamen1', 'admin', 'filesReportes/Autorizacion_Mantenimiento.docx');
 INSERT INTO `tbl_dictamen` VALUES (2, '2023-05-21 20:32:54', 'DictamenPDF', 'DictamenPDF', 'Super Administrador', 'filesReportes/Pasos tabla y gráfico dinámico.pdf');
+INSERT INTO `tbl_dictamen` VALUES (3, '2023-05-22 21:46:29', 'DictamenWord', 'DictamenWord', 'Super Administrador', 'filesReportes/NAVICAT.docx');
 
 -- ----------------------------
 -- Table structure for tbl_estado_bitacora
@@ -424,7 +425,7 @@ CREATE TABLE `tbl_informe`  (
   `nombre_tecnico` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '',
   `estado_informe` varchar(11) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`id_informe`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 127 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 130 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tbl_informe
@@ -554,19 +555,8 @@ INSERT INTO `tbl_informe` VALUES (122, 'Dictamen Técnico de Equipo Informático
 INSERT INTO `tbl_informe` VALUES (123, 'Dictamen Técnico de Equipo Informático del Departamento de Dirección de Tecnología.', 'IN56F123', '2023-01-31 12:04:20', 'Dictamen Técnico.', 'Sistema Nacional De Emergencias 911, Unidad De Soporte Técnico.', 'Sub Dirección Nacional', 'Se verifico mediante el proceso de desarmar la pantalla para realizar una prueba en la que el monitor no se encuentra en las condiciones de uso, esto debido a que la pantalla sigue mostrando el mismo problema del parpadeo continuo, con lo cual se llega a ', 'Se verifico mediante el proceso de desarmar la pantalla para realizar una prueba en la que el monitor no se encuentra en las condiciones de uso, esto debido a que la pantalla sigue mostrando el mismo problema del parpadeo continuo, con lo cual se llega a ', 'Se verifico mediante el proceso de desarmar la pantalla para realizar una prueba en la que el monitor no se encuentra en las condiciones de uso, esto debido a que la pantalla sigue mostrando el mismo problema del parpadeo continuo, con lo cual se llega a ', 'Se verifico mediante el proceso de desarmar la pantalla para realizar una prueba en la que el monitor no se encuentra en las condiciones de uso, esto debido a que la pantalla sigue mostrando el mismo problema del parpadeo continuo, con lo cual se llega a ', '1.png', '1.png', '1.png', 'Edwin Aron Martinez Cabrera', 'Finalizado');
 INSERT INTO `tbl_informe` VALUES (124, 'Dictamen Técnico de Equipo Informático del Departamento de Dirección de Tecnología.', 'IN23F124', '2023-01-31 16:12:09', 'Dictamen Técnico.', 'Sistema Nacional De Emergencias 911, Unidad De Soporte Técnico.', 'Sub Dirección Nacional', 'Se verifico mediante el proceso de desarmar la pantalla para realizar una prueba en la que el monitor no se encuentra en las condiciones de uso, esto debido a que la pantalla sigue mostrando el mismo problema del parpadeo continuo, con lo cual se llega a ', 'Se verifico mediante el proceso de desarmar la pantalla para realizar una prueba en la que el monitor no se encuentra en las condiciones de uso, esto debido a que la pantalla sigue mostrando el mismo problema del parpadeo continuo, con lo cual se llega a ', 'Se verifico mediante el proceso de desarmar la pantalla para realizar una prueba en la que el monitor no se encuentra en las condiciones de uso, esto debido a que la pantalla sigue mostrando el mismo problema del parpadeo continuo, con lo cual se llega a ', 'Se verifico mediante el proceso de desarmar la pantalla para realizar una prueba en la que el monitor no se encuentra en las condiciones de uso, esto debido a que la pantalla sigue mostrando el mismo problema del parpadeo continuo, con lo cual se llega a ', '', '', '', 'Edwin Aron Martinez Cabrera', 'Finalizado');
 INSERT INTO `tbl_informe` VALUES (125, 'Dictamen Técnico de Equipo Informático del Departamento de Dirección de Tecnología.', 'IN96F125', '2023-01-31 16:13:13', 'Dictamen Técnico.', 'Sistema Nacional De Emergencias 911, Unidad De Soporte Técnico.', 'Sub Dirección Nacional', 'Se verifico mediante el proceso de desarmar la pantalla para realizar una prueba en la que el monitor no se encuentra en las condiciones de uso, esto debido a que la pantalla sigue mostrando el mismo problema del parpadeo continuo, con lo cual se llega a ', 'Se verifico mediante el proceso de desarmar la pantalla para realizar una prueba en la que el monitor no se encuentra en las condiciones de uso, esto debido a que la pantalla sigue mostrando el mismo problema del parpadeo continuo, con lo cual se llega a ', 'Se verifico mediante el proceso de desarmar la pantalla para realizar una prueba en la que el monitor no se encuentra en las condiciones de uso, esto debido a que la pantalla sigue mostrando el mismo problema del parpadeo continuo, con lo cual se llega a ', 'Se verifico mediante el proceso de desarmar la pantalla para realizar una prueba en la que el monitor no se encuentra en las condiciones de uso, esto debido a que la pantalla sigue mostrando el mismo problema del parpadeo continuo, con lo cual se llega a ', '1.png', '1.png', '1.png', 'Edwin Aron Martinez Cabrera', 'Finalizado');
-INSERT INTO `tbl_informe` VALUES (126, 'Dictamen Técnico de Equipo Informático del Departamento de Dirección de Tecnología.', 'IN93F126', '2023-05-21 14:55:16', 'Dictamen Técnico.', 'Sistema Nacional De Emergencias 911, Unidad De Soporte Técnico.', 'Unidad de Asuntos Internacionales', 'Se verifico mediante el proceso de desarmar la pantalla para realizar una prueba en la que el monitor no se encuentra en las condiciones de uso, esto debido a que la pantalla sigue mostrando el mismo problema del parpadeo continuo, con lo cual se llega a ', 'Se verifico mediante el proceso de desarmar la pantalla para realizar una prueba en la que el monitor no se encuentra en las condiciones de uso, esto debido a que la pantalla sigue mostrando el mismo problema del parpadeo continuo, con lo cual se llega a ', 'Se verifico mediante el proceso de desarmar la pantalla para realizar una prueba en la que el monitor no se encuentra en las condiciones de uso, esto debido a que la pantalla sigue mostrando el mismo problema del parpadeo continuo, con lo cual se llega a ', 'Se verifico mediante el proceso de desarmar la pantalla para realizar una prueba en la que el monitor no se encuentra en las condiciones de uso, esto debido a que la pantalla sigue mostrando el mismo problema del parpadeo continuo, con lo cual se llega a ', 'Definir Parametros.PNG', 'Definir Parametros.PNG', 'Definir Parametros.PNG', 'Edwin Aron Martinez Cabrera', 'Finalizado');
-
--- ----------------------------
--- Table structure for tbl_nempleado
--- ----------------------------
-DROP TABLE IF EXISTS `tbl_nempleado`;
-CREATE TABLE `tbl_nempleado`  (
-  `Estado` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_spanish_ci ROW_FORMAT = COMPACT;
-
--- ----------------------------
--- Records of tbl_nempleado
--- ----------------------------
+INSERT INTO `tbl_informe` VALUES (128, 'Dictamen Técnico de Equipo Informático del Departamento de Dirección de Tecnología.', 'IN32F126', '2023-05-22 19:09:25', 'Dictamen Técnico.', 'Sistema Nacional De Emergencias 911, Unidad De Soporte Técnico.', 'Call Center', 'Se verifico mediante el proceso de desarmar la pantalla para realizar una prueba en la que el monitor no se encuentra en las condiciones de uso, esto debido a que la pantalla sigue mostrando el mismo problema del parpadeo continuo, con lo cual se llega a ', 'Se verifico mediante el proceso de desarmar la pantalla para realizar una prueba en la que el monitor no se encuentra en las condiciones de uso, esto debido a que la pantalla sigue mostrando el mismo problema del parpadeo continuo, con lo cual se llega a ', 'Se verifico mediante el proceso de desarmar la pantalla para realizar una prueba en la que el monitor no se encuentra en las condiciones de uso, esto debido a que la pantalla sigue mostrando el mismo problema del parpadeo continuo, con lo cual se llega a ', 'Se verifico mediante el proceso de desarmar la pantalla para realizar una prueba en la que el monitor no se encuentra en las condiciones de uso, esto debido a que la pantalla sigue mostrando el mismo problema del parpadeo continuo, con lo cual se llega ', 'triggers.JPG', 'triggers.JPG', 'triggers.JPG', 'Edwin Aron Martinez Cabrera', 'Finalizado');
+INSERT INTO `tbl_informe` VALUES (129, 'Dictamen Técnico de Equipo Informático del Departamento de Dirección de Tecnología.', 'IN64F127', '2023-05-22 21:48:12', 'Dictamen Técnico.', 'Sistema Nacional De Emergencias 911, Unidad De Soporte Técnico.', 'UAFI', 'Se verifico mediante el proceso de desarmar la pantalla para realizar una prueba en la que el monitor no se encuentra en las condiciones de uso, esto debido a que la pantalla sigue mostrando el mismo problema del parpadeo continuo, con lo cual se llega a ', 'Se verifico mediante el proceso de desarmar la pantalla para realizar una prueba en la que el monitor no se encuentra en las condiciones de uso, esto debido a que la pantalla sigue mostrando el mismo problema del parpadeo continuo, con lo cual se llega a ', 'Se verifico mediante el proceso de desarmar la pantalla para realizar una prueba en la que el monitor no se encuentra en las condiciones de uso, esto debido a que la pantalla sigue mostrando el mismo problema del parpadeo continuo, con lo cual se llega a ', 'Se verifico mediante el proceso de desarmar la pantalla para realizar una prueba en la que el monitor no se encuentra en las condiciones de uso, esto debido a que la pantalla sigue mostrando el mismo problema del parpadeo continuo, con lo cual se llega a ', 'triggers.JPG', 'triggers.JPG', 'triggers.JPG', 'Edwin Aron Martinez Cabrera', 'Finalizado');
 
 -- ----------------------------
 -- Table structure for tbl_numeroempleado
@@ -595,7 +585,7 @@ INSERT INTO `tbl_numeroempleado` VALUES (1025, 'JOSE ADALBERTO DIAZ ACOSTA', 1, 
 INSERT INTO `tbl_numeroempleado` VALUES (1028, 'YOLANDA DEL CARMEN PEREZ MOLINA', 1, 1);
 INSERT INTO `tbl_numeroempleado` VALUES (1029, 'GASBY  VILLATORO JACOME', 1, 1);
 INSERT INTO `tbl_numeroempleado` VALUES (1031, 'LENAR NAZARETH CERRATO MIRALDA', 1, 1);
-INSERT INTO `tbl_numeroempleado` VALUES (1032, 'CRISTIAN NOEL CANALES ZAMBRANO', 1, 0);
+INSERT INTO `tbl_numeroempleado` VALUES (1032, 'CRISTIAN NOEL CANALES ZAMBRANO', 1, 1);
 INSERT INTO `tbl_numeroempleado` VALUES (1033, 'EDER JOSUE ALVARADO MORALES', 1, 1);
 INSERT INTO `tbl_numeroempleado` VALUES (1035, 'DENIS EXZEQUIEL GARCIA GARCIA', 1, 0);
 INSERT INTO `tbl_numeroempleado` VALUES (1036, 'ISMAEL ANTONIO LOPEZ LOPEZ', 1, 0);
@@ -1919,7 +1909,7 @@ INSERT INTO `tbl_numeroempleado` VALUES (1025, 'JOSE ADALBERTO DIAZ ACOSTA', 0, 
 INSERT INTO `tbl_numeroempleado` VALUES (1028, 'YOLANDA DEL CARMEN PEREZ MOLINA', 0, 1);
 INSERT INTO `tbl_numeroempleado` VALUES (1029, 'GASBY  VILLATORO JACOME', 0, 1);
 INSERT INTO `tbl_numeroempleado` VALUES (1031, 'LENAR NAZARETH CERRATO MIRALDA', 0, 1);
-INSERT INTO `tbl_numeroempleado` VALUES (1032, 'CRISTIAN NOEL CANALES ZAMBRANO', 0, 0);
+INSERT INTO `tbl_numeroempleado` VALUES (1032, 'CRISTIAN NOEL CANALES ZAMBRANO', 0, 1);
 INSERT INTO `tbl_numeroempleado` VALUES (1033, 'EDER JOSUE ALVARADO MORALES', 0, 1);
 INSERT INTO `tbl_numeroempleado` VALUES (1035, 'DENIS EXZEQUIEL GARCIA GARCIA', 0, 0);
 INSERT INTO `tbl_numeroempleado` VALUES (1036, 'ISMAEL ANTONIO LOPEZ LOPEZ', 0, 0);
@@ -3230,7 +3220,7 @@ INSERT INTO `tbl_numeroempleado` VALUES (2885, 'CELENIA DEL CARMEN CARRASCO GOME
 INSERT INTO `tbl_numeroempleado` VALUES (9898, 'MICHAEL OWEN BRAUN COWEL', 0, 0);
 INSERT INTO `tbl_numeroempleado` VALUES (9993, 'SANTOS ISRAEL CHIRINOS COELLO', 0, 0);
 INSERT INTO `tbl_numeroempleado` VALUES (26613, 'VIVIAN ALEXANDRA ALVARADO MARTINEZ', 0, 0);
-INSERT INTO `tbl_numeroempleado` VALUES (0, '', 0, 1);
+INSERT INTO `tbl_numeroempleado` VALUES (0, '', 0, 0);
 
 -- ----------------------------
 -- Table structure for tbl_regionales
@@ -3250,24 +3240,6 @@ INSERT INTO `tbl_regionales` VALUES (2, 'Dirección Regional CECOP Choluteca');
 INSERT INTO `tbl_regionales` VALUES (3, 'Dirección Regional CECOP Tela');
 INSERT INTO `tbl_regionales` VALUES (4, 'Dirección Regional CECOP San Pedro Sula');
 INSERT INTO `tbl_regionales` VALUES (5, 'Dirección Regional CECOP Santa Rosa de Copán ');
-
--- ----------------------------
--- Table structure for tbl_reportes
--- ----------------------------
-DROP TABLE IF EXISTS `tbl_reportes`;
-CREATE TABLE `tbl_reportes`  (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `fecha` datetime NULL DEFAULT NULL,
-  `title` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `description` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `url` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `upload` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of tbl_reportes
--- ----------------------------
 
 -- ----------------------------
 -- Table structure for tbl_rol
@@ -3323,38 +3295,42 @@ CREATE TABLE `tbl_ticket`  (
   `descripcion` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `atendidopor` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `asignar_ticket` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
-  `dictamen` varchar(11) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `fechaatendido` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
-  `estadoticket2` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
-  `asunto2` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 186 CHARACTER SET = utf8 COLLATE = utf8_spanish_ci ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB AUTO_INCREMENT = 193 CHARACTER SET = utf8 COLLATE = utf8_spanish_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of tbl_ticket
 -- ----------------------------
-INSERT INTO `tbl_ticket` VALUES (155, '2023-02-13 10:37:54', 'TK38N11', 'En Proceso', 'Gustavo', 'gustavo_oqueli@hotmail.com', 'Unidad de Asuntos Internacionales', 'dfdfdf', '', 'Solución', '', 'bob esponja', 'bob esponja', 'Si', '', '', '');
-INSERT INTO `tbl_ticket` VALUES (157, '2023-02-09 16:45:44', 'TK90N13', 'En Proceso', 'David Fuentes', 'afdavid10y7@gmail.com', 'Secretaría Sub Dirección', 'mantenimiento', '', 'En proceso', '', 'David Anariba', 'leonel canaless', 'Si', '', '', '');
-INSERT INTO `tbl_ticket` VALUES (163, '2023-02-09 16:23:41', 'TK31N18', 'En proceso', 'Aron Martinez', 'aron.martinez@unah.hn', 'Sub Dirección Nacional', 'Tarea a Realizar', '', 'Solución', '', 'bob esponja', 'bob esponja', 'Si', '', '', '');
-INSERT INTO `tbl_ticket` VALUES (166, '2023-02-13 11:17:39', 'TK04N14', 'Resuelto', 'Edwin', 'e.martinez@911.gob.hn', 'Sub Dirección Nacional', 'Problema Presentado', '', 'Solución', '', 'bob esponja', 'bob esponja', 'Si', '', '', '');
-INSERT INTO `tbl_ticket` VALUES (167, '2023-05-21 17:46:28', 'TK47N15', 'Resuelto', 'Martinez', 'aron.martinez@unah.hn', 'Sub Dirección Nacional', 'Problema Presentado', '', 'Resuelto', '', 'David Anariba', 'leonel', 'No', '', '', '');
-INSERT INTO `tbl_ticket` VALUES (168, '2023-02-13 11:26:32', 'TK12N16', 'Resuelto', 'Edwin Martinez', 'e.martinez@911.gob.hn', 'Sub Dirección Nacional', 'a', '', '', '', '', 'David Anariba', '', '', '', '');
-INSERT INTO `tbl_ticket` VALUES (170, '2023-05-21 17:59:15', 'TK95N18', 'Rechazado', 'usuario', 'usuario@gmail.com', 'Gerencia de Tecnología', 'Cambio de Periféricos', '', 'Ticket Rechazado', 'Prueba 2 con tbl ticket', 'No asignado', 'leonel', 'No', 'Sin Atender', '', '');
-INSERT INTO `tbl_ticket` VALUES (171, '2023-05-21 17:59:40', 'TK60N19', 'Rechazado', 'usuario', 'usuario@gmail.com', 'Gerencia de Tecnología', 'Otro', '', 'Ticket Rechazado', 'Tercer prueba de tbl ticket', 'No asignado', 'leonel', 'No', 'Sin Atender', '', '');
-INSERT INTO `tbl_ticket` VALUES (172, '2023-05-21 12:11:22', 'TK56N20', 'En Proceso', 'usuario', 'usuario@gmail.com', 'Gerencia de Tecnología', 'Reemplazo de Equipo', '', 'Se reemplazo el equipo exitosamente.', 'PRUEBAAA', 'No asignado', 'bob esponja - pedro Perez - Tecnico Prueba', 'No', 'Sin Atender', '', '');
-INSERT INTO `tbl_ticket` VALUES (173, '2023-05-21 17:38:17', 'TK19N21', 'En Proceso', 'usuario', 'usuario@gmail.com', 'Gerencia de Tecnología', 'Acceso a la red Wi-Fi', '', 'En Proceso', 'Solicitud de acceso a Router.', 'No asignado', 'leonel', 'No', 'Sin Atender', '', '');
-INSERT INTO `tbl_ticket` VALUES (174, '2023-05-21 17:33:44', 'TK59N22', 'Pendiente', 'usuario', 'usuario@gmail.com', 'Gerencia de Tecnología', 'Backups', '', 'Pendiente', 'Solicito backup.', 'No asignado', 'leonel', 'Si', 'Sin Atender', '', '');
-INSERT INTO `tbl_ticket` VALUES (175, '2023-05-21 16:42:28', 'TK60N23', 'Pendiente', 'usuario', 'usuario@gmail.com', 'Gerencia de Tecnología', 'SIGEM', '', 'Pendiente', 'SOLICITUD DE SIGEM CAIDO.', 'No asignado', 'Tecnico', 'No', 'Sin Atender', '', '');
-INSERT INTO `tbl_ticket` VALUES (176, '2023-05-21 16:50:14', 'TK45N24', 'Pendiente', 'usuario', 'usuario@gmail.com', 'Gerencia de Tecnología', 'Fallo de PBX', '', 'Pendiente', 'PRUEBA CON PBX', 'No asignado', 'Tecnico', 'No', 'Sin Atender', '', '');
-INSERT INTO `tbl_ticket` VALUES (177, '2023-05-21 16:52:58', 'TK43N25', 'Pendiente', 'usuario', 'usuario@gmail.com', 'Gerencia de Tecnología', 'Manejo de Documentos por Red', '', 'Pendiente', 'ASDASD', 'No asignado', 'esponja', 'No', 'Sin Atender', '', '');
-INSERT INTO `tbl_ticket` VALUES (178, '2023-05-21 17:30:12', 'TK65N26', 'Pendiente', 'usuario', 'usuario@gmail.com', 'Gerencia de Tecnología', 'Configuración de Equipos de Oficina', '', 'Pendiente', 'Formateo y respaldo memoria RAM 4 GB, Procesador I3, DDS 256', 'No asignado', 'leonel', 'No', 'Sin Atender', '', '');
-INSERT INTO `tbl_ticket` VALUES (179, '2023-05-21 18:48:00', 'TK78N16', 'Resuelto', 'Super Administrador', 'Sadministrador@gmail.com', 'IT', 'Problemas con el Correo', '', 'Se partio el documento en varias partes con winrar, se probo enviar correos y no genero ninguna fall', 'No ennvia adjuntos', 'No asignado', '', 'No', 'Sin Atender', '', '');
-INSERT INTO `tbl_ticket` VALUES (180, '2023-05-21 19:32:08', 'TK76N17', 'Pendiente', 'Super Administrador', 'Sadministrador@gmail.com', 'IT', 'Conexión de Red', '', 'Pendiente', 'No tiene Internet', 'No asignado', 'Sin Atender', '', 'Sin Atender', '', '');
-INSERT INTO `tbl_ticket` VALUES (181, '2023-05-21 19:44:49', 'TK30N18', 'En Proceso', 'Super Administrador', 'Sadministrador@gmail.com', 'IT', 'SIGEP', '', 'Pendiente', 'Problema', 'No asignado', 'bob esponja', '', 'Sin Atender', '', '');
-INSERT INTO `tbl_ticket` VALUES (182, '2023-05-21 19:45:56', 'TK39N19', 'En Proceso', 'Super Administrador', 'Sadministrador@gmail.com', 'IT', 'Acceso a la red Wi-Fi', '', 'Pendiente', 'No se puede conectar a red de visitas', 'No asignado', 'Edwin Aron Martinez', '', 'Sin Atender', '', '');
-INSERT INTO `tbl_ticket` VALUES (183, '2023-05-21 19:53:15', 'TK29N20', 'Resuelto', 'usuario', 'usuario@gmail.com', 'Gerencia de Tecnología', 'Acceso a la red Wi-Fi', '', 'El usuario estaba poniendo mal la clave', 'a', 'No asignado', 'Tecnico', '', 'Sin Atender', '', '');
-INSERT INTO `tbl_ticket` VALUES (184, '2023-05-21 19:56:09', 'TK47N21', 'Resuelto', 'Super Administrador', 'Sadministrador@gmail.com', 'IT', 'Backups', '', 'No se puede hacer respaldo ya que no tiene cuenta premiun de Office', 'Necesita respaldo de documentos en la nube', 'No asignado', 'perez22', '', 'Sin Atender', '', '');
-INSERT INTO `tbl_ticket` VALUES (185, '2023-05-21 20:09:24', 'TK94N22', 'Resuelto', 'Super Administrador', 'Sadministrador@gmail.com', 'IT', 'Configuración de Equipos de Oficina', '', 'Ticket Terminado', 'Se solicita configurar dominio en el ?rea de Legal.', 'No asignado', 'JLopez', '', 'Sin Atender', '', '');
+INSERT INTO `tbl_ticket` VALUES (155, '2023-02-13 10:37:54', 'TK38N11', 'En Proceso', 'Gustavo', 'gustavo_oqueli@hotmail.com', 'Unidad de Asuntos Internacionales', 'dfdfdf', '', 'Solución', '', 'bob esponja', 'bob esponja', '');
+INSERT INTO `tbl_ticket` VALUES (157, '2023-02-09 16:45:44', 'TK90N13', 'En Proceso', 'David Fuentes', 'afdavid10y7@gmail.com', 'Secretaría Sub Dirección', 'mantenimiento', '', 'En proceso', '', 'David Anariba', 'leonel canaless', '');
+INSERT INTO `tbl_ticket` VALUES (163, '2023-02-09 16:23:41', 'TK31N18', 'En proceso', 'Aron Martinez', 'aron.martinez@unah.hn', 'Sub Dirección Nacional', 'Tarea a Realizar', '', 'Solución', '', 'bob esponja', 'bob esponja', '');
+INSERT INTO `tbl_ticket` VALUES (166, '2023-02-13 11:17:39', 'TK04N14', 'Resuelto', 'Edwin', 'e.martinez@911.gob.hn', 'Sub Dirección Nacional', 'Problema Presentado', '', 'Solución', '', 'bob esponja', 'bob esponja', '');
+INSERT INTO `tbl_ticket` VALUES (167, '2023-05-21 17:46:28', 'TK47N15', 'Resuelto', 'Martinez', 'aron.martinez@unah.hn', 'Sub Dirección Nacional', 'Problema Presentado', '', 'Resuelto', '', 'David Anariba', 'leonel', '');
+INSERT INTO `tbl_ticket` VALUES (168, '2023-02-13 11:26:32', 'TK12N16', 'Resuelto', 'Edwin Martinez', 'e.martinez@911.gob.hn', 'Sub Dirección Nacional', 'a', '', '', '', '', 'David Anariba', '');
+INSERT INTO `tbl_ticket` VALUES (170, '2023-05-21 17:59:15', 'TK95N18', 'Rechazado', 'usuario', 'usuario@gmail.com', 'Gerencia de Tecnología', 'Cambio de Periféricos', '', 'Ticket Rechazado', 'Prueba 2 con tbl ticket', 'No asignado', 'leonel', 'Sin Atender');
+INSERT INTO `tbl_ticket` VALUES (171, '2023-05-21 17:59:40', 'TK60N19', 'Rechazado', 'usuario', 'usuario@gmail.com', 'Gerencia de Tecnología', 'Otro', '', 'Ticket Rechazado', 'Tercer prueba de tbl ticket', 'No asignado', 'leonel', 'Sin Atender');
+INSERT INTO `tbl_ticket` VALUES (172, '2023-05-21 12:11:22', 'TK56N20', 'En Proceso', 'usuario', 'usuario@gmail.com', 'Gerencia de Tecnología', 'Reemplazo de Equipo', '', 'Se reemplazo el equipo exitosamente.', 'PRUEBAAA', 'No asignado', 'bob esponja - pedro Perez - Tecnico Prueba', 'Sin Atender');
+INSERT INTO `tbl_ticket` VALUES (173, '2023-05-21 17:38:17', 'TK19N21', 'En Proceso', 'usuario', 'usuario@gmail.com', 'Gerencia de Tecnología', 'Acceso a la red Wi-Fi', '', 'En Proceso', 'Solicitud de acceso a Router.', 'No asignado', 'leonel', 'Sin Atender');
+INSERT INTO `tbl_ticket` VALUES (174, '2023-05-21 17:33:44', 'TK59N22', 'Pendiente', 'usuario', 'usuario@gmail.com', 'Gerencia de Tecnología', 'Backups', '', 'Pendiente', 'Solicito backup.', 'No asignado', 'leonel', 'Sin Atender');
+INSERT INTO `tbl_ticket` VALUES (175, '2023-05-22 19:41:07', 'TK60N23', 'Resuelto', 'usuario', 'usuario@gmail.com', 'Gerencia de Tecnología', 'SIGEM', '', 'Solucionado', 'SOLICITUD DE SIGEM CAIDO.', 'No asignado', 'Tecnico', 'Sin Atender');
+INSERT INTO `tbl_ticket` VALUES (176, '2023-05-21 16:50:14', 'TK45N24', 'Pendiente', 'usuario', 'usuario@gmail.com', 'Gerencia de Tecnología', 'Fallo de PBX', '', 'Pendiente', 'PRUEBA CON PBX', 'No asignado', 'Tecnico', 'Sin Atender');
+INSERT INTO `tbl_ticket` VALUES (177, '2023-05-21 16:52:58', 'TK43N25', 'Pendiente', 'usuario', 'usuario@gmail.com', 'Gerencia de Tecnología', 'Manejo de Documentos por Red', '', 'Pendiente', 'ASDASD', 'No asignado', 'esponja', 'Sin Atender');
+INSERT INTO `tbl_ticket` VALUES (178, '2023-05-21 17:30:12', 'TK65N26', 'Pendiente', 'usuario', 'usuario@gmail.com', 'Gerencia de Tecnología', 'Configuración de Equipos de Oficina', '', 'Pendiente', 'Formateo y respaldo memoria RAM 4 GB, Procesador I3, DDS 256', 'No asignado', 'leonel', 'Sin Atender');
+INSERT INTO `tbl_ticket` VALUES (179, '2023-05-21 18:48:00', 'TK78N16', 'Resuelto', 'Super Administrador', 'Sadministrador@gmail.com', 'IT', 'Problemas con el Correo', '', 'Se partio el documento en varias partes con winrar, se probo enviar correos y no genero ninguna fall', 'No ennvia adjuntos', 'No asignado', '', 'Sin Atender');
+INSERT INTO `tbl_ticket` VALUES (180, '2023-05-21 19:32:08', 'TK76N17', 'Pendiente', 'Super Administrador', 'Sadministrador@gmail.com', 'IT', 'Conexión de Red', '', 'Pendiente', 'No tiene Internet', 'No asignado', 'Sin Atender', 'Sin Atender');
+INSERT INTO `tbl_ticket` VALUES (181, '2023-05-21 19:44:49', 'TK30N18', 'En Proceso', 'Super Administrador', 'Sadministrador@gmail.com', 'IT', 'SIGEP', '', 'Pendiente', 'Problema', 'No asignado', 'bob esponja', 'Sin Atender');
+INSERT INTO `tbl_ticket` VALUES (182, '2023-05-21 19:45:56', 'TK39N19', 'En Proceso', 'Super Administrador', 'Sadministrador@gmail.com', 'IT', 'Acceso a la red Wi-Fi', '', 'Pendiente', 'No se puede conectar a red de visitas', 'No asignado', 'Edwin Aron Martinez', 'Sin Atender');
+INSERT INTO `tbl_ticket` VALUES (183, '2023-05-21 19:53:15', 'TK29N20', 'Resuelto', 'usuario', 'usuario@gmail.com', 'Gerencia de Tecnología', 'Acceso a la red Wi-Fi', '', 'El usuario estaba poniendo mal la clave', 'a', 'No asignado', 'Tecnico', 'Sin Atender');
+INSERT INTO `tbl_ticket` VALUES (184, '2023-05-21 19:56:09', 'TK47N21', 'Resuelto', 'Super Administrador', 'Sadministrador@gmail.com', 'IT', 'Backups', '', 'No se puede hacer respaldo ya que no tiene cuenta premiun de Office', 'Necesita respaldo de documentos en la nube', 'No asignado', 'perez22', 'Sin Atender');
+INSERT INTO `tbl_ticket` VALUES (185, '2023-05-21 20:09:24', 'TK94N22', 'Resuelto', 'Super Administrador', 'Sadministrador@gmail.com', 'IT', 'Configuración de Equipos de Oficina', '', 'Ticket Terminado', 'Se solicita configurar dominio en el ?rea de Legal.', 'No asignado', 'JLopez', 'Sin Atender');
+INSERT INTO `tbl_ticket` VALUES (186, '2023-05-22 21:20:06', 'TK92N23', 'Resuelto', 'CRISTIAN NOEL CANALES ZAMBRANO', 'cristiann@911.gob.hn', 'Call Center', 'SIGEP', '', 'SIGEP RESELTO ', 'SIGEP CAIDO', 'No asignado', 'EdwinMartinez', 'Sin Atender');
+INSERT INTO `tbl_ticket` VALUES (187, '2023-05-22 19:40:15', 'TK19N24', 'Resuelto', 'CRISTIAN NOEL CANALES ZAMBRANO', 'cristiann@911.gob.hn', 'Call Center', 'SIGEM', '', 'Solucionado', 'SIGEM CAIDO.', 'No asignado', 'Tecnico', 'Sin Atender');
+INSERT INTO `tbl_ticket` VALUES (188, '2023-05-22 21:07:37', 'TK93N25', 'Resuelto', 'usuario', 'usuario@gmail.com', 'Gerencia de Tecnología', 'SIGEM', '', 'SIGEM RESTABLECIDO', 'SIGEM SE ENCUENTRA CAIDO.', 'No asignado', 'EdwinMartinez', 'Sin Atender');
+INSERT INTO `tbl_ticket` VALUES (189, '2023-05-22 21:13:39', 'TK06N26', 'Resuelto', 'usuario', 'usuario@gmail.com', 'Gerencia de Tecnología', 'Fallo de PBX', '', 'PBX FUNCIONAL', 'PBX CAIDA', 'No asignado', 'EdwinMartinez', 'Sin Atender');
+INSERT INTO `tbl_ticket` VALUES (190, '2023-05-22 21:12:58', 'TK59N27', 'Pendiente', 'usuario', 'usuario@gmail.com', 'Gerencia de Tecnología', 'Otro', '', 'Pendiente', 'No me esta cargando GoogleEart', 'No asignado', 'Sin Atender', 'Sin Atender');
+INSERT INTO `tbl_ticket` VALUES (191, '2023-05-22 21:31:25', 'TK87N28', 'Resuelto', 'usuario', 'usuario@gmail.com', 'Gerencia de Tecnología', 'Otro', '', 'No Tenia Internet se configuro red wifi ', 'No Carga GoogelEart', 'No asignado', 'esponja', 'Sin Atender');
+INSERT INTO `tbl_ticket` VALUES (192, '2023-05-22 21:38:09', 'TK74N29', 'Resuelto', 'Super Administrador', 'Sadministrador@gmail.com', 'IT', 'SIGEP', '', 'no tenoa configurado el tipo de papel a4 en la impresora', 'no me genera reportes', 'No asignado', 'EdwinMartinez', 'Sin Atender');
 
 -- ----------------------------
 -- Table structure for tbl_ticket_desarrollo
@@ -3417,25 +3393,17 @@ CREATE TABLE `tbl_usuarios`  (
   `numeroEmpleado` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL DEFAULT '',
   `estado` int NOT NULL,
   PRIMARY KEY (`id_usuario`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 38 CHARACTER SET = utf8 COLLATE = utf8_spanish_ci ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB AUTO_INCREMENT = 39 CHARACTER SET = utf8 COLLATE = utf8_spanish_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of tbl_usuarios
 -- ----------------------------
 INSERT INTO `tbl_usuarios` VALUES (1, 'josue canaless', 'jocanales', '4', '123456', 'gustavo_oqueli@hotmail.com', '0000-0000', 'IT', '', 0);
-INSERT INTO `tbl_usuarios` VALUES (2, 'Fabricio Zuniga', 'f69', '4', '', 'fzuni@gmail.com', '97752355', 'IT', '', 1);
-INSERT INTO `tbl_usuarios` VALUES (4, 'Rony Andino', '', '4', '', '', '', 'IT', '', 1);
-INSERT INTO `tbl_usuarios` VALUES (5, 'José Mario Jiménez', '', '4', '', '', '', 'IT', '', 1);
-INSERT INTO `tbl_usuarios` VALUES (6, ' Arthur Benavides', '', '4', '', '', '', 'IT', '', 1);
-INSERT INTO `tbl_usuarios` VALUES (7, 'Joel Chirinos', '', '4', '', '', '', 'IT', '', 1);
-INSERT INTO `tbl_usuarios` VALUES (8, 'Jorge Oliva', '', '4', '', '', '', 'IT', '', 0);
-INSERT INTO `tbl_usuarios` VALUES (9, 'goku', 'dragonball', '4', 'e10adc3949ba59abbe56e057f20f883e', 'gustavo_oqueli@hotmail.com', '', 'IT', '', 0);
-INSERT INTO `tbl_usuarios` VALUES (10, 'Abel', 'theweeknd', '4', 'e10adc3949ba59abbe56e057f20f883e', 'gustavo_oqueli@hotmail.com', '', 'IT', '', 0);
-INSERT INTO `tbl_usuarios` VALUES (11, 'Gusatavo Oqueli', 'gus', '4', 'e10adc3949ba59abbe56e057f20f883e', 'gustavo_oqueli@hotmail.com', '', 'IT', '', 1);
+INSERT INTO `tbl_usuarios` VALUES (2, 'Fabricio Zuniga', 'f69', '4', '', 'fzuni@gmail.com', '97752355', 'IT', '', 0);
 INSERT INTO `tbl_usuarios` VALUES (12, 'David Fuentes', 'afdavid', '4', 'e10adc3949ba59abbe56e057f20f883e', 'afdavid10y7@gmail.com', '97792977', 'IT', '', 1);
-INSERT INTO `tbl_usuarios` VALUES (13, 'Alberto Anariba', 'dafuentes', '4', 'e10adc3949ba59abbe56e057f20f883e', 'david.fuentes@911.gob.hn', '97792789', 'IT', '', 1);
+INSERT INTO `tbl_usuarios` VALUES (13, 'Alberto Anariba', 'dafuentes', '4', 'e10adc3949ba59abbe56e057f20f883e', 'david.fuentes@911.gob.hn', '97792789', 'IT', '', 0);
 INSERT INTO `tbl_usuarios` VALUES (14, 'David Anariba', 'dfuenteshn', '4', 'e10adc3949ba59abbe56e057f20f883e', 'dfuentes@unah.hn', '97792944', 'IT', '', 0);
-INSERT INTO `tbl_usuarios` VALUES (15, 'David Alberto', 'albert', '4', 'e10adc3949ba59abbe56e057f20f883e', 'afdavid10@gmail.com', '97795214', 'Gerencia de TecnologÃ­a', '', 1);
+INSERT INTO `tbl_usuarios` VALUES (15, 'David Alberto', 'albert', '4', 'e10adc3949ba59abbe56e057f20f883e', 'afdavid10@gmail.com', '97795214', 'Gerencia de TecnologÃ­a', '', 0);
 INSERT INTO `tbl_usuarios` VALUES (16, 'David', 'dfuenteshn1', '4', 'e10adc3949ba59abbe56e057f20f883e', 'afdavid10@gmail.comm', '97792944', 'SecretarÃ­a Sub DirecciÃ³n', '', 1);
 INSERT INTO `tbl_usuarios` VALUES (17, 'David Anariba', 'afdavid777', '4', 'e10adc3949ba59abbe56e057f20f883e', 'afdavid77@gmail.com', '97792944', 'AuditorÃ­a Interna', '', 1);
 INSERT INTO `tbl_usuarios` VALUES (18, 'David Alberto', 'dfuenteshn77', '4', 'e10adc3949ba59abbe56e057f20f883e', 'dfuentes77@unah.hn', '97792944', 'Unidad de Transparencia', '', 1);
@@ -3457,5 +3425,6 @@ INSERT INTO `tbl_usuarios` VALUES (33, 'spiderM', 'spiderM', '4', 'e10adc3949ba5
 INSERT INTO `tbl_usuarios` VALUES (34, 'capitan', 'capitan', '4', 'e10adc3949ba59abbe56e057f20f883e', 'capitan@911.gob.hn', '56231478', 'Secretaría Sub Dirección', '1028', 1);
 INSERT INTO `tbl_usuarios` VALUES (35, 'capitan america', 'capAmerica', '4', 'e10adc3949ba59abbe56e057f20f883e', 'capAmerica@911.gob.hn', '7896541', 'Dirección Legal', '1029', 1);
 INSERT INTO `tbl_usuarios` VALUES (37, 'usuario', 'usuario', '4', 'e10adc3949ba59abbe56e057f20f883e', 'usuario@gmail.com', '23145', 'Gerencia de Tecnología', '1033', 1);
+INSERT INTO `tbl_usuarios` VALUES (38, 'CRISTIAN NOEL CANALES ZAMBRANO', 'cristiannoel', '4', 'e10adc3949ba59abbe56e057f20f883e', 'cristiann@911.gob.hn', '123456', 'Call Center', '1032', 1);
 
 SET FOREIGN_KEY_CHECKS = 1;
