@@ -1,5 +1,5 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<?php if ($_SESSION['nombre'] != "" || $_SESSION['tipo'] == "1" ||  $_SESSION['tipo'] == 2) { ?>
+<?php if ($_SESSION['nombre'] != "" || $_SESSION['tipo'] == "1" || $_SESSION['tipo'] == 2) { ?>
 
 
 
@@ -12,11 +12,13 @@
 
             <!-- Boton para regresar -->
             <div class="col-sm-17" aria-label="Basic example">
-                <a href="./admin.php?view=bitacora" style="margin: 5px" class="btn btn-success pull-right"><i class="fa fa-reply"></i>&nbsp;&nbsp;Regresar a Bitacoras</a>
+                <a href="./admin.php?view=bitacora" style="margin: 5px" class="btn btn-success pull-right"><i
+                        class="fa fa-reply"></i>&nbsp;&nbsp;Regresar a Bitacoras</a>
             </div>
             <!-- boton para actualizar la pagina -->
             <div class="col-sm-17" aria-label="Basic example">
-                <a href="" style="margin: 5px" class="btn btn-primary  pull-right"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Actualizar</a>
+                <a href="" style="margin: 5px" class="btn btn-primary  pull-right"><i
+                        class="fa fa-refresh"></i>&nbsp;&nbsp;Actualizar</a>
             </div>
 
             <br>
@@ -42,14 +44,15 @@
         <div class="row">
             <div class="col-md-20">
                 <div class="table-responsive">
-                    <?php if ($_SESSION['tipo'] == 1  ||  $_SESSION['tipo'] == 2) { ?>
+                    <?php if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) { ?>
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-md-10">
                                     <div>
 
                                         <form id="frmExcel" name="frmExcel" enctype="multipart/form-data" method="post">
-                                            <button type="button" class="btn btn-success" onclick="excel();">Generar reporte Excel</button>
+                                            <button type="button" class="btn btn-success" onclick="excel();">Generar reporte
+                                                Excel</button>
                                         </form>
                                     </div> <br>
 
@@ -59,7 +62,8 @@
 
                                         <form id="frmExcel" name="frmExcel" enctype="multipart/form-data" method="post">
 
-                                            <button type="button" class="btn btn-success" onclick="pdfReport();">Generar reporte PDF</button>
+                                            <button type="button" class="btn btn-success" onclick="pdfReport();">Generar reporte
+                                                PDF</button>
                                         </form>
                                     </div> <br>
 
@@ -71,13 +75,13 @@
 
 
 
-                    <?php
+                        <?php
 
                     }
                     $mysqli = mysqli_connect(SERVER, USER, PASS, BD);
                     mysqli_set_charset($mysqli, "utf8");
 
-                    $pagina = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
+                    $pagina = isset($_GET['pagina']) ? (int) $_GET['pagina'] : 1;
                     $regpagina = 10;
                     $inicio = ($pagina > 1) ? (($pagina * $regpagina) - $regpagina) : 0;
 
@@ -107,8 +111,8 @@
 
                     $numeropaginas = ceil($totalregistros["FOUND_ROWS()"] / $regpagina);
 
-                    if (mysqli_num_rows($selticket) > 0) :
-                    ?>
+                    if (mysqli_num_rows($selticket) > 0):
+                        ?>
                         <!-- Tabla que muestra todos los tickets -->
                         <div class="container-fluid">
 
@@ -118,12 +122,9 @@
                                         <th class="text-center">#</th>
                                         <th class="text-center">Fecha</th>
                                         <th class="text-center">Serie</th>
-                                        <th class="text-center">Turnos</th>
                                         <th class="text-center">Departamento</th>
                                         <th class="text-center">Regional</th>
-                                        <th class="text-center">Encargado</th>
                                         <th class="text-center">Tecnicos</th>
-                                        <th class="text-center">Area</th>
                                         <th class="text-center">Descripcion</th>
                                         <th class="text-center">Problema</th>
                                         <th class="text-center">Solucion</th>
@@ -137,30 +138,49 @@
                                 <tbody>
                                     <?php
                                     $ct = $inicio + 1;
-                                    while ($row = mysqli_fetch_array($selticket, MYSQLI_ASSOC)) :
-                                    ?>
+                                    while ($row = mysqli_fetch_array($selticket, MYSQLI_ASSOC)):
+                                        ?>
                                         <tr>
 
-                                            <td class="text-center"><?php echo $ct; ?></td>
-                                            <td class="text-center"><?php echo $row['fecha']; ?></td>
-                                            <td class="text-center"><?php echo $row['serie']; ?></td>
-                                            <td class="text-center"><?php echo $row['turnos']; ?></td>
-                                            <td class="text-center"><?php echo $row['departamento_ticket']; ?></td>
-                                            <td class="text-center"><?php echo $row['regional_ticket']; ?></td>
-                                            <td class="text-center"><?php echo $row['encargado']; ?></td>
-                                            <td class="text-center"><?php echo $row['tecnicos_ticket']; ?></td>
-                                            <td class="text-center"><?php echo $row['area_solicitud']; ?></td>
-                                            <td class="text-center"><?php echo $row['descripcion_equipos']; ?></td>
-                                            <td class="text-center"><?php echo $row['problema_presentado']; ?></td>
-                                            <td class="text-center"><?php echo $row['solucion']; ?></td>
-                                            <td class="text-center"><?php echo $row['estado_bitacora']; ?></td>
+                                            <td class="text-center">
+                                                <?php echo $ct; ?>
+                                            </td>
+                                            <td class="text-center">
+                                                <?php echo $row['fecha']; ?>
+                                            </td>
+                                            <td class="text-center">
+                                                <?php echo $row['serie']; ?>
+                                            </td>
+                                            <td class="text-center">
+                                                <?php echo $row['departamento_ticket']; ?>
+                                            </td>
+                                            <td class="text-center">
+                                                <?php echo $row['regional_ticket']; ?>
+                                            </td>
+                                            <td class="text-center">
+                                                <?php echo $row['tecnicos_ticket']; ?>
+                                            </td>
+                                            <td class="text-center">
+                                                <?php echo $row['descripcion_equipos']; ?>
+                                            </td>
+                                            <td class="text-center">
+                                                <?php echo $row['problema_presentado']; ?>
+                                            </td>
+                                            <td class="text-center">
+                                                <?php echo $row['solucion']; ?>
+                                            </td>
+                                            <td class="text-center">
+                                                <?php echo $row['estado_bitacora']; ?>
+                                            </td>
 
 
 
 
 
                                             <td class="text-center">
-                                                <a href="./lib/pdf_bitacora.php?id_bitacora=<?php echo $row['id_bitacora']; ?>" style="margin: 5px" class="btn btn-sm btn-success" target="_blank"><i class="fa fa-print" aria-hidden="true"></i></a>
+                                                <a href="./lib/pdf_bitacora.php?id_bitacora=<?php echo $row['id_bitacora']; ?>"
+                                                    style="margin: 5px" class="btn btn-sm btn-success" target="_blank"><i
+                                                        class="fa fa-print" aria-hidden="true"></i></a>
 
 
                                                 <!--                 Boton para eliminar
@@ -170,30 +190,30 @@
             </form>-->
                                             </td>
                                         </tr>
-                        </div>
+                            </div>
 
-                    <?php
-                                        $ct++;
+                            <?php
+                            $ct++;
                                     endwhile;
-                    ?>
+                                    ?>
 
-                    </tbody>
-                    </table>
-                    <!-- Fin tabla  -->
-                    <!-- Inicio conteo de tickets para cambio de página -->
-                <?php else : ?>
-                    <h2 class="text-center">No hay tickets registrados en el sistema</h2>
-                <?php endif; ?>
+                        </tbody>
+                        </table>
+                        <!-- Fin tabla  -->
+                        <!-- Inicio conteo de tickets para cambio de página -->
+                    <?php else: ?>
+                        <h2 class="text-center">No hay tickets registrados en el sistema</h2>
+                    <?php endif; ?>
                 </div>
 
                 <?php
-                if ($numeropaginas >= 1) :
+                if ($numeropaginas >= 1):
                     if (isset($_GET['ticket'])) {
                         $ticketselected = $_GET['ticket'];
                     } else {
                         $ticketselected = "all";
                     }
-                ?>
+                    ?>
 
                 <?php endif; ?>
             </div>
@@ -201,9 +221,9 @@
         </div>
     </div><!--container principal-->
 
-<?php
+    <?php
 } else {
-?>
+    ?>
     <div class="container">
         <div class="row">
             <div class="col-sm-4">
@@ -217,7 +237,7 @@
             <div class="col-sm-1">&nbsp;</div>
         </div>
     </div>
-<?php
+    <?php
 }
 ?>
 

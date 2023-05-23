@@ -128,6 +128,23 @@
                         }
 
                     }
+                    if ($_SESSION['tipo'] == 3) { //SI EL USUARIO ES TECNICO QUE ME MUESTRE SOLO ESTE QUERY
+                
+                        if (isset($_GET['ticket'])) {
+                            if ($_GET['ticket'] == "rejected") {
+                                $asignar_ticket = $_SESSION['nombre']; //LLAMANDO LA VARIABLE DESDE EL FORMULARIO CON $_SESION PARA CONSULTA POR TECNICO
+                                $consulta = "SELECT SQL_CALC_FOUND_ROWS * FROM tbl_ticket WHERE asignar_ticket = '$asignar_ticket' AND estado_ticket='Rechazado' ORDER BY fecha DESC ";
+
+                                // $consulta = "SELECT SQL_CALC_FOUND_ROWS * FROM tbl_ticket WHERE estado_ticket='Pendiente'  ORDER BY fecha DESC  ";
+                
+                            } else {
+                                $consulta = "SELECT SQL_CALC_FOUND_ROWS * FROM tbl_ticket ORDER BY fecha DESC ";
+                            }
+                        } else {
+                            $consulta = "SELECT SQL_CALC_FOUND_ROWS * FROM tbl_ticket ORDER BY fecha DESC  ";
+                        }
+
+                    }
                     $selticket = mysqli_query($mysqli, $consulta);
 
                     $totalregistros = mysqli_query($mysqli, "SELECT FOUND_ROWS()");
@@ -149,6 +166,7 @@
                                     <th class="text-center">Correo Usuario</th>
                                     <th class="text-center">Departamento</th>
                                     <th class="text-center">Problema</th>
+                                    <th class="text-center">Descripcion</th>
                                     <th class="text-center">Ticket Asignado</th>
                                     <th class="text-center">Opciones</th>
                                 </tr>
@@ -182,6 +200,9 @@
                                         </td>
                                         <td class="text-center">
                                             <?php echo $row['asunto']; ?>
+                                        </td>
+                                        <td class="text-center">
+                                            <?php echo $row['descripcion']; ?>
                                         </td>
                                         <td class="text-center">
                                             <?php echo $row['asignar_ticket']; ?>
@@ -258,7 +279,7 @@
 ?>
 <script type="text/javascript">
     function excel() {
-        window.open("process/excelTicket.php?Tipoticket=3");
+        window.open("process/excelTicket_solucion.php?Tipoticket=3");
         // console.log("funciona");
     }
 </script>

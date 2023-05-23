@@ -77,7 +77,7 @@ $usuarioSalir = $_SESSION['user'];
                 <li>
                     <a href="./index.php"><span class="glyphicon glyphicon-home"></span> &nbsp; Inicio</a>
                 </li>
-                <?php if ($_SESSION['tipo'] != 4 and $_SESSION['tipo'] != 3) {
+                <?php if ($_SESSION['tipo'] != 4) {
                     if ($_SESSION['tipo'] != 5) {
                         ?>
                         <li>
@@ -109,6 +109,7 @@ $usuarioSalir = $_SESSION['user'];
 
 
                 <!-- Fin barra de navegación -->
+
 
                 <?php if (!isset($_SESSION['tipo']) && !isset($_SESSION['nombre'])): ?>
                     <li>

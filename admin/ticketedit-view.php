@@ -85,7 +85,7 @@ $reg = mysqli_fetch_array($sql, MYSQLI_ASSOC);
       </div>
 
       <div class="form-group">
-        <label class="col-sm-2 control-label">Técnicos Asignados</label>
+        <label class="col-sm-2 control-label">Ticket Asignado</label>
         <div class='col-sm-10'>
           <div class="input-group">
             <input class="form-control" readonly="" type="text" name="asignar_ticket" readonly=""
@@ -141,7 +141,20 @@ $reg = mysqli_fetch_array($sql, MYSQLI_ASSOC);
           <div class='input-group'>
             <input type="text" readonly="" class="form-control" name="asunto" readonly=""
               value="<?php echo $reg['asunto'] ?>">
-            <span class="input-group-addon"><i class="fa fa-paperclip"></i></span>
+            <span class="input-group-addon"><i class="fa fa-exclamation-triangle"></i></span>
+          </div>
+        </div>
+      </div>
+      <!-- Fin Select Problema -->
+
+      <!--  Select Problema -->
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Descripcion</label>
+        <div class="col-sm-10">
+          <div class='input-group'>
+            <input type="text" readonly="" class="form-control" name="descripcion" readonly=""
+              value="<?php echo $reg['descripcion'] ?>">
+            <span class="input-group-addon"><i class="fa fa-pencil"></i></span>
           </div>
         </div>
       </div>
@@ -168,13 +181,13 @@ $reg = mysqli_fetch_array($sql, MYSQLI_ASSOC);
       if ($_SESSION['tipo'] == 1) { //SI EL TIPO DE USUARIO ES IGUL A 1 O ADMINISTRADOR QUE ME MUESTRE TODOS LOS TICKETS
         ?>
         <div class="form-group">
-          <label class="col-sm-2 control-label">Asignar Técnicos </label>
+          <label class="col-sm-2 control-label">Asignar Ticket </label>
           <div class='col-sm-10'>
             <div class="input-group">
               <select class="form-control" name="asignar_ticket" placeholder="asignar_ticket" required>
                 <option value="" required>-Asignar-</option>
                 <?php
-                $dept = Mysql::consulta("SELECT id_usuario, nombre_usuario FROM tbl_admin  WHERE id_rol = '2'");
+                $dept = Mysql::consulta("SELECT id_usuario, nombre_usuario FROM tbl_admin  WHERE id_rol = '2' OR id_rol = '3'");
                 while ($ticket = mysqli_fetch_array($dept)) {
                   ?>
                   <option value="<?php echo $ticket["nombre_usuario"] ?>"> <?php echo $ticket["nombre_usuario"] ?>

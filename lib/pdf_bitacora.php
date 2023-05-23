@@ -1,5 +1,3 @@
-
-
 <?php
 require "./fpdf/fpdf.php";
 include './conexion.php';
@@ -37,23 +35,14 @@ $pdf->Ln();
 $pdf->Cell(50, 10, 'Fecha y Hora', 1, 0, 'C', true);
 $pdf->Cell(0, 10, utf8_decode($reg['fecha']), 1, 1, 'L');
 
-$pdf->Cell(50, 10, 'Turno', 1, 0, 'C', true);
-$pdf->Cell(0, 10, utf8_decode($reg['turnos']), 1, 1, 'L');
-
 $pdf->Cell(50, 10, 'Departamento', 1, 0, 'C', true);
 $pdf->Cell(0, 10, utf8_decode($reg['departamento_ticket']), 1, 1, 'L');
 
 $pdf->Cell(50, 10, 'Regionales', 1, 0, 'C', true);
 $pdf->Cell(0, 10, utf8_decode($reg['regional_ticket']), 1, 1, 'L');
 
-$pdf->Cell(50, 10, 'Persona Encargada', 1, 0, 'C', true);
-$pdf->Cell(0, 10, utf8_decode($reg['encargado']), 1, 1, 'L');
-
 $pdf->Cell(50, 10, utf8_decode('Técnicos Asignados'), 1, 0, 'C', true);
 $pdf->Cell(0, 10, utf8_decode($reg['tecnicos_ticket']), 1, 1, 'L');
-
-$pdf->Cell(50, 10, utf8_decode('Area de Solicitud'), 1, 0, 'C', true);
-$pdf->Cell(0, 10, utf8_decode($reg['area_solicitud']), 1, 1, 'L');
 
 $pdf->Cell(50, 10, utf8_decode('Descripción de Equipo'), 1, 0, 'C', true);
 $pdf->Cell(0, 10, utf8_decode($reg['descripcion_equipos']), 1, 1, 'L');

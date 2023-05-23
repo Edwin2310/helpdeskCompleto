@@ -130,6 +130,23 @@
 
                     }
 
+                    if ($_SESSION['tipo'] == 3) { //SI EL USUARIO ES TECNICO QUE ME MUESTRE SOLO ESTE QUERY
+                
+                        if (isset($_GET['ticket'])) {
+                            if ($_GET['ticket'] == "pending") {
+                                $asignar_ticket = $_SESSION['nombre']; //LLAMANDO LA VARIABLE DESDE EL FORMULARIO CON $_SESION PARA CONSULTA POR TECNICO
+                                $consulta = "SELECT SQL_CALC_FOUND_ROWS * FROM tbl_ticket WHERE asignar_ticket = '$asignar_ticket' AND estado_ticket='Pendiente' ORDER BY fecha DESC ";
+                                // $consulta = "SELECT SQL_CALC_FOUND_ROWS * FROM tbl_ticket WHERE estado_ticket='Pendiente'  ORDER BY fecha DESC  ";
+                
+                            } else {
+                                $consulta = "SELECT SQL_CALC_FOUND_ROWS * FROM tbl_ticket ORDER BY fecha DESC ";
+                            }
+                        } else {
+                            $consulta = "SELECT SQL_CALC_FOUND_ROWS * FROM tbl_ticket ORDER BY fecha DESC  ";
+                        }
+
+                    }
+
                     $selticket = mysqli_query($mysqli, $consulta);
 
                     $totalregistros = mysqli_query($mysqli, "SELECT FOUND_ROWS()");

@@ -1,11 +1,11 @@
 <?php
-if ($_SESSION['tipo'] == 1  ||  $_SESSION['tipo'] == 2) {
+if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
 
     //Arreglo con mensajes de errores
     $errores = [];
 
 
-?>
+    ?>
     <style type="text/css">
         .alerta {
             padding: .5rem;
@@ -55,7 +55,7 @@ if ($_SESSION['tipo'] == 1  ||  $_SESSION['tipo'] == 2) {
         <!---------------------------- Inicio creación de Tickets ---------------------------->
         <?php
         /* Declaracion de variables a utilizar y genrador de código */
-        if (isset($_POST['turnos']) && isset($_POST['encargado']) && isset($_POST['fechaatendido'])) {
+        if (isset($_POST['departamento_ticket']) && isset($_POST['fechaatendido'])) {
 
             /*Este código nos servira para generar un numero diferente para cada ticket*/
             $codigo = "";
@@ -82,24 +82,17 @@ if ($_SESSION['tipo'] == 1  ||  $_SESSION['tipo'] == 2) {
                 $email = "helpdesk@911.gob.hn";
                 $estado_ticket = "Registrado";
                 $departamento_ticket = MysqlQuery::RequestPost('departamento_ticket');
-                $fecha =  MysqlQuery::RequestPost('fechaatendido');
+                $fecha = MysqlQuery::RequestPost('fechaatendido');
                 $regional_ticket = utf8_encode(MysqlQuery::RequestPost('regional_ticket'));
-                $turnos =  MysqlQuery::RequestPost('turnos');
-                $encargado = utf8_encode(MysqlQuery::RequestPost('encargado'));
                 $asignar_ticket = utf8_encode(MysqlQuery::RequestPost('tecnicos_ticket'));
                 $descripcion_equipos = utf8_encode(MysqlQuery::RequestPost('descripcion_equipos'));
                 $estado_bitacora = utf8_encode(MysqlQuery::RequestPost('estado_bitacora'));
                 $problema_presentado = utf8_encode(MysqlQuery::RequestPost('problema_presentado'));
-                $area_solicitud = utf8_encode(MysqlQuery::RequestPost('area_solicitud'));
                 $solucion = utf8_encode(MysqlQuery::RequestPost('solucion'));
 
 
                 if (!$fecha) {
                     $errores[] = "La Fecha es obligatorio";
-                }
-
-                if (!$turnos) {
-                    $errores[] = "Debes añadir el Turno";
                 }
 
                 if (!$departamento_ticket) {
@@ -110,18 +103,10 @@ if ($_SESSION['tipo'] == 1  ||  $_SESSION['tipo'] == 2) {
                     $errores[] = "Debes añadir una Regional";
                 }
 
-                if (!$encargado) {
-                    $errores[] = "El nombre de Encargado es obligatorio";
-                }
 
                 if (!$asignar_ticket) {
                     $errores[] = "Debes añadir el nombre del Técnico";
                 }
-
-                if (!$area_solicitud) {
-                    $errores[] = "Debes añadir una Área";
-                }
-
 
                 if (!$descripcion_equipos) {
                     $errores[] = "Debes añadir una Descripcion";
@@ -143,8 +128,10 @@ if ($_SESSION['tipo'] == 1  ||  $_SESSION['tipo'] == 2) {
 
                 if (empty($errores)) {
 
-                    if (MysqlQuery::Guardar("tbl_bitacoras", "fecha,serie,turnos,departamento_ticket,regional_ticket,encargado,tecnicos_ticket,area_solicitud,descripcion_equipos,problema_presentado,solucion,estado_bitacora", "'$fecha ','$id_ticket','$turnos','$departamento_ticket','$regional_ticket', '$encargado',
-                '$asignar_ticket','$area_solicitud','$descripcion_equipos','$problema_presentado','$solucion','$estado_bitacora'")) {
+                    if (
+                        MysqlQuery::Guardar("tbl_bitacoras", "fecha,serie,departamento_ticket,regional_ticket,tecnicos_ticket,descripcion_equipos,problema_presentado,solucion,estado_bitacora", "'$fecha ','$id_ticket','$departamento_ticket','$regional_ticket',
+                '$asignar_ticket','$descripcion_equipos','$problema_presentado','$solucion','$estado_bitacora'")
+                    ) {
 
 
 
@@ -175,7 +162,7 @@ if ($_SESSION['tipo'] == 1  ||  $_SESSION['tipo'] == 2) {
 
         ?>
 
-        <?php foreach ($errores as $error) : ?>
+        <?php foreach ($errores as $error): ?>
 
             <div class="alerta error">
                 <?php echo $error; ?>
@@ -189,34 +176,39 @@ if ($_SESSION['tipo'] == 1  ||  $_SESSION['tipo'] == 2) {
                 <div class="col-sm-3">
 
                     <!--- Boton ver bitacoras creadas --->
-                    <a href="./admin.php?view=todaslasbitacoras" style="margin: 5px" class="btn btn-success pull-right"><i class="fa fa-file-pdf-o" style="font-size:20px;color:white"></i>&nbsp;&nbsp;Ver Las Bitacoras Creadas</a>
+                <a href="./admin.php?view=todaslasbitacoras" style="margin: 5px" class="btn btn-success pull-right"><i
+                        class="fa fa-file-pdf-o" style="font-size:20px;color:white"></i>&nbsp;&nbsp;Ver Las Bitacoras
+                    Creadas</a>
 
 
-                </div>
+            </div>
 
 
-                <div class="col-sm-9 lead">
-                    <a href="./index.php" style="margin: 5px" class="btn btn-success pull-right"><i class="fa fa-reply"></i>&nbsp;&nbsp;Regresar a el Menú Principal</a>
+            <div class="col-sm-9 lead">
+                <a href="./index.php" style="margin: 5px" class="btn btn-success pull-right"><i
+                        class="fa fa-reply"></i>&nbsp;&nbsp;Regresar a el Menú Principal</a>
 
-                    <h2 align="center" class="text-info ">Bitacora</h2>
-                    <h3 class="text-primary"> Creado para realizar tareas especificas de Técnicos. </h3>
-                </div>
+                <h2 align="center" class="text-info ">Bitacora</h2>
+                <h3 class="text-primary"> Creado para realizar tareas especificas de Técnicos. </h3>
+            </div>
 
-            </div><!--fin row 1-->
+        </div><!--fin row 1-->
 
             <!-- Imagen e instrucciones -->
             <div class="row">
                 <div class="col-sm-12">
                     <div class="panel panel-info">
                         <div class="panel-heading">
-                            <h3 class="panel-title text-center"><strong><i class="fa fa-pencil-square"></i>&nbsp;&nbsp;&nbsp;Crear Bitacora</strong></h3>
+                            <h3 class="panel-title text-center"><strong><i
+                                        class="fa fa-pencil-square"></i>&nbsp;&nbsp;&nbsp;Crear Bitacora</strong></h3>
                         </div>
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-sm-4 text-center">
                                     <br><br><br>
                                     <img src="img/formu_ico.png" alt=""><br><br>
-                                    <p class="text-primary text-justify">Por favor llene todos los datos de este formulario para crear su bitacora.
+                                    <p class="text-primary text-justify">Por favor llene todos los datos de este formulario
+                                        para crear su bitacora.
 
 
                                 </div>
@@ -238,8 +230,11 @@ if ($_SESSION['tipo'] == 1  ||  $_SESSION['tipo'] == 2) {
                                                 <label class="col-sm-2 control-label">Fecha</label>
                                                 <div class='col-sm-10'>
                                                     <div class="input-group">
-                                                        <input class="form-control" type="text" name="fechaatendido" readonly="" value="<?php echo date("Y-m-d H:i:s", strtotime("now")) . "\n"; ?>">
-                                                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                        <input class="form-control" type="text" name="fechaatendido"
+                                                            readonly=""
+                                                            value="<?php echo date("Y-m-d H:i:s", strtotime("now")) . "\n"; ?>">
+                                                        <span class="input-group-addon"><i
+                                                                class="fa fa-calendar"></i></span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -247,29 +242,6 @@ if ($_SESSION['tipo'] == 1  ||  $_SESSION['tipo'] == 2) {
 
 
 
-                                            <!-- Select para Catálogo de Turnos del 9-1-1 -->
-                                            <div class="form-group">
-                                                <label class="col-sm-2 control-label">Turno</label>
-                                                <div class="col-sm-10">
-                                                    <div class='input-group'>
-
-                                                        <select class="form-control" name="turnos" required>
-                                                            <option value=""> -Seleccionar Turno- </option>
-                                                            <?php
-
-                                                            $dept = Mysql::consulta("SELECT id_turno, turnos FROM tbl_turnos");
-
-                                                            while ($turnos = mysqli_fetch_array($dept)) {
-                                                            ?>
-                                                                <option value="<?php echo utf8_encode($turnos["turnos"]) ?>"> <?php echo $turnos["id_turno"], ".-", $turnos["turnos"] ?></option>
-                                                            <?php }  ?>
-                                                        </select>
-                                                        <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- Fin Select Turnos -->
 
                                             <!-- Select para Catálogo de Departamento del 9-1-1 -->
                                             <div class="form-group">
@@ -278,15 +250,35 @@ if ($_SESSION['tipo'] == 1  ||  $_SESSION['tipo'] == 2) {
                                                     <div class='input-group'>
 
                                                         <select class="form-control" name="departamento_ticket" required>
-                                                            <option value=""> -Seleccionar Departamento- </option>
+                                                            <option style="font-weight:bold" value="0"> -Seleccionar
+                                                                Departamento-
+                                                            </option>
+                                                            <option style="text-align:center; font-weight:bold" value="0">
+                                                                Departamento Administrativo </option>
                                                             <?php
 
                                                             $dept = Mysql::consulta("SELECT id_departamento, departamento FROM tbl_departamento");
 
                                                             while ($departamento = mysqli_fetch_array($dept)) {
-                                                            ?>
-                                                                <option value="<?php echo utf8_encode($departamento["departamento"]) ?>"> <?php echo $departamento["id_departamento"], ".-", $departamento["departamento"] ?></option>
-                                                            <?php }  ?>
+                                                                ?>
+                                                                <option
+                                                                    value="<?php echo utf8_encode($departamento["departamento"]) ?>">
+                                                                    <?php echo $departamento["id_departamento"], ".-", $departamento["departamento"] ?></option>
+                                                            <?php } ?>
+                                                            <option style="text-align:center; font-weight:bold" value="0">
+                                                                Departamento Operativo </option>
+                                                            <?php
+
+                                                            $cato1 = "SELECT id_area, area_solicitud FROM tbl_area_solicitud";
+                                                            $query2 = mysqli_query($mysqli, $cato1);
+
+                                                            while ($prob1 = mysqli_fetch_array($query2)) {
+                                                                ?>
+
+                                                                <option value="<?php echo $prob1["area_solicitud"] ?>"> <?php echo $prob1["id_area"], ".-", $prob1["area_solicitud"] ?>
+                                                                </option>
+
+                                                            <?php } ?>
                                                         </select>
                                                         <span class="input-group-addon"><i class="fa fa-map"></i></span>
 
@@ -301,49 +293,37 @@ if ($_SESSION['tipo'] == 1  ||  $_SESSION['tipo'] == 2) {
                                                 <label class="col-sm-2 control-label">Regional </label>
                                                 <div class='col-sm-10'>
                                                     <div class="input-group">
-                                                        <select class="form-control" name="regional_ticket" placeholder="regional_ticket" required>
+                                                        <select class="form-control" name="regional_ticket"
+                                                            placeholder="regional_ticket" required>
                                                             <option value="">-Seleccionar Regional-</option>
                                                             <?php
                                                             $dept1 = Mysql::consulta("SELECT nombreRegional FROM tbl_regionales");
                                                             while ($ticket1 = mysqli_fetch_array($dept1)) {
-                                                            ?>
+                                                                ?>
                                                                 <option value="<?php echo $ticket1["nombreRegional"] ?>"> <?php echo $ticket1["nombreRegional"] ?></option>
-                                                            <?php }  ?>
+                                                            <?php } ?>
                                                         </select>
-                                                        <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
+                                                        <span class="input-group-addon"><i
+                                                                class="fa fa-map-marker"></i></span>
                                                     </div>
                                                 </div>
                                             </div>
                                             <!-- Fin Select regionales -->
-
-
-                                            <!-- nombre del usuario que hace el ticket -->
-                                            <div class="form-group">
-                                                <label class="col-sm-2 control-label">Encargado De Turno</label>
-                                                <div class="col-sm-10">
-                                                    <div class='input-group'>
-                                                        <input type="text" class="form-control" placeholder="Nombre De Encargado" pattern="^[a-zA-Z\s]+{2,254}" name="encargado" title="Nombre Apellido" required>
-                                                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- Fin nombre del usuario que hace el ticket -->
-
-
 
                                             <!-- select para asignar ticket -->
                                             <div class="form-group">
                                                 <label class="col-sm-2 control-label">Asignar Técnico De Turno</label>
                                                 <div class='col-sm-10'>
                                                     <div class="input-group">
-                                                        <select class="form-control" name="asignar_ticket" placeholder="asignar_ticket" onchange="asignar(value)" required>
+                                                        <select class="form-control" name="asignar_ticket"
+                                                            placeholder="asignar_ticket" onchange="asignar(value)" required>
                                                             <option value="">-Asignar Técnico-</option>
                                                             <?php
                                                             $dept = Mysql::consulta("SELECT id_usuario, nombre_completo FROM tbl_admin  WHERE id_rol = '2'");
                                                             while ($ticket = mysqli_fetch_array($dept)) {
-                                                            ?>
+                                                                ?>
                                                                 <option value="<?php echo $ticket["nombre_completo"] ?>"> <?php echo $ticket["nombre_completo"] ?></option>
-                                                            <?php }  ?>
+                                                            <?php } ?>
                                                         </select>
                                                         <span class="input-group-addon"><i class="fa fa-users"></i></span>
                                                     </div>
@@ -355,36 +335,13 @@ if ($_SESSION['tipo'] == 1  ||  $_SESSION['tipo'] == 2) {
                                             <div class="form-group">
                                                 <label class="col-sm-2 control-label">Técnicos Asignados</label>
                                                 <div class="col-sm-10">
-                                                    <textarea readonly class="form-control" rows="3" name="tecnicos_ticket" required="" id="asignarT"></textarea>
+                                                    <textarea readonly class="form-control" rows="3" name="tecnicos_ticket"
+                                                        required="" id="asignarT"></textarea>
                                                     <!-- <input type="text" class="form-control" name="tecnicos_ticket" required="" id="asignarT"> -->
                                                 </div>
                                             </div>
                                             <!-- Fin Select Problemas -->
 
-
-                                            <!-- Select para Área-->
-                                            <div class="form-group">
-                                                <label class="col-sm-2 control-label">Área de Solicitud</label>
-                                                <div class="col-sm-10">
-                                                    <div class='input-group'>
-
-                                                        <select class="form-control" name="area_solicitud" required>
-                                                            <option value=""> -Seleccionar Área- </option> <!----AQUI PONER LOS MODELOS ----->
-                                                            <?php
-
-                                                            $dept = Mysql::consulta("SELECT id_area, area_solicitud FROM tbl_area_solicitud");
-
-                                                            while ($area_solicitud = mysqli_fetch_array($dept)) {
-                                                            ?>
-                                                                <option value="<?php echo ($area_solicitud["area_solicitud"]) ?>"> <?php echo $area_solicitud["id_area"], ".-", $area_solicitud["area_solicitud"] ?></option>
-                                                            <?php }  ?>
-                                                        </select>
-                                                        <span class="input-group-addon"><i class="fa fa-suitcase"></i></span>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- Fin Select Área -->
 
 
 
@@ -395,28 +352,33 @@ if ($_SESSION['tipo'] == 1  ||  $_SESSION['tipo'] == 2) {
                                                     <div class='input-group'>
 
                                                         <select class="form-control" name="descripcion_equipos" required>
-                                                            <option value=""> -Seleccionar Equipo- </option> <!----AQUI PONER LOS MODELOS ----->
-                                                            <?php
+                                                            <option value=""> -Seleccionar Equipo- </option>
+                                                            <!----AQUI PONER LOS MODELOS ----->
+                                                        <?php
 
-                                                            $dept = Mysql::consulta("SELECT id_equipos, descripcion_equipos FROM tbl_descripcion");
+                                                        $dept = Mysql::consulta("SELECT id_equipos, descripcion_equipos FROM tbl_descripcion");
 
-                                                            while ($descripcion_equipos = mysqli_fetch_array($dept)) {
+                                                        while ($descripcion_equipos = mysqli_fetch_array($dept)) {
                                                             ?>
-                                                                <option value="<?php echo utf8_encode($descripcion_equipos["descripcion_equipos"]) ?>"> <?php echo $descripcion_equipos["id_equipos"], ".-", $descripcion_equipos["descripcion_equipos"] ?></option>
-                                                            <?php }  ?>
-                                                        </select>
-                                                        <span class="input-group-addon"><i class="fa fa-desktop"></i></span>
+                                                        <option
+                                                            value="<?php echo utf8_encode($descripcion_equipos["descripcion_equipos"]) ?>">
+                                                            <?php echo $descripcion_equipos["id_equipos"], ".-", $descripcion_equipos["descripcion_equipos"] ?></option>
+                                                        <?php } ?>
+                                                    </select>
+                                                    <span class="input-group-addon"><i class="fa fa-desktop"></i></span>
 
-                                                    </div>
                                                 </div>
                                             </div>
-                                            <!-- Fin Select Descripcion -->
+                                        </div>
+                                        <!-- Fin Select Descripcion -->
 
                                             <!-- Select para Problema -->
                                             <div class="form-group">
                                                 <label class="col-sm-2 control-label">Problema Presentado</label>
                                                 <div class="col-sm-10">
-                                                    <textarea class="form-control" rows="3" placeholder="Se recomiendo un máximo de 3 parrafos." name="problema_presentado" required></textarea>
+                                                    <textarea class="form-control" rows="3"
+                                                        placeholder="Se recomiendo un máximo de 3 parrafos."
+                                                        name="problema_presentado" required></textarea>
                                                 </div>
                                             </div>
                                             <!-- Fin Select Problema -->
@@ -425,7 +387,9 @@ if ($_SESSION['tipo'] == 1  ||  $_SESSION['tipo'] == 2) {
                                             <div class="form-group">
                                                 <label class="col-sm-2 control-label">Solución de Problema</label>
                                                 <div class="col-sm-10">
-                                                    <textarea class="form-control" rows="3" placeholder="Se recomiendo un máximo de 3 parrafos." name="solucion" required></textarea>
+                                                    <textarea class="form-control" rows="3"
+                                                        placeholder="Se recomiendo un máximo de 3 parrafos." name="solucion"
+                                                        required></textarea>
                                                 </div>
                                             </div>
                                             <!-- Fin Select Solucion -->
@@ -439,29 +403,34 @@ if ($_SESSION['tipo'] == 1  ||  $_SESSION['tipo'] == 2) {
                                                     <div class='input-group'>
 
                                                         <select class="form-control" name="estado_bitacora" required>
-                                                            <option value=""> -Seleccionar Estado- </option> <!----AQUI PONER LOS MODELOS ----->
-                                                            <?php
+                                                            <option value=""> -Seleccionar Estado- </option>
+                                                            <!----AQUI PONER LOS MODELOS ----->
+                                                        <?php
 
-                                                            $dept = Mysql::consulta("SELECT id_estado_bitacora, estado_bitacora FROM tbl_estado_bitacora");
+                                                        $dept = Mysql::consulta("SELECT id_estado_bitacora, estado_bitacora FROM tbl_estado_bitacora");
 
-                                                            while ($estado_bitacora = mysqli_fetch_array($dept)) {
+                                                        while ($estado_bitacora = mysqli_fetch_array($dept)) {
                                                             ?>
-                                                                <option value="<?php echo utf8_encode($estado_bitacora["estado_bitacora"]) ?>"> <?php echo $estado_bitacora["id_estado_bitacora"], ".-", $estado_bitacora["estado_bitacora"] ?></option>
-                                                            <?php }  ?>
-                                                        </select>
-                                                        <span class="input-group-addon"><i class="fa fa-check-circle"></i></span>
+                                                        <option
+                                                            value="<?php echo utf8_encode($estado_bitacora["estado_bitacora"]) ?>">
+                                                            <?php echo $estado_bitacora["id_estado_bitacora"], ".-", $estado_bitacora["estado_bitacora"] ?></option>
+                                                        <?php } ?>
+                                                    </select>
+                                                    <span class="input-group-addon"><i
+                                                            class="fa fa-check-circle"></i></span>
 
-                                                    </div>
                                                 </div>
                                             </div>
-                                            <!-- Fin Select estado_bitacora -->
+                                        </div>
+                                        <!-- Fin Select estado_bitacora -->
 
 
 
                                             <!-- Botón para Abrir el ticket -->
                                             <div class="form-group">
                                                 <div class="col-sm-offset-2 col-sm-10">
-                                                    <button type="submit" class="btn btn-info pull-center"><b>Crear Bitacora</b></button>
+                                                    <button type="submit" class="btn btn-info pull-center"><b>Crear
+                                                            Bitacora</b></button>
                                                 </div>
                                             </div>
                                             <!-- Fin botón -->
@@ -482,9 +451,9 @@ if ($_SESSION['tipo'] == 1  ||  $_SESSION['tipo'] == 2) {
 
 
 
-    <?php
+        <?php
 }
-    ?>
+?>
 
 
 
@@ -493,7 +462,7 @@ if ($_SESSION['tipo'] == 1  ||  $_SESSION['tipo'] == 2) {
     <!--********* Script *********-->
     <!-- Fecha y hora  -->
     <script type="text/javascript">
-        $(document).ready(function() {
+        $(document).ready(function () {
             $("#fechainput").datepicker();
         });
     </script>
@@ -531,7 +500,7 @@ if ($_SESSION['tipo'] == 1  ||  $_SESSION['tipo'] == 2) {
     <!--********* Script *********-->
     <!-- Fecha y hora  -->
     <script type="text/javascript">
-        $(document).ready(function() {
+        $(document).ready(function () {
             $("#fechainput").datepicker();
         });
     </script>
