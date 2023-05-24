@@ -2,7 +2,7 @@
 if (isset($_GET['view'])) {
   $content = $_GET['view'];
   $WhiteList = ["index", "ticket", "ticketcon", "ticketadmin", "registro", "configuracion", "configuracionUser", "calendario", "informe", "bitacora"];
-  if (in_array($content, $WhiteList) && is_file("./user/" . $content . "-view.php")) {
+  if (in_array($content, $WhiteList) && is_file("./user/" . $content . "-view.CO")) {
     include "./user/" . $content . "-view.php";
   } else {
     ?>

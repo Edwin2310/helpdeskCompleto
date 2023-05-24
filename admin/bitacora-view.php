@@ -370,82 +370,82 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- Fin Select Descripcion -->
+                            </div>
+                            <!-- Fin Select Descripcion -->
 
-                                            <!-- Select para Problema -->
-                                            <div class="form-group">
-                                                <label class="col-sm-2 control-label">Problema Presentado</label>
-                                                <div class="col-sm-10">
-                                                    <textarea class="form-control" rows="3"
-                                                        placeholder="Se recomiendo un máximo de 3 parrafos."
-                                                        name="problema_presentado" required></textarea>
-                                                </div>
-                                            </div>
-                                            <!-- Fin Select Problema -->
-
-                                            <!-- Select para Solucion -->
-                                            <div class="form-group">
-                                                <label class="col-sm-2 control-label">Solución de Problema</label>
-                                                <div class="col-sm-10">
-                                                    <textarea class="form-control" rows="3"
-                                                        placeholder="Se recomiendo un máximo de 3 parrafos." name="solucion"
-                                                        required></textarea>
-                                                </div>
-                                            </div>
-                                            <!-- Fin Select Solucion -->
-
-
-
-                                            <!-- Select para estado_bitacora-->
-                                            <div class="form-group">
-                                                <label class="col-sm-2 control-label">Estado de Bitacora</label>
-                                                <div class="col-sm-10">
-                                                    <div class='input-group'>
-
-                                                        <select class="form-control" name="estado_bitacora" required>
-                                                            <option value=""> -Seleccionar Estado- </option>
-                                                            <!----AQUI PONER LOS MODELOS ----->
-                                                        <?php
-
-                                                        $dept = Mysql::consulta("SELECT id_estado_bitacora, estado_bitacora FROM tbl_estado_bitacora");
-
-                                                        while ($estado_bitacora = mysqli_fetch_array($dept)) {
-                                                            ?>
-                                                        <option
-                                                            value="<?php echo utf8_encode($estado_bitacora["estado_bitacora"]) ?>">
-                                                            <?php echo $estado_bitacora["id_estado_bitacora"], ".-", $estado_bitacora["estado_bitacora"] ?></option>
-                                                        <?php } ?>
-                                                    </select>
-                                                    <span class="input-group-addon"><i
-                                                            class="fa fa-check-circle"></i></span>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Fin Select estado_bitacora -->
-
-
-
-                                            <!-- Botón para Abrir el ticket -->
-                                            <div class="form-group">
-                                                <div class="col-sm-offset-2 col-sm-10">
-                                                    <button type="submit" class="btn btn-info pull-center"><b>Crear
-                                                            Bitacora</b></button>
-                                                </div>
-                                            </div>
-                                            <!-- Fin botón -->
-
-
-
-
-                                        </fieldset>
-                                    </form>
+                                <!-- Select para Problema -->
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Problema Presentado</label>
+                                    <div class="col-sm-10">
+                                        <textarea class="form-control" rows="3"
+                                            placeholder="Se recomiendo un máximo de 3 parrafos." name="problema_presentado"
+                                            required></textarea>
+                                    </div>
                                 </div>
+                                <!-- Fin Select Problema -->
+
+                                <!-- Select para Solucion -->
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Solución de Problema</label>
+                                    <div class="col-sm-10">
+                                        <textarea class="form-control" rows="3"
+                                            placeholder="Se recomiendo un máximo de 3 parrafos." name="solucion"
+                                            required></textarea>
+                                    </div>
+                                </div>
+                                <!-- Fin Select Solucion -->
+
+
+
+                                <!-- Select para estado_bitacora-->
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Estado de Bitacora</label>
+                                    <div class="col-sm-10">
+                                        <div class='input-group'>
+
+                                            <select class="form-control" name="estado_bitacora" required>
+                                                <option value=""> -Seleccionar Estado- </option>
+                                                <!----AQUI PONER LOS MODELOS ----->
+                                            <?php
+
+                                            $dept = Mysql::consulta("SELECT id_estado_bitacora, estado_bitacora FROM tbl_estado_bitacora");
+
+                                            while ($estado_bitacora = mysqli_fetch_array($dept)) {
+                                                ?>
+                                            <option
+                                                value="<?php echo utf8_encode($estado_bitacora["estado_bitacora"]) ?>">
+                                                <?php echo $estado_bitacora["id_estado_bitacora"], ".-", $estado_bitacora["estado_bitacora"] ?></option>
+                                            <?php } ?>
+                                        </select>
+                                        <span class="input-group-addon"><i class="fa fa-check-circle"></i></span>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Fin Select estado_bitacora -->
+
+
+
+                                <!-- Botón para Abrir el ticket -->
+                                <div class="form-group">
+                                    <div class="col-sm-offset-2 col-sm-10">
+                                        <button type="submit" class="btn btn-info pull-center"><b>Crear
+                                                Bitacora</b></button>
+                                    </div>
+                                </div>
+                                <!-- Fin botón -->
+
+
+
+
+                                </fieldset>
+                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
         </div>
         <!---------------------------- Fin Inicio creación de Tickets ---------------------------->
 

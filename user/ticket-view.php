@@ -219,20 +219,6 @@
                               <option value="<?php echo utf8_encode($prob["problemas"]) ?>"> <?php echo $prob["id_catalogo"], ".-", $prob["problemas"] ?></option>
 
                             <?php } ?>
-                            <option style="text-align:center;  font-weight:bold" value="2"><b> ÁREA DE DESARROLLO </b>
-                            </option>
-                            <?php
-
-                            // $des=Mysql::consulta("SELECT id_desarrollo, desarrollo FROM tbl_desarrollo");
-                            $cato1 = "SELECT id_desarrollo, desarrollo FROM tbl_desarrollo";
-                            $query2 = mysqli_query($mysqli, $cato1);
-
-                            while ($prob1 = mysqli_fetch_array($query2)) {
-                              ?>
-
-                              <option value="<?php echo $prob1["desarrollo"] ?>"> <?php echo $prob1["id_desarrollo"], ".-", $prob1["desarrollo"] ?></option>
-
-                            <?php } ?>
                           </select>
                           <span class="input-group-addon"><i class="fa fa-users"></i></span>
                         </div>

@@ -87,16 +87,16 @@ $usuarioSalir = $_SESSION['user'];
                             <a href="admin.php?view=ticketadmin"><span class="fa fa-ticket"></span> &nbsp; Administrar
                                 Tickets</a>
                         </li>
-                        <li>
-                            <a href="admin.php?view=archivoEs"><span class="fa fa-file-text"></span> &nbsp; Archivos</a>
-                        </li>
                     <?php } ?>
 
                     <li>
                         <a href="admin.php?view=dictamenSubir"><span class="fa fa-book"></span> &nbsp;Dictamen</a>
                     </li>
                     <li>
-                        <a href="admin.php?view=informe"><span class="fa fa-desktop"></span> &nbsp;Informe Técnico</a>
+                        <a href="admin.php?view=informe"><span class="fa fa-desktop"></span> &nbsp;Informe</a>
+                    </li>
+                    <li>
+                        <a href="admin.php?view=salida"><span class="fa fa-sign-out"></span> &nbsp;Salida Equipo</a>
                     </li>
                     <li>
                         <a href="admin.php?view=bitacora"><span class="fa fa-pencil-square"></span> &nbsp;Bitacora</a>

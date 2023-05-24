@@ -48,10 +48,6 @@ $usuarioSalir = $_SESSION['user'];
                     Reportes</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="../admin.php?view=archivoEs"><span class="fa fa-file-text"></span>
-                    Archivos</a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link" href="../admin.php?view=dictamenSubir"><span class="fa fa-book"></span> Dictamen</a>
             </li>
             <li class="nav-item">

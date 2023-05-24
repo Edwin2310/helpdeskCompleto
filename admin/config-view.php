@@ -228,7 +228,6 @@
                       <option value="1">Administrador</option>
                       <option value="2">Tecnico</option>
                       <option value="3">Desarrollador</option>
-                      <option value="5">Bienes Nacionales</option>
                     </select>
                   </div>
                   <!--   <div class="form-group">
