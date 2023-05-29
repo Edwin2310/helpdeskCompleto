@@ -69,8 +69,7 @@ if (isset($_SESSION['user'])) {
   <?php include "./inc/links.php"; ?>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js">
   </script>
-  <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css">
 </head>
 
 <body>
@@ -81,10 +80,10 @@ if (isset($_SESSION['user'])) {
         <div class="page-header">
           <h1 class="animated lightSpeedIn">Soporte Técnico 9-1-1</h1>
           <!-- <h1 class="animated lightSpeedIn"><?php //echo $mmm; 
-          ?></h1> -->
+                                                  ?></h1> -->
           <span class="label label-danger">Sistema Nacional de Emergencias 9-1-1</span>
           <!-- <a class="nav-link " href=" cerrarSesion.php?user=<?php //echo base64_encode($VarSession); 
-          ?>">cerrar sesion</a> -->
+                                                                  ?>">cerrar sesion</a> -->
           <p class="pull-right text-primary">
             <strong>
               <?php include "./inc/timezone.php"; ?>
@@ -103,7 +102,7 @@ if (isset($_SESSION['user'])) {
     if (in_array($content, $WhiteList) && is_file("./user/" . $content . "-view.php")) {
       include "./user/" . $content . "-view.php";
     } else {
-      ?>
+  ?>
       <div class="container">
         <div class="row">
           <div class="col-sm-4">
@@ -118,7 +117,7 @@ if (isset($_SESSION['user'])) {
           <div class="col-sm-1">&nbsp;</div>
         </div>
       </div>
-      <?php
+  <?php
     }
   } else {
     // if($_SESSION['tipo'] == 4){
@@ -131,15 +130,10 @@ if (isset($_SESSION['user'])) {
   }
   ?>
 
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
-    integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
-    integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
-    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.13.3/dist/sweetalert2.all.min.js"
-    integrity="sha256-qLED6pNKyHLH2GHsu5GJIx4Lq1LrmGz7x2hZZ7kg4hU=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.13.3/dist/sweetalert2.all.min.js" integrity="sha256-qLED6pNKyHLH2GHsu5GJIx4Lq1LrmGz7x2hZZ7kg4hU=" crossorigin="anonymous"></script>
 
   <!-- <script>
    

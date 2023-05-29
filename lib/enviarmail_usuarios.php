@@ -22,16 +22,16 @@ try {
   //$mail->SMTPDebug = SMTP::DEBUG_SERVER;                     //Enable verbose debug output 
   $mail->SMTPDebug = 0;                                    //Enable verbose debug output 
   $mail->isSMTP();                                           //Send using SMTP
-  $mail->Host       = 'correo.911.gob.hn';                   //Set the SMTP server to send through
+  $mail->Host       = 'smtp.gmail.com';                   //Set the SMTP server to send through
   //Servers
   $mail->SMTPAuth   = true;                                  //Autenticación SMTP 
-  $mail->Username   = 'helpdesk@911.gob.hn';                 //Usuario
-  $mail->Password   = 'Sistema.911*';                         //Contraseña
+  $mail->Username   = 'edwinsin10am@gmail.com';                 //Usuario
+  $mail->Password   = 'yubjkveildbqtzvh';                         //Contraseña
   $mail->SMTPSecure = 'tls';                                  //Enable implicit TLS encryption 
   $mail->Port       = 587;                                     //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
   //Recipients
-  $mail->setFrom('helpdesk@911.gob.hn', 'Soporte Tecnico 9-1-1');
+  $mail->setFrom('edwinsin10am@gmail.com', 'Soporte Tecnico 9-1-1');
   $mail->addAddress($email_ticket);     //Add a recipient
 
 

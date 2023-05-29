@@ -8,17 +8,16 @@
 
       <!-- Boton para regresar -->
       <div class="col-sm-17" aria-label="Basic example">
-        <a href="index.php" style="margin: 5px" class="btn btn-success pull-right"><i
-            class="fa fa-reply"></i>&nbsp;&nbsp;Regresar a Inicio</a>
+        <a href="index.php" style="margin: 5px" class="btn btn-success pull-right"><i class="fa fa-reply"></i>&nbsp;&nbsp;Regresar a Inicio</a>
       </div>
       <!-- boton para actualizar la pagina -->
 
       <div class="col-sm-17" aria-label="Basic example">
-        <a href="" style="margin: 5px" class="btn btn-primary  pull-right"><i
-            class="fa fa-refresh"></i>&nbsp;&nbsp;Actualizar</a>
+        <a href="" style="margin: 5px" class="btn btn-primary  pull-right"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Actualizar</a>
 
 
       </div>
+      <br>
       <br>
       <br>
       <br>
@@ -50,6 +49,8 @@
               <br>
               <a type="button" class="btn btn-info" href="./admin.php?view=ticketpendiente&ticket=pending">Abrir Tickets
                 Pendientes</a>
+              <br>
+              <br>
             </div>
           </div>
         </div><!--fin col-md-6-->
@@ -64,6 +65,8 @@
               <br>
               <a type="button" class="btn btn-info" href="./admin.php?view=ticketenproceso&ticket=process">Tickets en
                 Procesos</a>
+              <br>
+              <br>
             </div>
           </div>
         </div><!--fin col-md-6-->
@@ -78,6 +81,8 @@
               <br>
               <a type="button" class="btn btn-info" href="./admin.php?view=ticketresuelto&ticket=resolved">Abrir Tickets
                 Resueltos</a>
+              <br>
+              <br>
             </div>
           </div>
         </div><!--fin col-md-6-->
@@ -92,15 +97,17 @@
               <br>
               <a type="button" class="btn btn-info" href="./admin.php?view=ticketrechazado&ticket=rejected">Abrir Tickets
                 Rechazados</a>
+              <br>
+              <br>
             </div>
           </div>
         </div><!--fin col-md-6-->
 
 
 
-        <?php
-} else {
-  ?>
+      <?php
+    } else {
+      ?>
         <div class="container">
           <div class="row">
             <div class="col-sm-4">
@@ -114,15 +121,15 @@
             <div class="col-sm-1">&nbsp;</div>
           </div>
         </div>
-        <?php
-}
-?>
+      <?php
+    }
+      ?>
 
 
       <!-- <?php
 
-      /* Eliminar Tickets */
-      /* if(isset($_POST['id_del'])){
+            /* Eliminar Tickets */
+            /* if(isset($_POST['id_del'])){
   $id = MysqlQuery::RequestPost('id_del');
   if(MysqlQuery::Eliminar("ticket", "id='$id'")){
       echo '
@@ -146,4 +153,4 @@
       '; 
   }
   }*//* *********** Fin Eliminar Tickets ***********  */
-      ?> -->
+            ?> -->

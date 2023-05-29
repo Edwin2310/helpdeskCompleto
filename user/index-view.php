@@ -5,7 +5,7 @@ if (isset($_GET['view'])) {
   if (in_array($content, $WhiteList) && is_file("./user/" . $content . "-view.CO")) {
     include "./user/" . $content . "-view.php";
   } else {
-    ?>
+?>
     <div class="container">
       <div class="row">
         <div class="col-sm-4">
@@ -20,10 +20,12 @@ if (isset($_GET['view'])) {
         <div class="col-sm-1">&nbsp;</div>
       </div>
     </div>
-    <?php
+<?php
   }
 }
 ?>
+<br>
+<br>
 <!-- Bienvenida al soporte tecnico 9-1-1-->
 <div class="container">
   <div class="row well">
@@ -39,10 +41,12 @@ if (isset($_GET['view'])) {
         <br>
         <br>Si ya nos ha enviado un ticket puede consultar el estado de este mediante su <strong>Ticket ID</strong>.
       </p>
+
     </div>
   </div><!--fin row 1-->
 
 
+  <br>
   <!-- Información Nuevo Ticket-->
   <div class="row">
     <div class="col-sm-6">
