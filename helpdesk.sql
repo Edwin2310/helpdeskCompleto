@@ -11,7 +11,7 @@
  Target Server Version : 100428 (10.4.28-MariaDB)
  File Encoding         : 65001
 
- Date: 22/05/2023 22:05:51
+ Date: 23/05/2023 22:00:11
 */
 
 SET NAMES utf8mb4;
@@ -23,13 +23,13 @@ SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS `tbl_admin`;
 CREATE TABLE `tbl_admin`  (
   `id_usuario` int NOT NULL AUTO_INCREMENT,
-  `nombre_completo` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
-  `nombre_usuario` varchar(60) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `nombre_completo` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `nombre_usuario` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `id_rol` varchar(15) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `clave` text CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
-  `email_usuario` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
-  `departamento` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
-  `telefono` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `email_usuario` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `departamento` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `telefono` varchar(10) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `estado` int NOT NULL,
   PRIMARY KEY (`id_usuario`) USING BTREE,
   UNIQUE INDEX `correo`(`email_usuario` ASC) USING BTREE
@@ -59,10 +59,10 @@ DROP TABLE IF EXISTS `tbl_archivoespdesa`;
 CREATE TABLE `tbl_archivoespdesa`  (
   `id` int NOT NULL AUTO_INCREMENT,
   `fecha` datetime NULL DEFAULT current_timestamp,
-  `title` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
-  `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
-  `upload` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
-  `url` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `title` varchar(70) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `description` varchar(70) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `upload` varchar(70) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `url` varchar(70) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 52 CHARACTER SET = utf8 COLLATE = utf8_spanish_ci ROW_FORMAT = COMPACT;
 
@@ -70,31 +70,11 @@ CREATE TABLE `tbl_archivoespdesa`  (
 -- Records of tbl_archivoespdesa
 -- ----------------------------
 INSERT INTO `tbl_archivoespdesa` VALUES (21, '2023-02-01 14:35:12', 'ArchivoWORD', 'ArchivoWORD', 'admin', 'filesArchivos/Autorizacion_Mantenimiento.docx');
-INSERT INTO `tbl_archivoespdesa` VALUES (45, '2023-02-09 12:55:38', 'ArchivoIMAGEN', 'ArchivoIMAGEN', 'admin', 'filesArchivos/WhatsApp Image 2023-01-31 at 10.16.25 AM.jpeg');
+INSERT INTO `tbl_archivoespdesa` VALUES (45, '2023-02-09 12:55:38', 'ArchivoIMAGEN', 'ArchivoIMAGEN', 'admin', 'filesArchivos/WhatsApp Image 2023-01-31 at 10.16.2');
 INSERT INTO `tbl_archivoespdesa` VALUES (48, '2023-05-21 20:37:06', 'ArchivoWORD', 'ArchivoWORD', 'Super Administrador', 'filesArchivos/Dictamen Tecnico Legal.docx');
 INSERT INTO `tbl_archivoespdesa` VALUES (49, '2023-05-21 20:38:08', 'ArchivoPDF', 'ArchivoPDF', 'Super Administrador', 'filesArchivos/Pasos tabla y gráfico dinámico.pdf');
 INSERT INTO `tbl_archivoespdesa` VALUES (50, '2023-05-22 21:47:07', 'Archivo2Word', 'Archivo2Word', 'Super Administrador', 'filesArchivos/NAVICAT.docx');
 INSERT INTO `tbl_archivoespdesa` VALUES (51, '2023-05-22 21:47:32', 'Archivo2PDF', 'Archivo2PDF', 'Super Administrador', 'filesArchivos/Pasos tabla y gráfico dinámico.pdf');
-
--- ----------------------------
--- Table structure for tbl_archivos
--- ----------------------------
-DROP TABLE IF EXISTS `tbl_archivos`;
-CREATE TABLE `tbl_archivos`  (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `fecha` datetime NULL DEFAULT current_timestamp,
-  `title` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
-  `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
-  `upload` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
-  `url` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_spanish_ci ROW_FORMAT = COMPACT;
-
--- ----------------------------
--- Records of tbl_archivos
--- ----------------------------
-INSERT INTO `tbl_archivos` VALUES (1, '2021-10-20 15:42:09', 'Logo', 'Importante', '', 'files/logo911pdf.pdf');
-INSERT INTO `tbl_archivos` VALUES (2, '2021-12-28 11:06:25', 'TK87N17', 'dictamen del ticket ', 'josue canales', 'files/cloudsummit-copia-1pdf.');
 
 -- ----------------------------
 -- Table structure for tbl_archivosdes
@@ -103,10 +83,10 @@ DROP TABLE IF EXISTS `tbl_archivosdes`;
 CREATE TABLE `tbl_archivosdes`  (
   `id` int NOT NULL AUTO_INCREMENT,
   `fecha` datetime NULL DEFAULT current_timestamp,
-  `title` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
-  `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
-  `upload` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
-  `url` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `title` varchar(70) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `description` varchar(70) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `upload` varchar(70) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `url` varchar(70) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_spanish_ci ROW_FORMAT = COMPACT;
 
@@ -123,10 +103,10 @@ DROP TABLE IF EXISTS `tbl_archivosesp`;
 CREATE TABLE `tbl_archivosesp`  (
   `id` int NOT NULL AUTO_INCREMENT,
   `fecha` datetime NOT NULL DEFAULT current_timestamp,
-  `title` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
-  `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
-  `upload` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
-  `url` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `title` varchar(70) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `description` varchar(70) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `upload` varchar(70) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `url` varchar(70) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8 COLLATE = utf8_spanish_ci ROW_FORMAT = COMPACT;
 
@@ -147,7 +127,7 @@ INSERT INTO `tbl_archivosesp` VALUES (8, '2023-01-31 14:06:45', 'tbl_reportes', 
 DROP TABLE IF EXISTS `tbl_area_solicitud`;
 CREATE TABLE `tbl_area_solicitud`  (
   `id_area` int NOT NULL,
-  `area_solicitud` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `area_solicitud` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id_area`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
@@ -171,14 +151,14 @@ DROP TABLE IF EXISTS `tbl_bitacoras`;
 CREATE TABLE `tbl_bitacoras`  (
   `id_bitacora` int NOT NULL AUTO_INCREMENT,
   `fecha` datetime NOT NULL,
-  `serie` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `departamento_ticket` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `regional_ticket` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `tecnicos_ticket` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `serie` varchar(55) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `departamento_ticket` varchar(55) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `regional_ticket` varchar(55) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `tecnicos_ticket` varchar(55) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `descripcion_equipos` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `problema_presentado` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `solucion` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `estado_bitacora` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `estado_bitacora` varchar(55) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id_bitacora`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 16 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
@@ -207,16 +187,16 @@ INSERT INTO `tbl_bitacoras` VALUES (15, '2023-05-22 21:50:05', 'BT93C15', 'UAFI'
 DROP TABLE IF EXISTS `tbl_calendario`;
 CREATE TABLE `tbl_calendario`  (
   `id` int NOT NULL AUTO_INCREMENT,
-  `evento` varchar(250) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `evento` varchar(55) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `color_evento` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `fecha_inicio` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `fecha_fin` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `hora` varchar(11) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `nombre_usuario` varchar(150) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
-  `correo` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `departamento_ticket` varchar(150) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
-  `area_solicitud` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `regional_ticket` varchar(150) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `nombre_usuario` varchar(55) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `correo` varchar(55) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `departamento_ticket` varchar(55) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `area_solicitud` varchar(55) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `regional_ticket` varchar(55) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `turnos` varchar(11) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `tecnicos_ticket` varchar(150) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `problema_presentado` varchar(200) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
@@ -238,7 +218,7 @@ INSERT INTO `tbl_calendario` VALUES (9, 'TK59N27', '#C0C0C0', '2023-05-22', '202
 DROP TABLE IF EXISTS `tbl_catalogo`;
 CREATE TABLE `tbl_catalogo`  (
   `id_catalogo` int NOT NULL,
-  `problemas` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `problemas` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   PRIMARY KEY (`id_catalogo`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_spanish_ci ROW_FORMAT = COMPACT;
 
@@ -254,10 +234,10 @@ INSERT INTO `tbl_catalogo` VALUES (6, 'Desconfiguración de Plataforma');
 INSERT INTO `tbl_catalogo` VALUES (7, 'Instalación de Sistemas');
 INSERT INTO `tbl_catalogo` VALUES (8, 'Backups');
 INSERT INTO `tbl_catalogo` VALUES (9, 'Problemas con el Correo');
-INSERT INTO `tbl_catalogo` VALUES (10, 'Manejo de Documentos por Red');
-INSERT INTO `tbl_catalogo` VALUES (11, 'Configuración de Equipos de Oficina');
-INSERT INTO `tbl_catalogo` VALUES (12, 'Cambio de Periféricos');
-INSERT INTO `tbl_catalogo` VALUES (13, 'Traslado de Equipo');
+INSERT INTO `tbl_catalogo` VALUES (10, 'Entrada de Equipo para Reparacion (Oficina)');
+INSERT INTO `tbl_catalogo` VALUES (11, 'Entrada de Equipo Nuevo para Configuracion (Oficina)');
+INSERT INTO `tbl_catalogo` VALUES (12, '\r\nManejo de Documentos por Red');
+INSERT INTO `tbl_catalogo` VALUES (13, 'Cambio de Periféricos');
 INSERT INTO `tbl_catalogo` VALUES (14, 'Reemplazo de Equipo');
 INSERT INTO `tbl_catalogo` VALUES (15, 'Acceso a la red Wi-Fi');
 INSERT INTO `tbl_catalogo` VALUES (16, 'Activacion De Office');
@@ -270,7 +250,7 @@ INSERT INTO `tbl_catalogo` VALUES (18, 'Otro');
 DROP TABLE IF EXISTS `tbl_departamento`;
 CREATE TABLE `tbl_departamento`  (
   `id_departamento` int NOT NULL,
-  `departamento` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `departamento` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   PRIMARY KEY (`id_departamento`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_spanish_ci ROW_FORMAT = COMPACT;
 
@@ -299,7 +279,7 @@ INSERT INTO `tbl_departamento` VALUES (15, 'Gerencia de Proyectos');
 DROP TABLE IF EXISTS `tbl_desarrollo`;
 CREATE TABLE `tbl_desarrollo`  (
   `id_desarrollo` int NOT NULL,
-  `desarrollo` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL
+  `desarrollo` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_spanish_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
@@ -320,7 +300,7 @@ INSERT INTO `tbl_desarrollo` VALUES (8, 'Otros');
 DROP TABLE IF EXISTS `tbl_descripcion`;
 CREATE TABLE `tbl_descripcion`  (
   `id_equipos` int NOT NULL,
-  `descripcion_equipos` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `descripcion_equipo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id_equipos`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
@@ -356,7 +336,7 @@ CREATE TABLE `tbl_dictamen`  (
   `title` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `description` varchar(500) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `upload` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
-  `url` varchar(1000) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `url` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_spanish_ci ROW_FORMAT = COMPACT;
 
@@ -368,12 +348,61 @@ INSERT INTO `tbl_dictamen` VALUES (2, '2023-05-21 20:32:54', 'DictamenPDF', 'Dic
 INSERT INTO `tbl_dictamen` VALUES (3, '2023-05-22 21:46:29', 'DictamenWord', 'DictamenWord', 'Super Administrador', 'filesReportes/NAVICAT.docx');
 
 -- ----------------------------
+-- Table structure for tbl_edificio
+-- ----------------------------
+DROP TABLE IF EXISTS `tbl_edificio`;
+CREATE TABLE `tbl_edificio`  (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `edificio` varchar(55) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of tbl_edificio
+-- ----------------------------
+INSERT INTO `tbl_edificio` VALUES (1, 'Administrativo');
+INSERT INTO `tbl_edificio` VALUES (2, 'Operativo');
+
+-- ----------------------------
+-- Table structure for tbl_equipo_entrada
+-- ----------------------------
+DROP TABLE IF EXISTS `tbl_equipo_entrada`;
+CREATE TABLE `tbl_equipo_entrada`  (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `fecha` datetime NULL DEFAULT NULL,
+  `serie` varchar(55) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `edificio` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `departamento` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `tecnico` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `usuario` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `procesador` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `memoria` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `disco` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `service` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `adicionales` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `diagnostico` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `solucion` varchar(80) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `lugar` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `fecha_entrega` date NULL DEFAULT NULL,
+  `hora` time NULL DEFAULT NULL,
+  `observaciones` varchar(80) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `estado_informe` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of tbl_equipo_entrada
+-- ----------------------------
+INSERT INTO `tbl_equipo_entrada` VALUES (1, '2023-05-23 21:31:45', 'SL91EN1', 'Administrativo', 'Sub Dirección Nacional', 'Tecnico Prueba', 'Usuario Prueba', 'i5', 'DRR2', 'Estado Solido', 'DKSGRPT', 'Ninguno', 'Problema Se verifico mediante el proceso de desarm', 'Problema Se verifico mediante el proceso de desarmar la pantalla para realizar u', 'Departamento IT', '2023-05-23', '21:03:00', 'Problema Se verifico mediante el proceso de desarmar la pantalla para realizar u', 'Finalizado');
+INSERT INTO `tbl_equipo_entrada` VALUES (2, '2023-05-23 21:54:04', 'SL69EN2', 'Administrativo', 'Secretaría Sub Dirección', 'Tecnico Prueba2', 'Usuario Prueba2', 'i5', 'DRR2', 'Estado Solido', 'DKTPN', 'Ninguno', 'Se verifico mediante el proceso de desarmar la pan', 'Se verifico mediante el proceso de desarmar la pantalla para realizar una prueba', 'Departamento IT', '2023-05-23', '12:23:00', 'Se verifico mediante el proceso de desarmar la pantalla para realizar una prueba', 'Finalizado');
+
+-- ----------------------------
 -- Table structure for tbl_estado_bitacora
 -- ----------------------------
 DROP TABLE IF EXISTS `tbl_estado_bitacora`;
 CREATE TABLE `tbl_estado_bitacora`  (
   `id_estado_bitacora` int NOT NULL,
-  `estado_bitacora` varchar(11) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `estado_bitacora` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id_estado_bitacora`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
@@ -559,6 +588,22 @@ INSERT INTO `tbl_informe` VALUES (128, 'Dictamen Técnico de Equipo Informático
 INSERT INTO `tbl_informe` VALUES (129, 'Dictamen Técnico de Equipo Informático del Departamento de Dirección de Tecnología.', 'IN64F127', '2023-05-22 21:48:12', 'Dictamen Técnico.', 'Sistema Nacional De Emergencias 911, Unidad De Soporte Técnico.', 'UAFI', 'Se verifico mediante el proceso de desarmar la pantalla para realizar una prueba en la que el monitor no se encuentra en las condiciones de uso, esto debido a que la pantalla sigue mostrando el mismo problema del parpadeo continuo, con lo cual se llega a ', 'Se verifico mediante el proceso de desarmar la pantalla para realizar una prueba en la que el monitor no se encuentra en las condiciones de uso, esto debido a que la pantalla sigue mostrando el mismo problema del parpadeo continuo, con lo cual se llega a ', 'Se verifico mediante el proceso de desarmar la pantalla para realizar una prueba en la que el monitor no se encuentra en las condiciones de uso, esto debido a que la pantalla sigue mostrando el mismo problema del parpadeo continuo, con lo cual se llega a ', 'Se verifico mediante el proceso de desarmar la pantalla para realizar una prueba en la que el monitor no se encuentra en las condiciones de uso, esto debido a que la pantalla sigue mostrando el mismo problema del parpadeo continuo, con lo cual se llega a ', 'triggers.JPG', 'triggers.JPG', 'triggers.JPG', 'Edwin Aron Martinez Cabrera', 'Finalizado');
 
 -- ----------------------------
+-- Table structure for tbl_lugar
+-- ----------------------------
+DROP TABLE IF EXISTS `tbl_lugar`;
+CREATE TABLE `tbl_lugar`  (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `lugar_trabajo` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of tbl_lugar
+-- ----------------------------
+INSERT INTO `tbl_lugar` VALUES (1, 'Departamento IT');
+INSERT INTO `tbl_lugar` VALUES (2, 'Departamento Del Equipo');
+
+-- ----------------------------
 -- Table structure for tbl_numeroempleado
 -- ----------------------------
 DROP TABLE IF EXISTS `tbl_numeroempleado`;
@@ -587,8 +632,8 @@ INSERT INTO `tbl_numeroempleado` VALUES (1029, 'GASBY  VILLATORO JACOME', 1, 1);
 INSERT INTO `tbl_numeroempleado` VALUES (1031, 'LENAR NAZARETH CERRATO MIRALDA', 1, 1);
 INSERT INTO `tbl_numeroempleado` VALUES (1032, 'CRISTIAN NOEL CANALES ZAMBRANO', 1, 1);
 INSERT INTO `tbl_numeroempleado` VALUES (1033, 'EDER JOSUE ALVARADO MORALES', 1, 1);
-INSERT INTO `tbl_numeroempleado` VALUES (1035, 'DENIS EXZEQUIEL GARCIA GARCIA', 1, 0);
-INSERT INTO `tbl_numeroempleado` VALUES (1036, 'ISMAEL ANTONIO LOPEZ LOPEZ', 1, 0);
+INSERT INTO `tbl_numeroempleado` VALUES (1035, 'DENIS EXZEQUIEL GARCIA GARCIA', 1, 1);
+INSERT INTO `tbl_numeroempleado` VALUES (1036, 'ISMAEL ANTONIO LOPEZ LOPEZ', 1, 1);
 INSERT INTO `tbl_numeroempleado` VALUES (1039, 'CARLOS ROBERTO ZAPATA BANEGAS', 1, 0);
 INSERT INTO `tbl_numeroempleado` VALUES (1040, 'WILMER ALEXANDER CASTILLO MOLINA', 1, 0);
 INSERT INTO `tbl_numeroempleado` VALUES (1042, 'EDWIN MIGUEL BAQUEDANO AVILA', 1, 0);
@@ -1911,8 +1956,8 @@ INSERT INTO `tbl_numeroempleado` VALUES (1029, 'GASBY  VILLATORO JACOME', 0, 1);
 INSERT INTO `tbl_numeroempleado` VALUES (1031, 'LENAR NAZARETH CERRATO MIRALDA', 0, 1);
 INSERT INTO `tbl_numeroempleado` VALUES (1032, 'CRISTIAN NOEL CANALES ZAMBRANO', 0, 1);
 INSERT INTO `tbl_numeroempleado` VALUES (1033, 'EDER JOSUE ALVARADO MORALES', 0, 1);
-INSERT INTO `tbl_numeroempleado` VALUES (1035, 'DENIS EXZEQUIEL GARCIA GARCIA', 0, 0);
-INSERT INTO `tbl_numeroempleado` VALUES (1036, 'ISMAEL ANTONIO LOPEZ LOPEZ', 0, 0);
+INSERT INTO `tbl_numeroempleado` VALUES (1035, 'DENIS EXZEQUIEL GARCIA GARCIA', 0, 1);
+INSERT INTO `tbl_numeroempleado` VALUES (1036, 'ISMAEL ANTONIO LOPEZ LOPEZ', 0, 1);
 INSERT INTO `tbl_numeroempleado` VALUES (1039, 'CARLOS ROBERTO ZAPATA BANEGAS', 0, 0);
 INSERT INTO `tbl_numeroempleado` VALUES (1040, 'WILMER ALEXANDER CASTILLO MOLINA', 0, 0);
 INSERT INTO `tbl_numeroempleado` VALUES (1042, 'EDWIN MIGUEL BAQUEDANO AVILA', 0, 0);
@@ -3228,7 +3273,7 @@ INSERT INTO `tbl_numeroempleado` VALUES (0, '', 0, 0);
 DROP TABLE IF EXISTS `tbl_regionales`;
 CREATE TABLE `tbl_regionales`  (
   `idRegional` int NOT NULL AUTO_INCREMENT,
-  `nombreRegional` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `nombreRegional` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   PRIMARY KEY (`idRegional`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_spanish_ci ROW_FORMAT = COMPACT;
 
@@ -3297,7 +3342,7 @@ CREATE TABLE `tbl_ticket`  (
   `asignar_ticket` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `fechaatendido` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 193 CHARACTER SET = utf8 COLLATE = utf8_spanish_ci ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB AUTO_INCREMENT = 195 CHARACTER SET = utf8 COLLATE = utf8_spanish_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of tbl_ticket
@@ -3331,6 +3376,8 @@ INSERT INTO `tbl_ticket` VALUES (189, '2023-05-22 21:13:39', 'TK06N26', 'Resuelt
 INSERT INTO `tbl_ticket` VALUES (190, '2023-05-22 21:12:58', 'TK59N27', 'Pendiente', 'usuario', 'usuario@gmail.com', 'Gerencia de Tecnología', 'Otro', '', 'Pendiente', 'No me esta cargando GoogleEart', 'No asignado', 'Sin Atender', 'Sin Atender');
 INSERT INTO `tbl_ticket` VALUES (191, '2023-05-22 21:31:25', 'TK87N28', 'Resuelto', 'usuario', 'usuario@gmail.com', 'Gerencia de Tecnología', 'Otro', '', 'No Tenia Internet se configuro red wifi ', 'No Carga GoogelEart', 'No asignado', 'esponja', 'Sin Atender');
 INSERT INTO `tbl_ticket` VALUES (192, '2023-05-22 21:38:09', 'TK74N29', 'Resuelto', 'Super Administrador', 'Sadministrador@gmail.com', 'IT', 'SIGEP', '', 'no tenoa configurado el tipo de papel a4 en la impresora', 'no me genera reportes', 'No asignado', 'EdwinMartinez', 'Sin Atender');
+INSERT INTO `tbl_ticket` VALUES (193, '2023-05-23 10:25:31', 'TK19N30', 'Resuelto', 'Denis', 'denis@911.gob.hn', 'Gerencia de Tecnología', 'Otro', '', 'Sigem solucionado', 'Problema con la plataforma SIGEM.', 'No asignado', 'Tecnico', 'Sin Atender');
+INSERT INTO `tbl_ticket` VALUES (194, '2023-05-23 11:08:56', 'TK82N31', 'Resuelto', 'usuario', 'usuario@gmail.com', 'Gerencia de Tecnología', 'Otro', '', 'SIGEM SOLUCIONADO', 'SIGEM CAIDO.', 'No asignado', 'Tecnico', 'Sin Atender');
 
 -- ----------------------------
 -- Table structure for tbl_ticket_desarrollo
@@ -3339,13 +3386,13 @@ DROP TABLE IF EXISTS `tbl_ticket_desarrollo`;
 CREATE TABLE `tbl_ticket_desarrollo`  (
   `id` int NOT NULL AUTO_INCREMENT,
   `fecha` datetime NULL DEFAULT NULL,
-  `serie` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish_ci NULL DEFAULT NULL,
-  `estado_ticket` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish_ci NULL DEFAULT NULL,
-  `nombre_usuario` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish_ci NULL DEFAULT NULL,
-  `email` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish_ci NULL DEFAULT NULL,
-  `regional` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish_ci NULL DEFAULT NULL,
-  `sistema` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish_ci NULL DEFAULT NULL,
-  `reporte` varchar(500) CHARACTER SET utf8 COLLATE utf8_spanish_ci NULL DEFAULT NULL,
+  `serie` varchar(55) CHARACTER SET utf8 COLLATE utf8_spanish_ci NULL DEFAULT NULL,
+  `estado_ticket` varchar(55) CHARACTER SET utf8 COLLATE utf8_spanish_ci NULL DEFAULT NULL,
+  `nombre_usuario` varchar(55) CHARACTER SET utf8 COLLATE utf8_spanish_ci NULL DEFAULT NULL,
+  `email` varchar(55) CHARACTER SET utf8 COLLATE utf8_spanish_ci NULL DEFAULT NULL,
+  `regional` varchar(55) CHARACTER SET utf8 COLLATE utf8_spanish_ci NULL DEFAULT NULL,
+  `sistema` varchar(55) CHARACTER SET utf8 COLLATE utf8_spanish_ci NULL DEFAULT NULL,
+  `reporte` varchar(55) CHARACTER SET utf8 COLLATE utf8_spanish_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8 COLLATE = utf8_spanish_ci ROW_FORMAT = COMPACT;
 
@@ -3367,7 +3414,7 @@ INSERT INTO `tbl_ticket_desarrollo` VALUES (8, '2022-08-02 09:35:50', 'TK22N8', 
 DROP TABLE IF EXISTS `tbl_turnos`;
 CREATE TABLE `tbl_turnos`  (
   `id_turno` int NOT NULL,
-  `turnos` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `turnos` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id_turno`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
@@ -3393,17 +3440,17 @@ CREATE TABLE `tbl_usuarios`  (
   `numeroEmpleado` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL DEFAULT '',
   `estado` int NOT NULL,
   PRIMARY KEY (`id_usuario`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 39 CHARACTER SET = utf8 COLLATE = utf8_spanish_ci ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB AUTO_INCREMENT = 41 CHARACTER SET = utf8 COLLATE = utf8_spanish_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of tbl_usuarios
 -- ----------------------------
-INSERT INTO `tbl_usuarios` VALUES (1, 'josue canaless', 'jocanales', '4', '123456', 'gustavo_oqueli@hotmail.com', '0000-0000', 'IT', '', 0);
-INSERT INTO `tbl_usuarios` VALUES (2, 'Fabricio Zuniga', 'f69', '4', '', 'fzuni@gmail.com', '97752355', 'IT', '', 0);
+INSERT INTO `tbl_usuarios` VALUES (1, 'josue canaless', 'jocanales', '4', '123456', 'gustavo_oqueli@hotmail.com', '0000-0000', 'IT', '', 1);
+INSERT INTO `tbl_usuarios` VALUES (2, 'Fabricio Zuniga', 'f69', '4', '', 'fzuni@gmail.com', '97752355', 'IT', '', 1);
 INSERT INTO `tbl_usuarios` VALUES (12, 'David Fuentes', 'afdavid', '4', 'e10adc3949ba59abbe56e057f20f883e', 'afdavid10y7@gmail.com', '97792977', 'IT', '', 1);
-INSERT INTO `tbl_usuarios` VALUES (13, 'Alberto Anariba', 'dafuentes', '4', 'e10adc3949ba59abbe56e057f20f883e', 'david.fuentes@911.gob.hn', '97792789', 'IT', '', 0);
-INSERT INTO `tbl_usuarios` VALUES (14, 'David Anariba', 'dfuenteshn', '4', 'e10adc3949ba59abbe56e057f20f883e', 'dfuentes@unah.hn', '97792944', 'IT', '', 0);
-INSERT INTO `tbl_usuarios` VALUES (15, 'David Alberto', 'albert', '4', 'e10adc3949ba59abbe56e057f20f883e', 'afdavid10@gmail.com', '97795214', 'Gerencia de TecnologÃ­a', '', 0);
+INSERT INTO `tbl_usuarios` VALUES (13, 'Alberto Anariba', 'dafuentes', '4', 'e10adc3949ba59abbe56e057f20f883e', 'david.fuentes@911.gob.hn', '97792789', 'IT', '', 1);
+INSERT INTO `tbl_usuarios` VALUES (14, 'David Anariba', 'dfuenteshn', '4', 'e10adc3949ba59abbe56e057f20f883e', 'dfuentes@unah.hn', '97792944', 'IT', '', 1);
+INSERT INTO `tbl_usuarios` VALUES (15, 'David Alberto', 'albert', '4', 'e10adc3949ba59abbe56e057f20f883e', 'afdavid10@gmail.com', '97795214', 'Gerencia de TecnologÃ­a', '', 1);
 INSERT INTO `tbl_usuarios` VALUES (16, 'David', 'dfuenteshn1', '4', 'e10adc3949ba59abbe56e057f20f883e', 'afdavid10@gmail.comm', '97792944', 'SecretarÃ­a Sub DirecciÃ³n', '', 1);
 INSERT INTO `tbl_usuarios` VALUES (17, 'David Anariba', 'afdavid777', '4', 'e10adc3949ba59abbe56e057f20f883e', 'afdavid77@gmail.com', '97792944', 'AuditorÃ­a Interna', '', 1);
 INSERT INTO `tbl_usuarios` VALUES (18, 'David Alberto', 'dfuenteshn77', '4', 'e10adc3949ba59abbe56e057f20f883e', 'dfuentes77@unah.hn', '97792944', 'Unidad de Transparencia', '', 1);
@@ -3426,5 +3473,7 @@ INSERT INTO `tbl_usuarios` VALUES (34, 'capitan', 'capitan', '4', 'e10adc3949ba5
 INSERT INTO `tbl_usuarios` VALUES (35, 'capitan america', 'capAmerica', '4', 'e10adc3949ba59abbe56e057f20f883e', 'capAmerica@911.gob.hn', '7896541', 'Dirección Legal', '1029', 1);
 INSERT INTO `tbl_usuarios` VALUES (37, 'usuario', 'usuario', '4', 'e10adc3949ba59abbe56e057f20f883e', 'usuario@gmail.com', '23145', 'Gerencia de Tecnología', '1033', 1);
 INSERT INTO `tbl_usuarios` VALUES (38, 'CRISTIAN NOEL CANALES ZAMBRANO', 'cristiannoel', '4', 'e10adc3949ba59abbe56e057f20f883e', 'cristiann@911.gob.hn', '123456', 'Call Center', '1032', 1);
+INSERT INTO `tbl_usuarios` VALUES (39, 'Denis', 'Denis', '4', 'e10adc3949ba59abbe56e057f20f883e', 'denis@911.gob.hn', '1245', 'Gerencia de Tecnología', '1035', 1);
+INSERT INTO `tbl_usuarios` VALUES (40, 'ISMAEL ANTONIO LOPEZ LOPEZ', 'IsmaelA', '4', 'e10adc3949ba59abbe56e057f20f883e', 'ismael@911.gob.hn', '998844666', 'Call Center', '1036', 1);
 
 SET FOREIGN_KEY_CHECKS = 1;

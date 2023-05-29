@@ -55,7 +55,7 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
         <!---------------------------- Inicio creación de Tickets ---------------------------->
         <?php
         /* Declaracion de variables a utilizar y genrador de código */
-        if (isset($_POST['departamento_ticket']) && isset($_POST['fechaatendido'])) {
+        if (isset($_POST['turnos']) && isset($_POST['problema_presentado']) && isset($_POST['fechaatendido'])) {
 
             /*Este código nos servira para generar un numero diferente para cada ticket*/
             $codigo = "";
@@ -79,20 +79,23 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
             //Ejecutar el codigo despues de que el usuario envia el formulario
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-                $email = "helpdesk@911.gob.hn";
-                $estado_ticket = "Registrado";
                 $departamento_ticket = MysqlQuery::RequestPost('departamento_ticket');
                 $fecha = MysqlQuery::RequestPost('fechaatendido');
                 $regional_ticket = utf8_encode(MysqlQuery::RequestPost('regional_ticket'));
+                $turnos = MysqlQuery::RequestPost('turnos');
                 $asignar_ticket = utf8_encode(MysqlQuery::RequestPost('tecnicos_ticket'));
                 $descripcion_equipos = utf8_encode(MysqlQuery::RequestPost('descripcion_equipos'));
-                $estado_bitacora = utf8_encode(MysqlQuery::RequestPost('estado_bitacora'));
                 $problema_presentado = utf8_encode(MysqlQuery::RequestPost('problema_presentado'));
                 $solucion = utf8_encode(MysqlQuery::RequestPost('solucion'));
+                $estado_bitacora = "Finalizado";
 
 
                 if (!$fecha) {
                     $errores[] = "La Fecha es obligatorio";
+                }
+
+                if (!$turnos) {
+                    $errores[] = "Debes añadir el Turno";
                 }
 
                 if (!$departamento_ticket) {
@@ -121,15 +124,10 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
                     $errores[] = "La descripcion de la Solucion es obligatoria y debe tener al menos 113 caracteres";
                 }
 
-                if (!$estado_bitacora) {
-                    $errores[] = "Debes añadir un Estado";
-                }
-
-
                 if (empty($errores)) {
 
                     if (
-                        MysqlQuery::Guardar("tbl_bitacoras", "fecha,serie,departamento_ticket,regional_ticket,tecnicos_ticket,descripcion_equipos,problema_presentado,solucion,estado_bitacora", "'$fecha ','$id_ticket','$departamento_ticket','$regional_ticket',
+                        MysqlQuery::Guardar("tbl_bitacoras", "fecha,serie,turnos,departamento_ticket,regional_ticket,tecnicos_ticket,descripcion_equipos,problema_presentado,solucion,estado_bitacora", "'$fecha ','$id_ticket','$turnos','$departamento_ticket','$regional_ticket',
                 '$asignar_ticket','$descripcion_equipos','$problema_presentado','$solucion','$estado_bitacora'")
                     ) {
 
@@ -242,6 +240,34 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
 
 
 
+                                            <!-- Select para Catálogo de Turnos del 9-1-1 -->
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">Turno</label>
+                                                <div class="col-sm-10">
+                                                    <div class='input-group'>
+
+                                                        <select class="form-control" name="turnos" required>
+                                                            <option style="font-weight:bold" value="0"> -Seleccionar Turno-
+                                                            </option>
+                                                            <?php
+
+                                                            $dept = Mysql::consulta("SELECT id_turno, turnos FROM tbl_turnos");
+
+                                                            while ($turnos = mysqli_fetch_array($dept)) {
+                                                                ?>
+                                                                <option value="<?php echo utf8_encode($turnos["turnos"]) ?>">
+                                                                    <?php echo $turnos["id_turno"], ".-", $turnos["turnos"] ?>
+                                                                </option>
+                                                            <?php } ?>
+                                                        </select>
+                                                        <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Fin Select Turnos -->
+
+
 
                                             <!-- Select para Catálogo de Departamento del 9-1-1 -->
                                             <div class="form-group">
@@ -259,11 +285,11 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
 
                                                             $dept = Mysql::consulta("SELECT id_departamento, departamento FROM tbl_departamento");
 
-                                                            while ($departamento = mysqli_fetch_array($dept)) {
+                                                            while ($departamento_ticket = mysqli_fetch_array($dept)) {
                                                                 ?>
                                                                 <option
-                                                                    value="<?php echo utf8_encode($departamento["departamento"]) ?>">
-                                                                    <?php echo $departamento["id_departamento"], ".-", $departamento["departamento"] ?></option>
+                                                                    value="<?php echo utf8_encode($departamento_ticket["departamento"]) ?>">
+                                                                    <?php echo $departamento_ticket["id_departamento"], ".-", $departamento_ticket["departamento"] ?></option>
                                                             <?php } ?>
                                                             <option style="text-align:center; font-weight:bold" value="0">
                                                                 Departamento Operativo </option>
@@ -287,7 +313,6 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
                                             </div>
                                             <!-- Fin Select Departamento -->
 
-
                                             <!-- select para aregionales -->
                                             <div class="form-group">
                                                 <label class="col-sm-2 control-label">Regional </label>
@@ -295,7 +320,8 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
                                                     <div class="input-group">
                                                         <select class="form-control" name="regional_ticket"
                                                             placeholder="regional_ticket" required>
-                                                            <option value="">-Seleccionar Regional-</option>
+                                                            <option style="font-weight:bold" value="0">-Seleccionar
+                                                                Regional-</option>
                                                             <?php
                                                             $dept1 = Mysql::consulta("SELECT nombreRegional FROM tbl_regionales");
                                                             while ($ticket1 = mysqli_fetch_array($dept1)) {
@@ -317,7 +343,8 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
                                                     <div class="input-group">
                                                         <select class="form-control" name="asignar_ticket"
                                                             placeholder="asignar_ticket" onchange="asignar(value)" required>
-                                                            <option value="">-Asignar Técnico-</option>
+                                                            <option style="font-weight:bold" value="0">-Asignar Técnico-
+                                                            </option>
                                                             <?php
                                                             $dept = Mysql::consulta("SELECT id_usuario, nombre_completo FROM tbl_admin  WHERE id_rol = '2'");
                                                             while ($ticket = mysqli_fetch_array($dept)) {
@@ -342,9 +369,6 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
                                             </div>
                                             <!-- Fin Select Problemas -->
 
-
-
-
                                             <!-- Select para Descripcion-->
                                             <div class="form-group">
                                                 <label class="col-sm-2 control-label">Descripción de Equipo</label>
@@ -352,7 +376,8 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
                                                     <div class='input-group'>
 
                                                         <select class="form-control" name="descripcion_equipos" required>
-                                                            <option value=""> -Seleccionar Equipo- </option>
+                                                            <option style="font-weight:bold" value="0"> -Seleccionar Equipo-
+                                                            </option>
                                                             <!----AQUI PONER LOS MODELOS ----->
                                                         <?php
 
@@ -370,82 +395,50 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
                                                 </div>
                                             </div>
                                         </div>
-                            </div>
-                            <!-- Fin Select Descripcion -->
+                                        <!-- Fin Select Descripcion -->
 
-                                <!-- Select para Problema -->
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">Problema Presentado</label>
-                                    <div class="col-sm-10">
-                                        <textarea class="form-control" rows="3"
-                                            placeholder="Se recomiendo un máximo de 3 parrafos." name="problema_presentado"
-                                            required></textarea>
-                                    </div>
+                                            <!-- Select para Problema -->
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">Problema Presentado</label>
+                                                <div class="col-sm-10">
+                                                    <textarea class="form-control" rows="3"
+                                                        placeholder="Se recomiendo un máximo de 3 parrafos."
+                                                        name="problema_presentado" required></textarea>
+                                                </div>
+                                            </div>
+                                            <!-- Fin Select Problema -->
+
+                                            <!-- Select para Solucion -->
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">Solución de Problema</label>
+                                                <div class="col-sm-10">
+                                                    <textarea class="form-control" rows="3"
+                                                        placeholder="Se recomiendo un máximo de 3 parrafos." name="solucion"
+                                                        required></textarea>
+                                                </div>
+                                            </div>
+                                            <!-- Fin Select Solucion -->
+
+                                            <!-- Botón para Abrir el ticket -->
+                                            <div class="form-group">
+                                                <div class="col-sm-offset-2 col-sm-10">
+                                                    <button type="submit" class="btn btn-info pull-center"><b>Crear
+                                                            Bitacora</b></button>
+                                                </div>
+                                            </div>
+                                            <!-- Fin botón -->
+
+
+
+
+                                        </fieldset>
+                                    </form>
                                 </div>
-                                <!-- Fin Select Problema -->
-
-                                <!-- Select para Solucion -->
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">Solución de Problema</label>
-                                    <div class="col-sm-10">
-                                        <textarea class="form-control" rows="3"
-                                            placeholder="Se recomiendo un máximo de 3 parrafos." name="solucion"
-                                            required></textarea>
-                                    </div>
-                                </div>
-                                <!-- Fin Select Solucion -->
-
-
-
-                                <!-- Select para estado_bitacora-->
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">Estado de Bitacora</label>
-                                    <div class="col-sm-10">
-                                        <div class='input-group'>
-
-                                            <select class="form-control" name="estado_bitacora" required>
-                                                <option value=""> -Seleccionar Estado- </option>
-                                                <!----AQUI PONER LOS MODELOS ----->
-                                            <?php
-
-                                            $dept = Mysql::consulta("SELECT id_estado_bitacora, estado_bitacora FROM tbl_estado_bitacora");
-
-                                            while ($estado_bitacora = mysqli_fetch_array($dept)) {
-                                                ?>
-                                            <option
-                                                value="<?php echo utf8_encode($estado_bitacora["estado_bitacora"]) ?>">
-                                                <?php echo $estado_bitacora["id_estado_bitacora"], ".-", $estado_bitacora["estado_bitacora"] ?></option>
-                                            <?php } ?>
-                                        </select>
-                                        <span class="input-group-addon"><i class="fa fa-check-circle"></i></span>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Fin Select estado_bitacora -->
-
-
-
-                                <!-- Botón para Abrir el ticket -->
-                                <div class="form-group">
-                                    <div class="col-sm-offset-2 col-sm-10">
-                                        <button type="submit" class="btn btn-info pull-center"><b>Crear
-                                                Bitacora</b></button>
-                                    </div>
-                                </div>
-                                <!-- Fin botón -->
-
-
-
-
-                                </fieldset>
-                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
         </div>
         <!---------------------------- Fin Inicio creación de Tickets ---------------------------->
 

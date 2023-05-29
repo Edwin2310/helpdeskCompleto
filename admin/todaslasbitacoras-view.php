@@ -1,4 +1,5 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
 <?php if ($_SESSION['nombre'] != "" || $_SESSION['tipo'] == "1" || $_SESSION['tipo'] == 2) { ?>
 
 
@@ -31,15 +32,42 @@
     <br>
 
     <?php
+
+
+
+    /* Eliminar Tickets */
+    if (isset($_POST['id_bitacora'])) {
+        $id = MysqlQuery::RequestPost('id_bitacora');
+        if (MysqlQuery::Eliminar("tbl_bitacoras", "id_bitacora='$id'")) {
+            echo '
+                            <div class="alert alert-danger alert-dismissible fade in col-sm-3 animated bounceInDown" role="alert" style="position:fixed; top:70px; right:10px; z-index:10;"> 
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                <h4 class="text-center">TICKET ELIMINADO</h4>
+                                <p class="text-center">
+                                    El ticket fue eliminado del sistema con exito
+                                </p>
+                            </div>
+                        ';
+        } else {
+            echo '
+                            <div class="alert alert-danger alert-dismissible fade in col-sm-3 animated bounceInDown" role="alert" style="position:fixed; top:70px; right:10px; z-index:10;"> 
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                <h4 class="text-center">OCURRIÓ UN ERROR</h4>
+                                <p class="text-center">
+                                    No hemos podido eliminar el ticket
+                                </p>
+                            </div>
+                        ';
+        }
+    } /* *********** Fin Eliminar Tickets ***********  */
+
     /*Suma de todos los tickets*/
     $num_ticket_all = Mysql::consulta("SELECT * FROM tbl_bitacoras");
     $num_total_all = mysqli_num_rows($num_ticket_all);
     ?>
 
     <div class="container-fluid">
-        <!-- <form action="process/excelTicket.php?Tipoticket=0">
-    <button type="submit" class="btn btn-success">Generar reporte de excel</button>
-    </form> -->
+
         <br>
         <div class="row">
             <div class="col-md-20">
@@ -128,7 +156,6 @@
                                         <th class="text-center">Descripcion</th>
                                         <th class="text-center">Problema</th>
                                         <th class="text-center">Solucion</th>
-                                        <th class="text-center">Estado Bitacora</th>
                                         <th class="text-center">Opciones</th>
 
 
@@ -169,12 +196,6 @@
                                             <td class="text-center">
                                                 <?php echo $row['solucion']; ?>
                                             </td>
-                                            <td class="text-center">
-                                                <?php echo $row['estado_bitacora']; ?>
-                                            </td>
-
-
-
 
 
                                             <td class="text-center">
@@ -182,99 +203,79 @@
                                                     style="margin: 5px" class="btn btn-sm btn-success" target="_blank"><i
                                                         class="fa fa-print" aria-hidden="true"></i></a>
 
+                                                <!--                 Boton para eliminar-->
+                                                <?php if ($_SESSION['nombre'] != "" && $_SESSION['tipo'] == "1") { ?>
 
-                                                <!--                 Boton para eliminar
-            <form action="" method="POST" style="display: inline-block;">
-            <input type="hidden" name="id_del" value="<?php echo $row['id']; ?>">
-            <button type="submit" class="btn btn-sm btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-            </form>-->
+                                                    <!--   Boton para eliminar -->
+                                                    <form action="" method="POST" style="display: inline-block;">
+                                                        <input type="hidden" name="id_bitacora"
+                                                            value="<?php echo $row['id_bitacora']; ?>">
+
+                                                        <button type="submit" class="btn btn-sm btn-danger"><i class="fa fa-trash-o"
+                                                                aria-hidden="true"></i></button>
+                                                    </form>
+                                                <?php } ?>
                                             </td>
-                                        </tr>
-                            </div>
 
-                            <?php
-                            $ct++;
+
+
+                                        </tr>
+                                        <?php
+                                        $ct++;
                                     endwhile;
                                     ?>
+                                </tbody>
+                            </table>
+                            <!-- Fin tabla -->
+                            <!-- Inicio conteo de tickets para cambio de página -->
+                        <?php else: ?>
+                            <h2 class="text-center">No hay tickets registrados en el sistema</h2>
+                        <?php endif; ?>
+                    </div>
 
-                        </tbody>
-                        </table>
-                        <!-- Fin tabla  -->
-                        <!-- Inicio conteo de tickets para cambio de página -->
-                    <?php else: ?>
-                        <h2 class="text-center">No hay tickets registrados en el sistema</h2>
+                    <?php
+                    if ($numeropaginas >= 1):
+                        if (isset($_GET['ticket'])) {
+                            $ticketselected = $_GET['ticket'];
+                        } else {
+                            $ticketselected = "all";
+                        }
+                        ?>
+
                     <?php endif; ?>
                 </div>
-
-                <?php
-                if ($numeropaginas >= 1):
-                    if (isset($_GET['ticket'])) {
-                        $ticketselected = $_GET['ticket'];
-                    } else {
-                        $ticketselected = "all";
-                    }
-                    ?>
-
-                <?php endif; ?>
+                <!-- Fin conteo -->
             </div>
-            <!-- Fin conteo -->
-        </div>
-    </div><!--container principal-->
+        </div><!--container principal-->
 
-    <?php
+        <?php
 } else {
     ?>
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-4">
-                <img src="./img/Stop.png" alt="Image" class="img-responsive animated slideInDown" /><br>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    <img src="./img/Stop.png" alt="Image" class="img-responsive animated slideInDown" /><br>
 
+                </div>
+                <div class="col-sm-7 animated flip">
+                    <h1 class="text-danger">Lo sentimos esta página es solamente para Tecnicos de Soporte Técnico 9-1-1</h1>
+                    <h3 class="text-info text-center">Inicia sesión como Tecnicos para poder acceder</h3>
+                </div>
+                <div class="col-sm-1">&nbsp;</div>
             </div>
-            <div class="col-sm-7 animated flip">
-                <h1 class="text-danger">Lo sentimos esta página es solamente para Tecnicos de Soporte Técnico 9-1-1</h1>
-                <h3 class="text-info text-center">Inicia sesión como Tecnicos para poder acceder</h3>
-            </div>
-            <div class="col-sm-1">&nbsp;</div>
         </div>
-    </div>
-    <?php
+        <?php
 }
 ?>
 
-<script type="text/javascript">
-    function excel() {
-        window.open("process/excelBitacora.php?Tipoticket=0");
-        // console.log("funciona");
-    }
+    <script type="text/javascript">
+        function excel() {
+            window.open("process/excelBitacora.php?Tipoticket=0");
+            // console.log("funciona");
+        }
 
-    function pdfReport() {
-        window.open("lib/reportesBitacoras.php?Tipoticket=0");
-        // console.log("funciona");
-    }
-</script>
-
-<!-- /* Eliminar Tickets */
-            /* if(isset($_POST['id_del'])){
-                $id = MysqlQuery::RequestPost('id_del');
-                if(MysqlQuery::Eliminar("ticket", "id='$id'")){
-                    echo '
-                    <div class="alert alert-info alert-dismissible fade in col-sm-3 animated bounceInDown" role="alert" style="position:fixed; top:70px; right:10px; z-index:10;"> 
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                    <h4 class="text-center">TICKET ELIMINADO</h4>
-                    <p class="text-center">
-                    El ticket fue eliminado del sistema con exito
-                    </p>
-                    </div>
-                    ';
-                }else{
-                    echo '
-                    <div class="alert alert-danger alert-dismissible fade in col-sm-3 animated bounceInDown" role="alert" style="position:fixed; top:70px; right:10px; z-index:10;"> 
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                    <h4 class="text-center">OCURRIÓ UN ERROR</h4>
-                    <p class="text-center">
-                    No hemos podido eliminar el ticket
-                    </p>
-                    </div>
-                    '; 
-                }
-            }*/                /* *********** Fin Eliminar Tickets ***********  -->
+        function pdfReport() {
+            window.open("lib/reportesBitacoras.php?Tipoticket=0");
+            // console.log("funciona");
+        }
+    </script>

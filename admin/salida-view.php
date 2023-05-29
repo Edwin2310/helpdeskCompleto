@@ -88,9 +88,12 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
                 $memoria = utf8_encode(MysqlQuery::RequestPost('memoria'));
                 $disco = utf8_encode(MysqlQuery::RequestPost('disco'));
                 $service = utf8_encode(MysqlQuery::RequestPost('service'));
+                $inventario = utf8_encode(MysqlQuery::RequestPost('inventario'));
+                $equipo = utf8_encode(MysqlQuery::RequestPost('equipo'));
                 $adicionales = utf8_encode(MysqlQuery::RequestPost('adicionales'));
                 $diagnostico = utf8_encode(MysqlQuery::RequestPost('diagnostico'));
                 $solucion = utf8_encode(MysqlQuery::RequestPost('solucion'));
+                $requerimiento = utf8_encode(MysqlQuery::RequestPost('requerimiento'));
                 $lugar = utf8_encode(MysqlQuery::RequestPost('lugar'));
                 $fecha_entrega = utf8_encode(MysqlQuery::RequestPost('fecha_entrega'));
                 $hora = utf8_encode(MysqlQuery::RequestPost('hora'));
@@ -125,6 +128,12 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
                 if (!$service) {
                     $errores[] = "Debes añadir un Service/Tag";
                 }
+                if (!$inventario) {
+                    $errores[] = "Debes añadir un No. De Inventario";
+                }
+                if (!$equipo) {
+                    $errores[] = "Debes añadir un Equipo";
+                }
                 if (!$adicionales) {
                     $errores[] = "Debes añadir un Periferico";
                 }
@@ -138,15 +147,18 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
                     $errores[] = "Debes añadir una Hora";
                 }
 
-                if (strlen($diagnostico) < 113) {
-                    $errores[] = "La descripcion de la Solucion es obligatoria y debe tener al menos 113 caracteres";
+                if (strlen($diagnostico) < 200) {
+                    $errores[] = "La descripcion de la Solucion es obligatoria y debe tener al menos 200 caracteres";
                 }
 
-                if (strlen($solucion) < 113) {
-                    $errores[] = "La descripcion de la Solucion es obligatoria y debe tener al menos 113 caracteres";
+                if (strlen($solucion) < 200) {
+                    $errores[] = "La descripcion de la Solucion es obligatoria y debe tener al menos 200 caracteres";
                 }
-                if (strlen($observaciones) < 113) {
-                    $errores[] = "La descripcion de la Solucion es obligatoria y debe tener al menos 113 caracteres";
+                if (strlen($requerimiento) < 200) {
+                    $errores[] = "La descripcion del requerimiento es obligatoria y debe tener al menos 200 caracteres";
+                }
+                if (strlen($observaciones) < 200) {
+                    $errores[] = "La descripcion de la Solucion es obligatoria y debe tener al menos 200 caracteres";
                 }
 
 
@@ -154,10 +166,10 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
                 if (empty($errores)) {
 
                     if (
-                        MysqlQuery::Guardar("tbl_equipo_entrada", "fecha,serie,edificio,departamento,tecnico,usuario,procesador,memoria,disco,service,adicionales,
-                        diagnostico,solucion,lugar,fecha_entrega,hora,observaciones,estado_informe", "'$fecha','$id_ticket','$edificio','$departamento',
-                        '$tecnico','$usuario','$procesador','$memoria','$disco','$service','$adicionales','$diagnostico','$solucion',
-                        '$lugar','$fecha_entrega','$hora','$observaciones','$estado_informe'")
+                        MysqlQuery::Guardar("tbl_equipo_entrada", "fecha,serie,edificio,departamento,tecnico,usuario,procesador,memoria,disco,service,inventario,equipo,adicionales,
+                        diagnostico,solucion,requerimiento,lugar,fecha_entrega,hora,observaciones,estado_informe", "'$fecha','$id_ticket','$edificio','$departamento',
+                        '$tecnico','$usuario','$procesador','$memoria','$disco','$service','$inventario','$equipo','$adicionales','$diagnostico','$solucion',
+                        '$requerimiento','$lugar','$fecha_entrega','$hora','$observaciones','$estado_informe'")
                     ) {
 
 
@@ -345,7 +357,7 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
                                                 <div class='col-sm-10'>
                                                     <div class="input-group">
                                                         <input class="form-control" type="text" name="tecnico"
-                                                            placeholder="Tu Nombre" required>
+                                                            placeholder="Nombre Del Tecnico" required>
                                                         <span class="input-group-addon"><i class="fa fa-desktop"></i></span>
                                                     </div>
                                                 </div>
@@ -358,7 +370,7 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
                                                 <div class='col-sm-10'>
                                                     <div class="input-group">
                                                         <input class="form-control" type="text" name="usuario"
-                                                            placeholder="Nombre Usuario" required>
+                                                            placeholder="Nombre Del Usuario" required>
                                                         <span class="input-group-addon"><i class="fa fa-desktop"></i></span>
                                                     </div>
                                                 </div>
@@ -397,7 +409,7 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
                                                 <div class='col-sm-10'>
                                                     <div class="input-group">
                                                         <input class="form-control" type="text" name="disco"
-                                                            placeholder="Estado Solido/Mecanico" required>
+                                                            placeholder="Estado Solido/Mecanico/320GB,1TB" required>
                                                         <span class="input-group-addon"><i class="fa fa-desktop"></i></span>
                                                     </div>
                                                 </div>
@@ -411,6 +423,34 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
                                                     <div class="input-group">
                                                         <input class="form-control" type="text" name="service"
                                                             placeholder="DKSFTRXZ" required>
+                                                        <span class="input-group-addon"><i class="fa fa-desktop"></i></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Fin Tipo   -->
+
+
+                                            <!-- Tipo-->
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">No.Inventario</label>
+                                                <div class='col-sm-10'>
+                                                    <div class="input-group">
+                                                        <input class="form-control" type="text" name="inventario"
+                                                            placeholder="INV3507" required>
+                                                        <span class="input-group-addon"><i class="fa fa-desktop"></i></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Fin Tipo   -->
+
+
+                                            <!-- Tipo-->
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">Modelo De Equipo</label>
+                                                <div class='col-sm-10'>
+                                                    <div class="input-group">
+                                                        <input class="form-control" type="text" name="equipo"
+                                                            placeholder="Dell Workstation Precision 7810" required>
                                                         <span class="input-group-addon"><i class="fa fa-desktop"></i></span>
                                                     </div>
                                                 </div>
@@ -435,7 +475,7 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
                                                 <label class="col-sm-2 control-label">Diagnostico</label>
                                                 <div class="col-sm-10">
                                                     <textarea class="form-control" rows="3"
-                                                        placeholder="Se recomiendo un máximo de 3 parrafos."
+                                                        placeholder="Se recomiendo un máximo de 2 parrafos."
                                                         name="diagnostico" required=""></textarea>
                                                 </div>
                                             </div>
@@ -451,6 +491,18 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
                                                 </div>
                                             </div>
                                             <!-- Fin Select Antecedentes -->
+
+                                            <!-- Select para Antecedentes -->
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">Requerimiento</label>
+                                                <div class="col-sm-10">
+                                                    <textarea class="form-control" rows="3"
+                                                        placeholder="Se recomiendo un máximo de 3 parrafos."
+                                                        name="requerimiento" required=""></textarea>
+                                                </div>
+                                            </div>
+                                            <!-- Fin Select Antecedentes -->
+
 
 
                                             <!-- Select para Descripcion-->
@@ -498,10 +550,10 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
 
                                             <!-- Tipo-->
                                             <div class="form-group">
-                                                <label class="col-sm-2 control-label">Hora </label>
-                                                <div class='col-sm-10'>
+                                                <label class="col-sm-2 control-label">Hora</label>
+                                                <div class="col-sm-10">
                                                     <div class="input-group">
-                                                        <input class="form-control" type="time" name="hora" required>
+                                                        <input class="form-control" type="time" name="hora" required="">
                                                         <span class="input-group-addon"><i class="fa fa-desktop"></i></span>
                                                     </div>
                                                 </div>

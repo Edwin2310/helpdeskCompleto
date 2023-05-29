@@ -11,27 +11,27 @@ if (isset($_GET['Tipoticket'])) {
 
 
   if ($Tipoticket == 0) {
-    $sql = "SELECT * FROM tbl_informe";
+    $sql = "SELECT * FROM tbl_equipo_entrada";
   }
   if ($Tipoticket == 1) {
-    $sql = "SELECT * FROM tbl_informe WHERE estado_informe='Solucionado'";
+    $sql = "SELECT * FROM tbl_equipo_entrada WHERE estado_informe='Resuelto'";
   }
 
   if ($Tipoticket == 2) {
-    $sql = "SELECT * FROM tbl_informe WHERE estado_informe='Pendiente'";
+    $sql = "SELECT * FROM tbl_equipo_entrada WHERE estado_informe='Pendiente'";
   }
 
   if ($Tipoticket == 3) {
-    $sql = "SELECT * FROM tbl_informe WHERE estado_informe='Rechazado'";
+    $sql = "SELECT * FROM tbl_equipo_entrada WHERE estado_informe='Rechazado'";
   }
 
   if ($Tipoticket == 4) {
-    $sql = "SELECT * FROM tbl_informe WHERE estado_informe='En proceso'";
+    $sql = "SELECT * FROM tbl_equipo_entrada WHERE estado_informe='En proceso'";
   }
-} else {
-  $sql = "SELECT * FROM tbl_informe";
-}
 
+} else {
+  $sql = "SELECT * FROM tbl_equipo_entrada";
+}
 $query = mysqli_query($mysqli, $sql);
 
 
@@ -65,7 +65,7 @@ class PDF extends FPDF
     $this->SetX(14);
     $this->SetFont('Arial', 'B', 12);
     $this->SetTextColor(114, 116, 119);
-    $this->Cell(89, 8, 'Informe de HelpDesk - Total de Informes', 0, 1);
+    $this->Cell(89, 8, 'Informe de HelpDesk - Total de Entradas y Salidas', 0, 1);
     $this->SetY(35);
     $this->SetX(14);
     $this->SetFont('Arial', '', 8);
@@ -133,14 +133,14 @@ $pdf->SetFont('Arial', '', 10);
 
 //--------------------------------TERMINAMOS DE PINTAR----------------------------
 $cont = 1;
-$estado_informe = "";
+$estado_bitacora = "";
 while ($tik = mysqli_fetch_array($query)) {
   $dic = $tik['estado_informe'];
 
-  if ($estado_informe == "") {
-    $estado_informe = "No";
+  if ($estado_bitacora == "") {
+    $estado_bitacora = "No";
   } else {
-    $estado_informe = $dic;
+    $estado_bitacora = $dic;
   }
   $pdf->SetX(15); //posicionamos en x
 
@@ -163,44 +163,71 @@ while ($tik = mysqli_fetch_array($query)) {
 
 
   $pdf->Cell(180, 8, utf8_decode("Serie: " . $tik['serie'] . "                                                                          Fecha de creación: " . $tik['fecha']), 'TLR', 1, 'L', 1);
-  // $pdf->SetY(57);
   $pdf->SetX(15);
-  $pdf->Cell(180, 8, utf8_decode("Asunto: " . $tik['asunto'] . "."), 'LR', 1, 'L', 1);
 
 
   $pdf->SetX(15);
-  $pdf->Cell(180, 8, utf8_decode("Tipo De Servicio: " . $tik['tipo_servicio'] . "."), 'LR', 1, 'L', 1);
+  $pdf->Cell(180, 8, utf8_decode("Edificio: " . $tik['edificio'] . "."), 'LR', 1, 'L', 1);
 
   $pdf->SetX(15);
-  $pdf->Cell(180, 8, utf8_decode("Lugar De Trabajo: " . $tik['lugar_trabajo'] . "."), 'LR', 1, 'L', 1);
+  $pdf->Cell(180, 8, utf8_decode("Departamento: " . $tik['departamento'] . "."), 'LR', 1, 'L', 1);
 
   $pdf->SetX(15);
-  $pdf->Cell(180, 8, utf8_decode("Departamento Asignado: " . $tik['departamento_ticket'] . "."), 'LR', 1, 'L', 1);
+  $pdf->Cell(180, 8, utf8_decode("Tecnico: " . $tik['tecnico'] . "."), 'LR', 1, 'L', 1);
 
   $pdf->SetX(15);
-  $pdf->MultiCell(180, 8, utf8_decode("Antecedentes: " . $tik['antecedentes'] . "."), 'LR', 1, 'L', 1);
-
-
-  $pdf->SetX(15);
-  $pdf->MultiCell(180, 8, utf8_decode("Analisis: " . $tik['analisis'] . "."), 'LR', 1, 'L', 1);
-
+  $pdf->Cell(180, 8, utf8_decode("Usuario: " . $tik['usuario'] . "."), 'LR', 1, 'L', 1);
 
   $pdf->SetX(15);
-  $pdf->MultiCell(180, 8, utf8_decode("Recomendaciones: " . $tik['recomendaciones'] . "."), 'LR', 1, 'L', 1);
+  $pdf->Cell(180, 8, utf8_decode("Procesador: " . $tik['procesador'] . "."), 'LR', 1, 'L', 1);
 
   $pdf->SetX(15);
-  $pdf->MultiCell(180, 8, utf8_decode("Conclusiones: " . $tik['conclusiones'] . "."), 'LR', 1, 'L', 1);
-
-
-  $pdf->SetX(15);
-  $pdf->Multicell(180, 8, utf8_decode("Anexos: " . $tik['anexos'] . "."), 'LR', 1, 'L', 1);
+  $pdf->Cell(180, 8, utf8_decode("HDD: " . $tik['disco'] . "."), 'LR', 1, 'L', 1);
 
   $pdf->SetX(15);
-  $pdf->Multicell(180, 8, utf8_decode("Nombre Del Tecnico: " . $tik['nombre_tecnico'] . "."), 'BLR', 1, 'L', 1);
+  $pdf->Cell(180, 8, utf8_decode("Memoria RAM: " . $tik['memoria'] . "."), 'LR', 1, 'L', 1);
 
-  //BLR ES LA LINEA AL FINAL DEL CUADRO 
+  $pdf->SetX(15);
+  $pdf->Cell(180, 8, utf8_decode("Service/Tag: " . $tik['service'] . "."), 'LR', 1, 'L', 1);
 
-  $pdf->Ln(90);
+  $pdf->SetX(15);
+  $pdf->Cell(180, 8, utf8_decode("No.Inventario: " . $tik['inventario'] . "."), 'LR', 1, 'L', 1);
+
+  $pdf->SetX(15);
+  $pdf->Cell(180, 8, utf8_decode("Equipo: " . $tik['equipo'] . "."), 'LR', 1, 'L', 1);
+
+  $pdf->SetX(15);
+  $pdf->Cell(180, 8, utf8_decode("Dispositivos Adicionales: " . $tik['adicionales'] . "."), 'LR', 1, 'L', 1);
+
+  $pdf->SetX(15);
+  $pdf->Multicell(180, 8, utf8_decode("Diagnostico: " . $tik['diagnostico'] . "."), 'LR', 1, 'L', 1);
+
+  $pdf->SetX(15);
+  $pdf->Multicell(180, 8, utf8_decode("Solución: " . $tik['solucion'] . "."), 'LR', 1, 'L', 1);
+
+  $pdf->SetX(15);
+  $pdf->Multicell(180, 8, utf8_decode("Requerimiento: " . $tik['requerimiento'] . "."), 'LR', 1, 'L', 1);
+
+  $pdf->SetX(15);
+  $pdf->Multicell(180, 8, utf8_decode("Lugar: " . $tik['lugar'] . "."), 'LR', 1, 'L', 1);
+
+  $pdf->SetX(15);
+  $pdf->Multicell(180, 8, utf8_decode("Fecha Entrega: " . $tik['fecha_entrega'] . "."), 'LR', 1, 'L', 1);
+
+  $pdf->SetX(15);
+  $pdf->Multicell(180, 8, utf8_decode("Hora: " . $tik['hora'] . "."), 'LR', 1, 'L', 1);
+
+  $pdf->SetX(15);
+  $pdf->Multicell(180, 8, utf8_decode("Observaciones: " . $tik['observaciones'] . "."), 'LR', 1, 'L', 1);
+
+  $pdf->SetX(15);
+  $pdf->Multicell(180, 8, utf8_decode("Estado: " . $tik['estado_informe'] . "."), 'BLR', 1, 'L', 1);
+
+
+
+
+
+  $pdf->Ln(30);
 }
 
 
