@@ -79,6 +79,11 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
             //Ejecutar el codigo despues de que el usuario envia el formulario
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
+
+                date_default_timezone_set('America/Tegucigalpa');
+                $hour = date('H:i:s');
+                $dia = date('Y-m-d');
+
                 $fecha = MysqlQuery::RequestPost('fechaatendido');
                 $edificio = utf8_encode(MysqlQuery::RequestPost('edificio'));
                 $departamento = MysqlQuery::RequestPost('departamento');
@@ -169,7 +174,7 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
                         MysqlQuery::Guardar("tbl_equipo_entrada", "fecha,serie,edificio,departamento,tecnico,usuario,procesador,memoria,disco,service,inventario,equipo,adicionales,
                         diagnostico,solucion,requerimiento,lugar,fecha_entrega,hora,observaciones,estado_informe", "'$fecha','$id_ticket','$edificio','$departamento',
                         '$tecnico','$usuario','$procesador','$memoria','$disco','$service','$inventario','$equipo','$adicionales','$diagnostico','$solucion',
-                        '$requerimiento','$lugar','$fecha_entrega','$hora','$observaciones','$estado_informe'")
+                        '$requerimiento','$lugar','$fecha_entrega','$hour','$observaciones','$estado_informe'")
                     ) {
 
 
@@ -553,7 +558,7 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
                                                 <label class="col-sm-2 control-label">Hora</label>
                                                 <div class="col-sm-10">
                                                     <div class="input-group">
-                                                        <input class="form-control" type="time" name="hora" required="">
+                                                        <input class="form-control" type="time" name="hora">
                                                         <span class="input-group-addon"><i class="fa fa-desktop"></i></span>
                                                     </div>
                                                 </div>

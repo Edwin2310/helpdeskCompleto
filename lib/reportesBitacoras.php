@@ -72,7 +72,7 @@ class PDF extends FPDF
     $this->Cell(40, 8, date('d/m/Y | g:i:a'));
 
 
-    $this->Ln(13);
+    $this->Ln(20);
 
 
 
@@ -188,7 +188,7 @@ while ($tik = mysqli_fetch_array($query)) {
 
 
 
-  $pdf->Ln(30);
+  $pdf->Ln(40);
 }
 
 
