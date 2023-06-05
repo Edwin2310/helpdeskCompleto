@@ -34,8 +34,7 @@ class PDF extends FPDF
         $this->Image('img/formatodocumentación.png', 8, -11, 200);
         $this->SetY(30);
         $this->SetX(14);
-        $this->SetFont('Arial', 'B', 12);
-        ;
+        $this->SetFont('Arial', 'B', 12);;
 
 
         $this->Ln(13);
@@ -99,7 +98,7 @@ $pdf->Image('img/formatodocumentación.png', 8, -11, 200);
 //Espacios en blanco
 
 $pdf->SetX(70);
-$pdf->Cell(0, 5, utf8_decode('DIRECCION DE TECNOLOGIA'), 'C', 1, );
+$pdf->Cell(0, 5, utf8_decode('DIRECCION DE TECNOLOGIA'), 'C', 1);
 
 
 //Espacios en blanco
@@ -111,42 +110,42 @@ $pdf->Ln();
 //INCIO DEL ASUNTO
 $pdf->SetFont("Arial", "", 10);
 $pdf->SetX(30);
-$pdf->Cell(180, 8, utf8_decode("Asunto: " . $reg['asunto']), 'C', 1, );
+$pdf->Cell(180, 8, utf8_decode("Asunto: " . $reg['asunto']), 'C', 1);
 //FIN DEL ASUNTO
 
 
 //INCIO DE LA HORA Y FECHA
 $pdf->SetFont("Arial", "", 10);
 $pdf->SetX(30);
-$pdf->Cell(180, 8, utf8_decode("Fecha Y Hora: " . $reg['fecha']), 'C', 1, );
+$pdf->Cell(180, 8, utf8_decode("Fecha Y Hora: " . $reg['fecha']), 'C', 1);
 //FIN DE LA HORA Y FECHA
 
 
 //INCIO DE LOS DATOS GENERALES
 $pdf->SetFont("Arial", "B", 14);
 $pdf->SetX(35);
-$pdf->Cell(0, 5, utf8_decode('1.Datos Generales'), 'C', 1, );
+$pdf->Cell(0, 5, utf8_decode('1.Datos Generales'), 'C', 1);
 //FIN DE LOS DATOS GENERALES
 
 
 //INCIO DE LOS TIPOS DE SERVICIOS
 $pdf->SetFont("Arial", "", 10);
 $pdf->SetX(30);
-$pdf->Cell(180, 8, utf8_decode("Tipo de Servicio: " . $reg['tipo_servicio']), 'C', 1, );
+$pdf->Cell(180, 8, utf8_decode("Tipo de Servicio: " . $reg['tipo_servicio']), 'C', 1);
 //FIN DE LOS TIPOS DE SERVICIOS
 
 
 //INCIO DEL LUGAR DE TRABAJO
 $pdf->SetFont("Arial", "", 10);
 $pdf->SetX(30);
-$pdf->Cell(180, 8, utf8_decode("Lugar de Trabajo: " . $reg['lugar_trabajo']), 'C', 1, );
+$pdf->Cell(180, 8, utf8_decode("Lugar de Trabajo: " . $reg['lugar_trabajo']), 'C', 1);
 //FIN DEL LUGAR DE TRABAJO
 
 
 //INCIO DEL LUGAR DE TRABAJO
 $pdf->SetFont("Arial", "", 10);
 $pdf->SetX(30);
-$pdf->Cell(180, 8, utf8_decode("Departamento Asignado: " . $reg['departamento_ticket']), 'C', 1, );
+$pdf->Cell(180, 8, utf8_decode("Departamento Asignado: " . $reg['departamento_ticket']), 'C', 1);
 //FIN DEL LUGAR DE TRABAJO
 
 
@@ -154,11 +153,11 @@ $pdf->Cell(180, 8, utf8_decode("Departamento Asignado: " . $reg['departamento_ti
 //INCIO DE ANTECEDENTES
 $pdf->SetFont("Arial", "B", 14);
 $pdf->SetX(35);
-$pdf->Cell(0, 5, utf8_decode('2.Antecedentes'), 'C', 1, );
+$pdf->Cell(0, 5, utf8_decode('2.Antecedentes'), 'C', 1);
 $pdf->SetFont("Arial", "", 10);
 $pdf->Ln();
 $pdf->SetX(35);
-$pdf->MultiCell(180, 8, utf8_decode($reg['antecedentes']), 'C', 1, );
+$pdf->MultiCell(180, 8, utf8_decode($reg['antecedentes']), 'C', 1);
 $pdf->Ln();
 //FIN DE ANTECEDENTES
 
@@ -166,11 +165,11 @@ $pdf->Ln();
 //INCIO DE ANALISIS
 $pdf->SetFont("Arial", "B", 14);
 $pdf->SetX(35);
-$pdf->Cell(0, 5, utf8_decode('3.Análisis'), 'C', 1, );
+$pdf->Cell(0, 5, utf8_decode('3.Análisis'), 'C', 1);
 $pdf->SetFont("Arial", "", 10);
 $pdf->Ln();
 $pdf->SetX(35);
-$pdf->MultiCell(180, 8, utf8_decode($reg['analisis']), 'C', 1, );
+$pdf->MultiCell(180, 8, utf8_decode($reg['analisis']), 'C', 1);
 $pdf->Ln();
 //FIN DE ANALISIS
 
@@ -179,11 +178,11 @@ $pdf->Ln();
 //INCIO DE RECOMENDACIONES
 $pdf->SetFont("Arial", "B", 14);
 $pdf->SetX(35);
-$pdf->Cell(0, 5, utf8_decode('4.Recomendaciones'), 'C', 1, );
+$pdf->Cell(0, 5, utf8_decode('4.Recomendaciones'), 'C', 1);
 $pdf->SetFont("Arial", "", 10);
 $pdf->Ln();
 $pdf->SetX(35);
-$pdf->MultiCell(180, 8, utf8_decode($reg['recomendaciones']), 'C', 1, );
+$pdf->MultiCell(180, 8, utf8_decode($reg['recomendaciones']), 'C', 1);
 $pdf->Ln();
 //FIN DE RECOMENDACIONES
 
@@ -191,11 +190,11 @@ $pdf->Ln();
 //INCIO DE CONCLUSIONES
 $pdf->SetFont("Arial", "B", 14);
 $pdf->SetX(35);
-$pdf->Cell(0, 5, utf8_decode('5.Conclusiones'), 'C', 1, );
+$pdf->Cell(0, 5, utf8_decode('5.Conclusiones'), 'C', 1);
 $pdf->SetFont("Arial", "", 10);
 $pdf->Ln();
 $pdf->SetX(35);
-$pdf->MultiCell(180, 8, utf8_decode($reg['conclusiones']), 'C', 1, );
+$pdf->MultiCell(180, 8, utf8_decode($reg['conclusiones']), 'C', 1);
 $pdf->Ln();
 
 //FIN DE CONCLUSIONES
@@ -204,7 +203,7 @@ $pdf->Ln();
 //INCIO DE ANEXOS
 $pdf->SetFont("Arial", "B", 14);
 $pdf->SetX(35);
-$pdf->Cell(0, 5, utf8_decode('6.Anexos'), 'C', 1, );
+$pdf->Cell(0, 5, utf8_decode('6.Anexos'), 'C', 1);
 $pdf->SetFont("Arial", "", 10);
 $pdf->SetX(35);
 
@@ -216,7 +215,7 @@ $i = 1;
 
 
 while ($row = mysqli_fetch_array($sqli)) {
-    $pdf->Cell(100, 5, $pdf->Image('../imagenes/' . $row['anexos'], $pdf->GetX() + 0, $pdf->GetY() + 3, 150), 'C', 1, ); //PONER DIRECTORIO DE ../IMAGENES QUE ES DONDE SE ALMACENAN 
+    $pdf->Cell(100, 5, $pdf->Image('../imagenes/' . $row['anexos'], $pdf->GetX() + 0, $pdf->GetY() + 3, 150), 'C', 1); //PONER DIRECTORIO DE ../IMAGENES QUE ES DONDE SE ALMACENAN 
     $pdf->Ln();
     $pdf->Ln();
     $i++;
@@ -239,7 +238,7 @@ $i = 1;
 
 
 while ($row = mysqli_fetch_array($sqli)) {
-    $pdf->Cell(100, 5, $pdf->Image('../imagenes/' . $row['anexos2'], $pdf->GetX() + 0, $pdf->GetY() + 3, 150), 'C', 1, ); //PONER DIRECTORIO DE ../IMAGENES QUE ES DONDE SE ALMACENAN 
+    $pdf->Cell(100, 5, $pdf->Image('../imagenes/' . $row['anexos2'], $pdf->GetX() + 0, $pdf->GetY() + 3, 150), 'C', 1); //PONER DIRECTORIO DE ../IMAGENES QUE ES DONDE SE ALMACENAN 
     $pdf->Ln();
     $i++;
 }
@@ -256,7 +255,7 @@ $pdf->Ln();
 //INCIO DE ANEXOS
 $pdf->SetFont("Arial", "B", 14);
 $pdf->SetX(35);
-$pdf->Cell(0, 5, utf8_decode('6.Anexos'), 'C', 1, );
+$pdf->Cell(0, 5, utf8_decode('6.Anexos'), 'C', 1);
 $pdf->SetFont("Arial", "", 10);
 $pdf->Ln();
 $pdf->SetX(35);
@@ -269,7 +268,7 @@ $i = 1;
 
 
 while ($row = mysqli_fetch_array($sqli)) {
-    $pdf->Cell(100, 5, $pdf->Image('../imagenes/' . $row['anexos'], $pdf->GetX() + 0, $pdf->GetY() + 3, 150), 'C', 1, ); //PONER DIRECTORIO DE ../IMAGENES QUE ES DONDE SE ALMACENAN 
+    $pdf->Cell(100, 5, $pdf->Image('../imagenes/' . $row['anexos'], $pdf->GetX() + 0, $pdf->GetY() + 3, 150), 'C', 1); //PONER DIRECTORIO DE ../IMAGENES QUE ES DONDE SE ALMACENAN 
     $pdf->Ln();
     $pdf->Ln();
     $i++;
@@ -292,7 +291,7 @@ $i = 1;
 
 
 while ($row = mysqli_fetch_array($sqli)) {
-    $pdf->Cell(100, 5, $pdf->Image('../imagenes/' . $row['anexos2'], $pdf->GetX() + 0, $pdf->GetY() + 3, 150), 'C', 1, ); //PONER DIRECTORIO DE ../IMAGENES QUE ES DONDE SE ALMACENAN 
+    $pdf->Cell(100, 5, $pdf->Image('../imagenes/' . $row['anexos2'], $pdf->GetX() + 0, $pdf->GetY() + 3, 150), 'C', 1); //PONER DIRECTORIO DE ../IMAGENES QUE ES DONDE SE ALMACENAN 
     $pdf->Ln();
     $i++;
 }
@@ -321,7 +320,7 @@ $pdf->Image('img/formatodocumentación.png', 8, -11, 200);
 //INCIO DE ANEXOS
 $pdf->SetFont("Arial", "B", 14);
 $pdf->SetX(35);
-$pdf->Cell(0, 5, utf8_decode(''), 'C', 1, );
+$pdf->Cell(0, 5, utf8_decode(''), 'C', 1);
 $pdf->SetFont("Arial", "", 10);
 $pdf->Ln();
 $pdf->SetX(35);
@@ -336,7 +335,7 @@ $i = 1;
 
 
 while ($row = mysqli_fetch_array($sqli)) {
-    $pdf->Cell(100, 5, $pdf->Image('../imagenes/' . $row['anexos3'], $pdf->GetX() + 0, $pdf->GetY() + 3, 150), 'C', 1, ); //PONER DIRECTORIO DE ../IMAGENES QUE ES DONDE SE ALMACENAN 
+    $pdf->Cell(100, 5, $pdf->Image('../imagenes/' . $row['anexos3'], $pdf->GetX() + 0, $pdf->GetY() + 3, 150), 'C', 1); //PONER DIRECTORIO DE ../IMAGENES QUE ES DONDE SE ALMACENAN 
     $pdf->Ln();
     $pdf->Ln();
     $i++;
@@ -374,7 +373,7 @@ $pdf->Ln();
 
 $pdf->SetFont("Arial", "B", 10);
 $pdf->SetX(37);
-$pdf->Cell(0, 5, utf8_decode('Informe elaborado por:                                                                            Informe aprobado por:'), 'C', 1, );
+$pdf->Cell(0, 5, utf8_decode('Informe elaborado por:                                                                            Informe aprobado por:'), 'C', 1);
 $pdf->Ln();
 
 //LINEA 190 ALTURA , 85 FORMA LINEA
@@ -387,7 +386,7 @@ $pdf->Ln();
 
 $pdf->SetFont("Arial", "B", 10);
 $pdf->SetX(33);
-$pdf->Cell(0, 5, utf8_decode('Unidad de Soporte Técnico                                                               Asesor en el área de Tecnología'), 'C', 1, );
+$pdf->Cell(0, 5, utf8_decode('Unidad de Soporte Técnico                                                               Asesor en el área de Tecnología'), 'C', 1);
 $pdf->Ln();
 
 //MOSTRANDO EL NOMBRE DEL TECNICO
@@ -409,7 +408,7 @@ while ($row = mysqli_fetch_array($sqli)) {
     //ALINEAR TEXTO
     $pdf->SetY(200); //ALTURA DE TEXTO
     $pdf->Cell(135); //ORIENTACION DERECHA O IZQUIERA DEPENDIENDO EL NUMERO
-    $pdf->Cell(40, 5, utf8_decode('Ing. Emerson Vázquez'), 'C', 1, );
+    $pdf->Cell(40, 5, utf8_decode('Ing. Emerson Vázquez'), 'C', 1);
 
     $pdf->Ln();
     $pdf->Ln();
@@ -460,10 +459,3 @@ $pdf->Ln();
 
 
 $pdf->output();
-
-
-
-
-
-
-?>
