@@ -251,55 +251,9 @@ $pdf->Ln();
 
 
 
-
-//INCIO DE ANEXOS
-$pdf->SetFont("Arial", "B", 14);
-$pdf->SetX(35);
-$pdf->Cell(0, 5, utf8_decode('6.Anexos'), 'C', 1);
-$pdf->SetFont("Arial", "", 10);
-$pdf->Ln();
-$pdf->SetX(35);
-
-//ANEXO 1
-$id_informe = MysqlQuery::RequestGet('id_informe');
-$sqli = Mysql::consulta("SELECT anexos FROM tbl_informe WHERE id_informe= '$id_informe'");
-$reg = mysqli_fetch_array($sql, MYSQLI_ASSOC);
-$i = 1;
-
-
-while ($row = mysqli_fetch_array($sqli)) {
-    $pdf->Cell(100, 5, $pdf->Image('../imagenes/' . $row['anexos'], $pdf->GetX() + 0, $pdf->GetY() + 3, 150), 'C', 1); //PONER DIRECTORIO DE ../IMAGENES QUE ES DONDE SE ALMACENAN 
-    $pdf->Ln();
-    $pdf->Ln();
-    $i++;
-}
-
-//FIN ANEXO 1
-
-
-
-//INCIO DE ANEXOS2
-
 //IMPORTANTE DEBEN SEGUIR ESTE ORDE SETY Y ABAJO SETX
 $pdf->SetY(150); //ESPACIOS ENTRE LAS IMAGENES
 $pdf->SetX(35); //CONTROLAR LOS LATERALES DE IZQUIERDA A DERECHA 
-//ANEXO 2
-$id_informe = MysqlQuery::RequestGet('id_informe');
-$sqli = Mysql::consulta("SELECT anexos2 FROM tbl_informe WHERE id_informe= '$id_informe'");
-$reg = mysqli_fetch_array($sql, MYSQLI_ASSOC);
-$i = 1;
-
-
-while ($row = mysqli_fetch_array($sqli)) {
-    $pdf->Cell(100, 5, $pdf->Image('../imagenes/' . $row['anexos2'], $pdf->GetX() + 0, $pdf->GetY() + 3, 150), 'C', 1); //PONER DIRECTORIO DE ../IMAGENES QUE ES DONDE SE ALMACENAN 
-    $pdf->Ln();
-    $i++;
-}
-
-//FIN ANEXO 2
-$pdf->Ln();
-$pdf->Ln();
-
 
 
 
