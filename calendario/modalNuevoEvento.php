@@ -7,8 +7,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form name="formEvento" id="formEvento" action="nuevoEvento.php" class="form-horizontal" method="POST"
-        onclick="generateRandomNumber()" onsubmit="return validateForm();">
+      <form name="formEvento" id="formEvento" action="nuevoEvento.php" class="form-horizontal" method="POST" onclick="generateRandomNumber()" onsubmit="return validateForm();">
 
         <input type="hidden" class="form-control" name="idEvento" id="idEvento">
 
@@ -26,8 +25,7 @@
         <div class="form-group">
           <label for="fecha_inicio" class="col-sm-12 control-label">Fecha Inicio</label>
           <div class="col-sm-12">
-            <input type="date" class="form-control" name="fecha_inicio" id="fecha_inicio" placeholder="Fecha Inicio"
-              required>
+            <input type="date" class="form-control" name="fecha_inicio" id="fecha_inicio" placeholder="Fecha Inicio" required>
           </div>
         </div>
         <!-- Fin Select Fecha Inicial -->
@@ -57,8 +55,7 @@
         <div class="form-group">
           <label for="nombre_usuario" class="col-sm-12 control-label">Nombre Usuario</label>
           <div class="col-sm-12">
-            <input type="text" class="form-control" name="nombre_usuario" id="nombre_usuario"
-              placeholder="Nombre Usuario" required>
+            <input type="text" class="form-control" name="nombre_usuario" id="nombre_usuario" placeholder="Nombre Usuario" required>
           </div>
         </div>
         <!-- Fin Select Nombre de Usuario -->
@@ -88,8 +85,8 @@
                 $dept = Mysql::consulta("SELECT id_departamento, departamento FROM tbl_departamento");
 
                 while ($departamento = mysqli_fetch_array($dept)) {
-                  ?>
-                  <option value="<?php echo ($departamento["departamento"]) ?>"> <?php echo $departamento["id_departamento"], ".-", $departamento["departamento"] ?></option>
+                ?>
+                  <option value="<?php echo utf8_encode($departamento["departamento"]) ?>"> <?php echo $departamento["id_departamento"], ".-", $departamento["departamento"] ?></option>
                 <?php } ?>
               </select>
 
@@ -110,8 +107,8 @@
                 $dept = Mysql::consulta("SELECT id_area, area_solicitud FROM tbl_area_solicitud");
 
                 while ($area_solicitud = mysqli_fetch_array($dept)) {
-                  ?>
-                  <option value="<?php echo ($area_solicitud["area_solicitud"]) ?>"> <?php echo $area_solicitud["id_area"], ".-", $area_solicitud["area_solicitud"] ?></option>
+                ?>
+                  <option value="<?php echo utf8_encode($area_solicitud["area_solicitud"]) ?>"> <?php echo $area_solicitud["id_area"], ".-", $area_solicitud["area_solicitud"] ?></option>
                 <?php } ?>
               </select>
 
@@ -132,8 +129,8 @@
                 <?php
                 $dept1 = Mysql::consulta("SELECT idRegional, nombreRegional FROM tbl_regionales");
                 while ($ticket1 = mysqli_fetch_array($dept1)) {
-                  ?>
-                  <option value="<?php echo ($ticket1["nombreRegional"]) ?>"> <?php echo $ticket1["idRegional"], ".-", $ticket1["nombreRegional"] ?></option>
+                ?>
+                  <option value="<?php echo utf8_encode($ticket1["nombreRegional"]) ?>"> <?php echo $ticket1["idRegional"], ".-", $ticket1["nombreRegional"] ?></option>
 
                 <?php } ?>
               </select>
@@ -156,7 +153,7 @@
                 $dept = Mysql::consulta("SELECT id_turno, turnos FROM tbl_turnos");
 
                 while ($turnos = mysqli_fetch_array($dept)) {
-                  ?>
+                ?>
                   <option value="<?php echo utf8_encode($turnos["turnos"]) ?>"> <?php echo $turnos["id_turno"], ".-", $turnos["turnos"] ?></option>
                 <?php } ?>
               </select>
@@ -172,13 +169,12 @@
           <label class="col-sm-12 control-label">Asignar Técnico</label>
           <div class='col-sm-12'>
             <div class="input-group">
-              <select class="form-control" name="tecnicos_ticket" placeholder="tecnicos_ticket"
-                onchange="asignar(value)" required>
+              <select class="form-control" name="tecnicos_ticket" placeholder="tecnicos_ticket" onchange="asignar(value)" required>
                 <option value="" required> -Asignar Técnico- </option>
                 <?php
                 $dept = Mysql::consulta("SELECT id_usuario, nombre_completo FROM tbl_admin  WHERE id_rol = '2'");
                 while ($ticket = mysqli_fetch_array($dept)) {
-                  ?>
+                ?>
                   <option value="<?php echo $ticket["nombre_completo"] ?>"> <?php echo $ticket["nombre_completo"] ?>
                   </option>
                 <?php } ?>
@@ -205,8 +201,7 @@
         <div class="form-group">
           <label for="problema_presentado" class="col-sm-12 control-label">Problema Presentado</label>
           <div class="col-sm-12">
-            <input type="text" class="form-control" name="problema_presentado" id="problema_presentado"
-              placeholder="Descripción del problema" required>
+            <input type="text" class="form-control" name="problema_presentado" id="problema_presentado" placeholder="Descripción del problema" required>
           </div>
         </div>
         <!-- Fin Select Creado para el Problema Pesentado -->
@@ -226,8 +221,8 @@
                 $dept = Mysql::consulta("SELECT id_estado_bitacora, estado_bitacora FROM tbl_estado_bitacora");
 
                 while ($estado_bitacora = mysqli_fetch_array($dept)) {
-                  ?>
-                <option value="<?php echo utf8_encode($estado_bitacora["estado_bitacora"]) ?>"> <?php echo $estado_bitacora["id_estado_bitacora"], ".-", $estado_bitacora["estado_bitacora"] ?></option>
+                ?>
+                  <option value="<?php echo utf8_encode($estado_bitacora["estado_bitacora"]) ?>"> <?php echo $estado_bitacora["id_estado_bitacora"], ".-", $estado_bitacora["estado_bitacora"] ?></option>
                 <?php } ?>
               </select>
 

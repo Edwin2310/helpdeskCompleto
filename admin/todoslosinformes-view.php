@@ -13,13 +13,11 @@
             <!-- Boton para regresar -->
 
             <div class="col-sm-17" aria-label="Basic example">
-                <a href="./admin.php?view=informe" style="margin: 5px" class="btn btn-success pull-right"><i
-                        class="fa fa-reply"></i>&nbsp;&nbsp;Regresar a los Informes</a>
+                <a href="./admin.php?view=informe" style="margin: 5px" class="btn btn-success pull-right"><i class="fa fa-reply"></i>&nbsp;&nbsp;Regresar a los Informes</a>
             </div>
             <!-- boton para actualizar la pagina -->
             <div class="col-sm-17" aria-label="Basic example">
-                <a href="" style="margin: 5px" class="btn btn-primary  pull-right"><i
-                        class="fa fa-refresh"></i>&nbsp;&nbsp;Actualizar</a>
+                <a href="" style="margin: 5px" class="btn btn-primary  pull-right"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Actualizar</a>
             </div>
 
             <br>
@@ -107,7 +105,7 @@
 
 
 
-                        <?php
+                    <?php
 
                     }
                     $mysqli = mysqli_connect(SERVER, USER, PASS, BD);
@@ -143,8 +141,8 @@
 
                     $numeropaginas = ceil($totalregistros["FOUND_ROWS()"] / $regpagina);
 
-                    if (mysqli_num_rows($selticket) > 0):
-                        ?>
+                    if (mysqli_num_rows($selticket) > 0) :
+                    ?>
                         <!-- Tabla que muestra todos los tickets -->
                         <div class="container-fluid">
 
@@ -174,8 +172,8 @@
                                 <tbody>
                                     <?php
                                     $ct = $inicio + 1;
-                                    while ($row = mysqli_fetch_array($selticket, MYSQLI_ASSOC)):
-                                        ?>
+                                    while ($row = mysqli_fetch_array($selticket, MYSQLI_ASSOC)) :
+                                    ?>
                                         <tr>
 
                                             <td class="text-center">
@@ -227,24 +225,20 @@
 
 
                                             <td class="text-center">
-                                                <a href="./lib/pdf_informe.php?id_informe=<?php echo $row['id_informe']; ?>"
-                                                    style="margin: 5px" class="btn btn-sm btn-success" target="_blank"><i
-                                                        class="fa fa-print" aria-hidden="true"></i></a>
+                                                <a href="./lib/pdf_informe.php?id_informe=<?php echo $row['id_informe']; ?>" style="margin: 5px" class="btn btn-sm btn-success" target="_blank"><i class="fa fa-print" aria-hidden="true"></i></a>
 
                                                 <!--                 Boton para eliminar-->
                                                 <?php if ($_SESSION['nombre'] != "" && $_SESSION['tipo'] == "1") { ?>
                                                     <!--   Boton para eliminar -->
                                                     <form action="" method="POST" style="display: inline-block;">
-                                                        <input type="hidden" name="id_informe"
-                                                            value="<?php echo $row['id_informe']; ?>">
+                                                        <input type="hidden" name="id_informe" value="<?php echo $row['id_informe']; ?>">
 
-                                                        <button type="submit" class="btn btn-sm btn-danger"><i class="fa fa-trash-o"
-                                                                aria-hidden="true"></i></button>
+                                                        <button type="submit" class="btn btn-sm btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
                                                     </form>
                                                 <?php } ?>
                                             </td>
                                         </tr>
-                                        <?php
+                                    <?php
                                         $ct++;
                                     endwhile;
                                     ?>
@@ -252,21 +246,21 @@
                             </table>
                             <!-- Fin tabla  -->
                             <!-- Inicio conteo de tickets para cambio de página -->
-                        <?php else: ?>
+                        <?php else : ?>
                             <h2 class="text-center">No hay tickets registrados en el sistema</h2>
                         <?php endif; ?>
-                    </div>
+                        </div>
 
-                    <?php
-                    if ($numeropaginas >= 1):
-                        if (isset($_GET['ticket'])) {
-                            $ticketselected = $_GET['ticket'];
-                        } else {
-                            $ticketselected = "all";
-                        }
+                        <?php
+                        if ($numeropaginas >= 1) :
+                            if (isset($_GET['ticket'])) {
+                                $ticketselected = $_GET['ticket'];
+                            } else {
+                                $ticketselected = "all";
+                            }
                         ?>
 
-                    <?php endif; ?>
+                        <?php endif; ?>
                 </div>
                 <!-- Fin conteo -->
             </div>
@@ -275,7 +269,7 @@
         <?php
         ?>
         <div class="container">
-            <div class="row">
+            <!--  <div class="row">
                 <div class="col-sm-4">
                     <img src="./img/Stop.png" alt="Image" class="img-responsive animated slideInDown" /><br>
 
@@ -285,11 +279,11 @@
                     <h3 class="text-info text-center">Inicia sesión como Tecnicos para poder acceder</h3>
                 </div>
                 <div class="col-sm-1">&nbsp;</div>
-            </div>
+            </div> -->
         </div>
-        <?php
+    <?php
 }
-?>
+    ?>
 
     <script type="text/javascript">
         function excel() {

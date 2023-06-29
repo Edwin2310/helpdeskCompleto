@@ -122,7 +122,7 @@ while ($row = $sel->fetch_assoc()) {
                                                             <th style="text-align: center;" scope="col">Descripción</th>
                                                             <th style="text-align: center;" scope="col">Subido por</th>
                                                             <th style="text-align: center;" scope="col">Acción</th>
-                                                            <?php if ($_SESSION['nombre'] != "" && $_SESSION['tipo'] == "1") { ?>
+                                                            <?php if ($_SESSION['nombre'] != "" && $_SESSION['tipo'] == "2" or $_SESSION['tipo'] == "1") { ?>
                                                                 <th style="text-align: center;" scope="col">Eliminar</th>
                                                             <?php } ?>
                                                         </tr>
@@ -151,7 +151,7 @@ while ($row = $sel->fetch_assoc()) {
                                                                             Archivo</a></center>
                                                                 </td>
 
-                                                                <?php if ($_SESSION['nombre'] != "" && $_SESSION['tipo'] == "1") { ?>
+                                                                <?php if ($_SESSION['nombre'] != "" && $_SESSION['tipo'] == "2"  or $_SESSION['tipo'] == "1") { ?>
                                                                     <td style="text-align: center;">
 
                                                                         <form action="" method="POST" style="display: inline-block;">
@@ -186,7 +186,7 @@ while ($row = $sel->fetch_assoc()) {
                             <?php
                             $aa = $_SESSION['nombre'];
 
-                            if ($_SESSION['tipoUser'] == 2) {
+                            if ($_SESSION['tipoUser'] == 2 or $_SESSION['tipoUser'] == 1) {
                                 $nameU = "SELECT nombre_completo, email_usuario, departamento FROM tbl_admin WHERE nombre_usuario = '$aa'";
                             } else {
                                 $nameU = "SELECT nombre_completo, email_usuario, departamento FROM tbl_usuarios WHERE nombre_usuario = '$aa'";

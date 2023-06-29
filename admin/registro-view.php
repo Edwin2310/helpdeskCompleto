@@ -10,7 +10,7 @@ if (isset($_POST['user_reg']) && isset($_POST['clave_reg']) && isset($_POST['nom
   $email_reg = MysqlQuery::RequestPost('email_reg');
   $id_rol_save = 4;
   $telefono = MysqlQuery::RequestPost('tel_reg');
-  $dep = MysqlQuery::RequestPost('departamentoT');
+  $dep = utf8_encode(MysqlQuery::RequestPost('departamentoT'));
   $numEE = MysqlQuery::RequestPost('numEmpleado');
 
 
@@ -135,27 +135,22 @@ if (isset($_POST['user_reg']) && isset($_POST['clave_reg']) && isset($_POST['nom
             <form role="form" action="" method="POST">
               <div class="form-group">
                 <label hidden>&nbsp;Id de Usuario</label>
-                <input type="hidden" class="form-control" id="id_usuario" name="id_usuario" placeholder=""
-                  maxlength="40">
+                <input type="hidden" class="form-control" id="id_usuario" name="id_usuario" placeholder="" maxlength="40">
                 <label hidden>&nbsp;Id de Empleado</label>
-                <input type="hidden" class="form-control" id="id_empleado" name="id_empleado" placeholder=""
-                  maxlength="40">
+                <input type="hidden" class="form-control" id="id_empleado" name="id_empleado" placeholder="" maxlength="40">
                 <label>&nbsp;Número de Empleado</label>
-                <input type="text" class="form-control" id="numEmpleado" name="numEmpleado"
-                  placeholder="Numero de empleado" maxlength="40">
+                <input type="text" class="form-control" id="numEmpleado" name="numEmpleado" placeholder="Numero de empleado" maxlength="40">
 
               </div>
               <button type="button" class="button btn-success" onclick="nEmp();">Comprobar número empleado</button>
               <hr style="height:2px;border:none;color:#8fd38f;background-color:#8fd38f;">
               <div class="form-group">
                 <label><i class="fa fa-male"></i>&nbsp;Nombre completo</label>
-                <input type="text" class="form-control" name="nom_complete_reg" placeholder="Nombre completo"
-                  required="" pattern="[a-zA-Z ]{1,40}" title="Nombre Apellido" maxlength="40">
+                <input type="text" class="form-control" name="nom_complete_reg" placeholder="Nombre completo" required="" pattern="[a-zA-Z ]{1,40}" title="Nombre Apellido" maxlength="40">
               </div>
               <div class="form-group has-success has-feedback">
                 <label class="control-label"><i class="fa fa-user"></i>&nbsp;Nombre de usuario</label>
-                <input type="text" id="input_user" class="form-control" name="user_reg" placeholder="Nombre de usuario"
-                  required="" pattern="[a-zA-Z0-9]{1,15}" title="Ejemplo7 maximo 15 caracteres" maxlength="20">
+                <input type="text" id="input_user" class="form-control" name="user_reg" placeholder="Nombre de usuario" required="" pattern="[a-zA-Z0-9]{1,15}" title="Ejemplo7 maximo 15 caracteres" maxlength="20">
                 <div id="com_form"></div>
               </div>
               <div class="form-group">
@@ -187,7 +182,7 @@ if (isset($_POST['user_reg']) && isset($_POST['clave_reg']) && isset($_POST['nom
                     $dept = "SELECT id_departamento, departamento FROM tbl_departamento";
                     $query = mysqli_query($mysqli, $dept);
                     while ($departamento = mysqli_fetch_array($query)) {
-                      ?>
+                    ?>
                       <option value="<?php echo ($departamento["departamento"]) ?>"> <?php echo $departamento["id_departamento"], ".-", $departamento["departamento"] ?></option>
                     <?php } ?>
                     <option style="text-align:center; font-weight:bold" value="0">
@@ -200,7 +195,7 @@ if (isset($_POST['user_reg']) && isset($_POST['clave_reg']) && isset($_POST['nom
                     $query2 = mysqli_query($mysqli, $cato1);
 
                     while ($prob1 = mysqli_fetch_array($query2)) {
-                      ?>
+                    ?>
 
                       <option value="<?php echo $prob1["area_solicitud"] ?>"> <?php echo $prob1["id_area"], ".-", $prob1["area_solicitud"] ?>
                       </option>
@@ -237,11 +232,11 @@ if (isset($_POST['user_reg']) && isset($_POST['clave_reg']) && isset($_POST['nom
 
 <!--  Función para validar -->
 <script>
-  $(document).ready(function () {
-    $("#input_user").keyup(function () {
+  $(document).ready(function() {
+    $("#input_user").keyup(function() {
       $.ajax({
         url: "./process/val.php?id=" + $(this).val(),
-        success: function (data) {
+        success: function(data) {
           $("#com_form").html(data);
         }
       });
@@ -264,7 +259,7 @@ if (isset($_POST['user_reg']) && isset($_POST['clave_reg']) && isset($_POST['nom
       method: "POST",
       data: "num=" + nEmpleado,
       url: "process/comprobarNumEmpleado.php",
-      success: function (respuesta) {
+      success: function(respuesta) {
         if (respuesta == 1) {
           // console.log("existe");
           Swal.fire({

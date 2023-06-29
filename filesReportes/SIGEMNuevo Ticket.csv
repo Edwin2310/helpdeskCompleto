@@ -1,0 +1,8 @@
+﻿"No.Ticket","Teléfono","Incidente","Prioridad","Descripcion","Estado","Fecha Creación","Fecha Asignación","Fecha Cierre","Asignado"
+"9","96454635","Accidente de Tránsito(Simple)","Bajo","NOVENO TICKET PRUEBA","Abierto","26/06/2023 15:37:11","Sin Asignar","Sin Cerrar","Sin Asignar"
+"8","96454635","Delitos Comunes","Bajo","OCTAVO TICKET PRUEBA","Abierto","26/06/2023 14:57:54","Sin Asignar","Sin Cerrar","Sin Asignar"
+"7","96454635","Delitos Comunes","Bajo","SEPTIMO TICKET PRUEBA","Abierto","26/06/2023 14:28:13","Sin Asignar","Sin Cerrar","Sin Asignar"
+"4","96454635","Accidente de Tránsito(Simple)","Bajo","CUARTO TICKET PRUEBA","Cerrado","26/06/2023 13:55:11","Sin Asignar","26/06/2023 14:04:41","Sin Asignar"
+"3","96454635","Delitos Comunes","Bajo","TERCER TICKET PRUEBA","Cerrado","23/06/2023 15:25:16","23/06/2023 15:30:48","23/06/2023 15:31:04","supervisor"
+"2","96454635","Delitos Contra La Propiedad","Bajo","SEGUNDO TICKET PRUEBA","Cerrado","23/06/2023 15:15:57","23/06/2023 15:30:43","23/06/2023 15:30:55","supervisor"
+"1","96454635","Accidente de Tránsito(Simple)","Bajo","PRIMER TICKET PRUEBA","Cerrado","23/06/2023 14:37:42","23/06/2023 14:39:05","23/06/2023 14:39:17","Super"

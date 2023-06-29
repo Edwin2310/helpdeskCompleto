@@ -66,7 +66,6 @@
                 </p>
                 </div>
                 ';
-
     } else {
       echo '
                 <div class="alert alert-danger alert-dismissible fade in col-sm-3 animated bounceInDown" role="alert" style="position:fixed; top:70px; right:10px; z-index:10;"> 
@@ -128,8 +127,7 @@
                       <label class="col-sm-2 control-label">Fecha</label>
                       <div class='col-sm-10'>
                         <div class="input-group">
-                          <input class="form-control" type="text" name="fechaatendido" readonly=""
-                            value="<?php echo date("Y-m-d H:i:s", strtotime("now")) . "\n"; ?>">
+                          <input class="form-control" type="text" name="fechaatendido" readonly="" value="<?php echo date("Y-m-d H:i:s", strtotime("now")) . "\n"; ?>">
                           <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                         </div>
                       </div>
@@ -160,9 +158,7 @@
                       <label class="col-sm-2 control-label">Nombre</label>
                       <div class="col-sm-10">
                         <div class='input-group'>
-                          <input readonly type="text" class="form-control" placeholder="Nombre" required=""
-                            pattern="^[a-zA-Z\s]+{2,254}" name="nombre_usuario" title="Nombre Apellido"
-                            value="<?php echo $nameInput; ?>">
+                          <input readonly type="text" class="form-control" placeholder="Nombre" required="" pattern="^[a-zA-Z\s]+{2,254}" name="nombre_usuario" title="Nombre Apellido" value="<?php echo $nameInput; ?>">
                           <span class="input-group-addon"><i class="fa fa-user"></i></span>
                         </div>
                       </div>
@@ -174,10 +170,8 @@
                       <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
                       <div class="col-sm-10">
                         <div class='input-group'>
-                          <input readonly type="text" class="form-control" id="inputEmail3" placeholder="Email"
-                            name="email_ticket" required="" value="<?php echo $emailInput; ?>">
-                          <input type="hidden" class="form-control" id="inputEmail" value="helpdesk@911.gob.hn"
-                            placeholder="Email" name="email" required="" title="Ejemplo@dominio.com">
+                          <input readonly type="text" class="form-control" id="inputEmail3" placeholder="Email" name="email_ticket" required="" value="<?php echo $emailInput; ?>">
+                          <input type="hidden" class="form-control" id="inputEmail" value="helpdesk@911.gob.hn" placeholder="Email" name="email" required="" title="Ejemplo@dominio.com">
 
                           <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
                         </div>
@@ -190,8 +184,7 @@
                       <label class="col-sm-2 control-label">Departamento</label>
                       <div class="col-sm-10">
                         <div class='input-group'>
-                          <input readonly type="text" class="form-control" id="id_dept" placeholder="Email"
-                            name="id_dept" required="" value="<?php echo $deptInput; ?>">
+                          <input readonly type="text" class="form-control" id="id_dept" placeholder="Email" name="id_dept" required="" value="<?php echo $deptInput; ?>">
 
                           <span class="input-group-addon"><i class="fa fa-users"></i></span>
 
@@ -214,7 +207,7 @@
                             $cato = "SELECT id_catalogo, problemas FROM tbl_catalogo";
                             $query1 = mysqli_query($mysqli, $cato);
                             while ($prob = mysqli_fetch_array($query1)) {
-                              ?>
+                            ?>
 
                               <option value="<?php echo utf8_encode($prob["problemas"]) ?>"> <?php echo $prob["id_catalogo"], ".-", $prob["problemas"] ?></option>
 
@@ -230,8 +223,7 @@
                     <div class="form-group">
                       <label class="col-sm-2 control-label">Describa el problema que presenta</label>
                       <div class="col-sm-10">
-                        <textarea class="form-control" rows="3" placeholder="Escriba el problema que presenta"
-                          name="descripcion" required=""></textarea>
+                        <textarea class="form-control" rows="3" placeholder="Escriba el problema que presenta" name="descripcion" required=""></textarea>
                       </div>
                     </div>
                     <!-- Fin Select Problemas -->
@@ -240,7 +232,7 @@
                     <div class="form-group">
                       <div class="col-sm-offset-2 col-sm-10">
                         <button id="crearT" type="submit" class="btn btn-info pull-center
-                "><b>Abrir Ticket</b></button>
+                "><b>Crear Ticket</b></button>
                       </div>
                     </div>
                     <!-- Fin botÃ³n -->
