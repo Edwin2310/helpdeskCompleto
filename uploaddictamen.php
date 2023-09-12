@@ -1,6 +1,5 @@
 <?php
 
-
 include('./archivos/conexion.php');
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -20,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($file_name != '' || $file_name != null) {
         $file_type = $_FILES['file']['type'];
         list($type, $extension) = explode('/', $file_type);
-        if ($extension == 'pdf' || 'doc' || 'docx') {
+        if ($extension == 'pdf' || 'doc' || 'docx' || 'xls' || 'jpeg' || 'png') {
             $dir = 'filesReportes/';
             if (!file_exists($dir)) {
                 mkdir($dir, 0777, true);
@@ -40,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo 'El Archivo no se pudo subir';
     }
 
-    header('Location: admin/archivoEs-view.php');
+    // header('Location: /archivoEs-view.php');
 } else {
     echo 'fail';
 }

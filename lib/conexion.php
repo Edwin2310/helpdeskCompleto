@@ -17,12 +17,13 @@ class Mysql
 
     public static function consulta($query)
     {
-
-        /*echo $query;
-        exit();*/
+        /* 
+        echo $query;
+        exit(); */
 
         if (!$consul = mysqli_query(Mysql::Conectar(), $query)) {
             echo 'Error en la consulta SQL ejecutada';
+            echo $query;
         }
         return $consul;
     }

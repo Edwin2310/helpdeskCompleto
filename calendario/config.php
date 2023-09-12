@@ -2,7 +2,7 @@
 
 
 $usuario  = "root";
-$password = "";
+$password = "!Sistemas911**";
 $servidor = "localhost";
 $basededatos = "helpdesk";
 $con = mysqli_connect($servidor, $usuario, $password) or die("No se ha podido conectar al Servidor");

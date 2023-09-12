@@ -174,14 +174,17 @@ $pdf->Cell(184, 8, utf8_decode("CIERRE DE SOLICITUD"), 1, 1, 'C', true);
 $pdf->SetFillColor(255, 255, 255); // Establece el color de fondo gris (RGB: 192, 192, 192)
 $pdf->SetFont("Arial", "B", 10);
 $pdf->SetX(20);
-$pdf->MultiCell(184, 52, utf8_decode('              Nombre y Firma Del Usuario                                                                Nombre y Firma del Técnico'), 'BLR', 1, 'L', 1);
+$pdf->MultiCell(184, 52, utf8_decode('              Nombre y Firma Del Usuario                                                                Nombre y Firma del Técnico'), 1, 1, 'BLR', true);
 
-
-//LINEA 220 ALTURA , 85 FORMA LINEA
-$pdf->Line(30, 220, 88, 220);
-$pdf->Line(140, 220, 198, 220);
-
-
+if (strlen($reg['observaciones']) > 69) {
+    //LINEA 220 ALTURA , 85 FORMA LINEA
+    $pdf->Line(30, 220, 88, 220);
+    $pdf->Line(140, 220, 198, 220);
+} else {
+    //LINEA 220 ALTURA , 85 FORMA LINEA
+    $pdf->Line(30, 189, 88, 189);
+    $pdf->Line(140, 189, 198, 189);
+}
 
 
 //BLR ES LA LINEA AL FINAL DEL CUADRO 

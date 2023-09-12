@@ -10,6 +10,7 @@ if (isset($_POST['user_reg']) && isset($_POST['clave_reg']) && isset($_POST['nom
   $email_reg = MysqlQuery::RequestPost('email_reg');
   $id_rol_save = 4;
   $telefono = MysqlQuery::RequestPost('tel_reg');
+  $regional = MysqlQuery::RequestPost('regional');
   $dep = utf8_encode(MysqlQuery::RequestPost('departamentoT'));
   $numEE = MysqlQuery::RequestPost('numEmpleado');
 
@@ -59,15 +60,15 @@ if (isset($_POST['user_reg']) && isset($_POST['clave_reg']) && isset($_POST['nom
       ';
     } else {
 
-      if (MysqlQuery::Guardar("tbl_usuarios", "nombre_completo, nombre_usuario, id_rol, email_usuario, clave, departamento, telefono, numeroEmpleado", "'$nombre_reg', '$user_reg','$id_rol_save', '$email_reg', '$clave_reg', '$dep', '$telefono', '$numEE'")) {
+      if (MysqlQuery::Guardar("tbl_usuarios", "nombre_completo, nombre_usuario, id_rol, email_usuario, clave, departamento, telefono, numeroEmpleado, regional, estado", "'$nombre_reg', '$user_reg','$id_rol_save', '$email_reg', '$clave_reg', '$dep', '$telefono', '$numEE','$regional', '1'")) {
 
 
         //Asignando a casa Usuario el estado 1 que es igual a activo
 
-        $con = new mysqli('localhost', 'root', '', 'helpdesk');
+        /*       $con = new mysqli('localhost', 'root', '', 'helpdesk');
         $consulta = "UPDATE tbl_usuarios SET estado = '1'  WHERE estado = '0'";
         $num_estado = mysqli_query($con, $consulta);
-
+ */
         //Fin de Consulta
 
         $sql2 = "UPDATE tbl_numeroempleado SET EnUso = '1' WHERE Codigo = '$numEE'"; //CAMBIAMOS EL ESTADO A 1 CUANDO SE CREE EL USUARIO
@@ -165,6 +166,18 @@ if (isset($_POST['user_reg']) && isset($_POST['clave_reg']) && isset($_POST['nom
               <div class="form-group">
                 <label><i class="fa fa-envelope"></i>&nbsp;Telefono</label>
                 <input type="text" class="form-control" name="tel_reg" placeholder="Escriba el telefono" required="">
+              </div>
+
+              <div class="form-group">
+                <label><i class="fa fa-globe"></i>&nbsp;Regional</label>
+                <select class="form-control" name="regional" id="regional">
+                  <option style="font-weight:bold" value="0">Seleccionar Regional</option>
+                  <option value="1">Dirección Regional CECOP Tegucigalpa</option>
+                  <option value="2">Dirección Regional CECOP Choluteca</option>
+                  <option value="3">Dirección Regional CECOP Tela</option>
+                  <option value="4">Dirección Regional CECOP San Pedro Sula</option>
+                  <option value="5">Dirección Regional CECOP Santa Rosa de Copán</option>
+                </select>
               </div>
 
               <div class="form-group">

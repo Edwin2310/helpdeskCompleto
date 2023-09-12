@@ -5,7 +5,7 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
     $errores = [];
 
 
-    ?>
+?>
     <style type="text/css">
         .alerta {
             padding: .5rem;
@@ -119,53 +119,6 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
                 }
 
 
-                if (!$tecnico) {
-                    $errores[] = "Debes añadir el nombre del Técnico";
-                }
-
-
-                if (!$procesador) {
-                    $errores[] = "Debes añadir un Procesador";
-                }
-                if (!$disco) {
-                    $errores[] = "Debes añadir un Disco Duro";
-                }
-                if (!$service) {
-                    $errores[] = "Debes añadir un Service/Tag";
-                }
-                if (!$inventario) {
-                    $errores[] = "Debes añadir un No. De Inventario";
-                }
-                if (!$equipo) {
-                    $errores[] = "Debes añadir un Equipo";
-                }
-                if (!$adicionales) {
-                    $errores[] = "Debes añadir un Periferico";
-                }
-                if (!$lugar) {
-                    $errores[] = "Debes añadir un Lugar De Trabajo";
-                }
-                if (!$fecha) {
-                    $errores[] = "Debes añadir una Fecha";
-                }
-                if (!$hora) {
-                    $errores[] = "Debes añadir una Hora";
-                }
-
-                if (strlen($diagnostico) < 200) {
-                    $errores[] = "La descripcion de la Solucion es obligatoria y debe tener al menos 200 caracteres";
-                }
-
-                if (strlen($solucion) < 200) {
-                    $errores[] = "La descripcion de la Solucion es obligatoria y debe tener al menos 200 caracteres";
-                }
-                if (strlen($requerimiento) < 200) {
-                    $errores[] = "La descripcion del requerimiento es obligatoria y debe tener al menos 200 caracteres";
-                }
-                if (strlen($observaciones) < 200) {
-                    $errores[] = "La descripcion de la Solucion es obligatoria y debe tener al menos 200 caracteres";
-                }
-
 
 
                 if (empty($errores)) {
@@ -206,7 +159,7 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
 
         ?>
 
-        <?php foreach ($errores as $error): ?>
+        <?php foreach ($errores as $error) : ?>
 
             <div class="alerta error">
                 <?php echo $error; ?>
@@ -220,29 +173,26 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
                 <div class="col-sm-3">
 
                     <!--- Boton ver bitacoras creadas --->
-                <a href="./admin.php?view=todoslosformularios" style="margin: 5px" class="btn btn-success pull-right"><i
-                        class="fa fa-file-pdf-o" style="font-size:20px;color:white"></i>&nbsp;&nbsp;Ver Los Formularios
-                    Creados</a>
-            </div>
+                    <a href="./admin.php?view=todoslosformularios" style="margin: 5px" class="btn btn-success pull-right"><i class="fa fa-file-pdf-o" style="font-size:20px;color:white"></i>&nbsp;&nbsp;Ver Los Formularios
+                        Creados</a>
+                </div>
 
 
-            <div class="col-sm-9 lead">
-                <a href="./index.php" style="margin: 5px" class="btn btn-success pull-right"><i
-                        class="fa fa-reply"></i>&nbsp;&nbsp;Regresar a el Menú Principal</a>
+                <div class="col-sm-9 lead">
+                    <a href="./index.php" style="margin: 5px" class="btn btn-success pull-right"><i class="fa fa-reply"></i>&nbsp;&nbsp;Regresar a el Menú Principal</a>
 
-                <h2 align="center" class="text-info ">Formulario De Entrada y Salida De Equipo</h2>
-                <h3 class="text-primary"> Creado para realizar tareas especificas de Técnicos. </h3>
-            </div>
+                    <h2 align="center" class="text-info ">Formulario De Entrada y Salida De Equipo</h2>
+                    <h3 class="text-primary"> Creado para realizar tareas especificas de Técnicos. </h3>
+                </div>
 
-        </div><!--fin row 1-->
+            </div><!--fin row 1-->
 
             <!-- Imagen e instrucciones -->
             <div class="row">
                 <div class="col-sm-12">
                     <div class="panel panel-info">
                         <div class="panel-heading">
-                            <h3 class="panel-title text-center"><strong><i
-                                        class="fa fa-pencil-square"></i>&nbsp;&nbsp;&nbsp;Crear Formulario</strong></h3>
+                            <h3 class="panel-title text-center"><strong><i class="fa fa-pencil-square"></i>&nbsp;&nbsp;&nbsp;Crear Formulario</strong></h3>
                         </div>
                         <div class="panel-body">
                             <div class="row">
@@ -270,11 +220,8 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
                                                 <label class="col-sm-2 control-label">Fecha</label>
                                                 <div class='col-sm-10'>
                                                     <div class="input-group">
-                                                        <input class="form-control" type="text" name="fechaatendido"
-                                                            readonly=""
-                                                            value="<?php echo date("Y-m-d H:i:s", strtotime("now")) . "\n"; ?>">
-                                                        <span class="input-group-addon"><i
-                                                                class="fa fa-calendar"></i></span>
+                                                        <input class="form-control" type="text" name="fechaatendido" readonly="" value="<?php echo date("Y-m-d H:i:s", strtotime("now")) . "\n"; ?>">
+                                                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -288,27 +235,26 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
                                                 <div class="col-sm-10">
                                                     <div class='input-group'>
 
-                                                        <select class="form-control" name="edificio" required>
+                                                        <select class="form-control" name="edificio">
                                                             <option value=""> -Selecciona Edificio- </option>
                                                             <!----AQUI PONER LOS MODELOS ----->
-                                                        <?php
+                                                            <?php
 
-                                                        $dept = Mysql::consulta("SELECT id, edificio FROM tbl_edificio");
+                                                            $dept = Mysql::consulta("SELECT id, edificio FROM tbl_edificio");
 
-                                                        while ($edificio = mysqli_fetch_array($dept)) {
+                                                            while ($edificio = mysqli_fetch_array($dept)) {
                                                             ?>
-                                                        <option
-                                                            value="<?php echo utf8_encode($edificio["edificio"]) ?>">
-                                                            <?php echo $edificio["id"], ".-", $edificio["edificio"] ?>
-                                                        </option>
-                                                        <?php } ?>
-                                                    </select>
-                                                    <span class="input-group-addon"><i class="fa fa-desktop"></i></span>
+                                                                <option value="<?php echo utf8_encode($edificio["edificio"]) ?>">
+                                                                    <?php echo $edificio["id"], ".-", $edificio["edificio"] ?>
+                                                                </option>
+                                                            <?php } ?>
+                                                        </select>
+                                                        <span class="input-group-addon"><i class="fa fa-desktop"></i></span>
 
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <!-- Fin Select Descripcion -->
+                                            <!-- Fin Select Descripcion -->
 
 
                                             <!-- Select para Catálogo de Departamento del 9-1-1 -->
@@ -317,7 +263,7 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
                                                 <div class="col-sm-10">
                                                     <div class='input-group'>
 
-                                                        <select class="form-control" name="departamento" required>
+                                                        <select class="form-control" name="departamento">
                                                             <option style="font-weight:bold" value="0"> -Seleccionar
                                                                 Departamento-
                                                             </option>
@@ -328,9 +274,8 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
                                                             $dept = Mysql::consulta("SELECT id_departamento, departamento FROM tbl_departamento");
 
                                                             while ($departamento = mysqli_fetch_array($dept)) {
-                                                                ?>
-                                                                <option
-                                                                    value="<?php echo utf8_encode($departamento["departamento"]) ?>">
+                                                            ?>
+                                                                <option value="<?php echo utf8_encode($departamento["departamento"]) ?>">
                                                                     <?php echo $departamento["id_departamento"], ".-", $departamento["departamento"] ?></option>
                                                             <?php } ?>
                                                             <option style="text-align:center; font-weight:bold" value="0">
@@ -341,7 +286,7 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
                                                             $query2 = mysqli_query($mysqli, $cato1);
 
                                                             while ($prob1 = mysqli_fetch_array($query2)) {
-                                                                ?>
+                                                            ?>
 
                                                                 <option value="<?php echo $prob1["area_solicitud"] ?>"> <?php echo $prob1["id_area"], ".-", $prob1["area_solicitud"] ?>
                                                                 </option>
@@ -361,8 +306,7 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
                                                 <label class="col-sm-2 control-label">Tecnico</label>
                                                 <div class='col-sm-10'>
                                                     <div class="input-group">
-                                                        <input class="form-control" type="text" name="tecnico"
-                                                            placeholder="Nombre Del Tecnico" required>
+                                                        <input class="form-control" type="text" name="tecnico" placeholder="Nombre Del Tecnico">
                                                         <span class="input-group-addon"><i class="fa fa-desktop"></i></span>
                                                     </div>
                                                 </div>
@@ -374,8 +318,7 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
                                                 <label class="col-sm-2 control-label">Usuario De Equipo</label>
                                                 <div class='col-sm-10'>
                                                     <div class="input-group">
-                                                        <input class="form-control" type="text" name="usuario"
-                                                            placeholder="Nombre Del Usuario" required>
+                                                        <input class="form-control" type="text" name="usuario" placeholder="Nombre Del Usuario">
                                                         <span class="input-group-addon"><i class="fa fa-desktop"></i></span>
                                                     </div>
                                                 </div>
@@ -387,8 +330,7 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
                                                 <label class="col-sm-2 control-label">Procesador</label>
                                                 <div class='col-sm-10'>
                                                     <div class="input-group">
-                                                        <input class="form-control" type="text" name="procesador"
-                                                            placeholder="i5" required>
+                                                        <input class="form-control" type="text" name="procesador" placeholder="i5">
                                                         <span class="input-group-addon"><i class="fa fa-desktop"></i></span>
                                                     </div>
                                                 </div>
@@ -400,8 +342,7 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
                                                 <label class="col-sm-2 control-label">Memoria RAM</label>
                                                 <div class='col-sm-10'>
                                                     <div class="input-group">
-                                                        <input class="form-control" type="text" name="memoria"
-                                                            placeholder="DDR2-12GB" required>
+                                                        <input class="form-control" type="text" name="memoria" placeholder="DDR2-12GB">
                                                         <span class="input-group-addon"><i class="fa fa-desktop"></i></span>
                                                     </div>
                                                 </div>
@@ -413,8 +354,7 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
                                                 <label class="col-sm-2 control-label">Disco Duro</label>
                                                 <div class='col-sm-10'>
                                                     <div class="input-group">
-                                                        <input class="form-control" type="text" name="disco"
-                                                            placeholder="Estado Solido/Mecanico/320GB,1TB" required>
+                                                        <input class="form-control" type="text" name="disco" placeholder="Estado Solido/Mecanico/320GB,1TB">
                                                         <span class="input-group-addon"><i class="fa fa-desktop"></i></span>
                                                     </div>
                                                 </div>
@@ -426,8 +366,7 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
                                                 <label class="col-sm-2 control-label">ServiceTag/Serie</label>
                                                 <div class='col-sm-10'>
                                                     <div class="input-group">
-                                                        <input class="form-control" type="text" name="service"
-                                                            placeholder="DKSFTRXZ" required>
+                                                        <input class="form-control" type="text" name="service" placeholder="DKSFTRXZ">
                                                         <span class="input-group-addon"><i class="fa fa-desktop"></i></span>
                                                     </div>
                                                 </div>
@@ -440,8 +379,7 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
                                                 <label class="col-sm-2 control-label">No.Inventario</label>
                                                 <div class='col-sm-10'>
                                                     <div class="input-group">
-                                                        <input class="form-control" type="text" name="inventario"
-                                                            placeholder="INV3507" required>
+                                                        <input class="form-control" type="text" name="inventario" placeholder="INV3507">
                                                         <span class="input-group-addon"><i class="fa fa-desktop"></i></span>
                                                     </div>
                                                 </div>
@@ -454,8 +392,7 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
                                                 <label class="col-sm-2 control-label">Modelo De Equipo</label>
                                                 <div class='col-sm-10'>
                                                     <div class="input-group">
-                                                        <input class="form-control" type="text" name="equipo"
-                                                            placeholder="Dell Workstation Precision 7810" required>
+                                                        <input class="form-control" type="text" name="equipo" placeholder="Dell Workstation Precision 7810">
                                                         <span class="input-group-addon"><i class="fa fa-desktop"></i></span>
                                                     </div>
                                                 </div>
@@ -467,8 +404,7 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
                                                 <label class="col-sm-2 control-label">Dispositivos Adicionales</label>
                                                 <div class='col-sm-10'>
                                                     <div class="input-group">
-                                                        <input class="form-control" type="text" name="adicionales"
-                                                            placeholder="Perifericos De Salida o Entrada" required>
+                                                        <input class="form-control" type="text" name="adicionales" placeholder="Perifericos De Salida o Entrada">
                                                         <span class="input-group-addon"><i class="fa fa-desktop"></i></span>
                                                     </div>
                                                 </div>
@@ -479,9 +415,7 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
                                             <div class="form-group">
                                                 <label class="col-sm-2 control-label">Diagnostico</label>
                                                 <div class="col-sm-10">
-                                                    <textarea class="form-control" rows="3"
-                                                        placeholder="Se recomiendo un máximo de 2 parrafos."
-                                                        name="diagnostico" required=""></textarea>
+                                                    <textarea class="form-control" rows="3" placeholder="Se recomiendo un máximo de 2 parrafos." name="diagnostico"></textarea>
                                                 </div>
                                             </div>
                                             <!-- Fin Select Antecedentes -->
@@ -490,9 +424,7 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
                                             <div class="form-group">
                                                 <label class="col-sm-2 control-label">Solucion</label>
                                                 <div class="col-sm-10">
-                                                    <textarea class="form-control" rows="3"
-                                                        placeholder="Se recomiendo un máximo de 3 parrafos." name="solucion"
-                                                        required=""></textarea>
+                                                    <textarea class="form-control" rows="3" placeholder="Se recomiendo un máximo de 3 parrafos." name="solucion"></textarea>
                                                 </div>
                                             </div>
                                             <!-- Fin Select Antecedentes -->
@@ -501,9 +433,7 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
                                             <div class="form-group">
                                                 <label class="col-sm-2 control-label">Requerimiento</label>
                                                 <div class="col-sm-10">
-                                                    <textarea class="form-control" rows="3"
-                                                        placeholder="Se recomiendo un máximo de 3 parrafos."
-                                                        name="requerimiento" required=""></textarea>
+                                                    <textarea class="form-control" rows="3" placeholder="Se recomiendo un máximo de 3 parrafos." name="requerimiento"></textarea>
                                                 </div>
                                             </div>
                                             <!-- Fin Select Antecedentes -->
@@ -516,26 +446,25 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
                                                 <div class="col-sm-10">
                                                     <div class='input-group'>
 
-                                                        <select class="form-control" name="lugar" required>
+                                                        <select class="form-control" name="lugar">
                                                             <option value=""> -Seleccionar Equipo- </option>
                                                             <!----AQUI PONER LOS MODELOS ----->
-                                                        <?php
+                                                            <?php
 
-                                                        $dept = Mysql::consulta("SELECT id, lugar_trabajo FROM tbl_lugar");
+                                                            $dept = Mysql::consulta("SELECT id, lugar_trabajo FROM tbl_lugar");
 
-                                                        while ($lugar_trabajo = mysqli_fetch_array($dept)) {
+                                                            while ($lugar_trabajo = mysqli_fetch_array($dept)) {
                                                             ?>
-                                                        <option
-                                                            value="<?php echo utf8_encode($lugar_trabajo["lugar_trabajo"]) ?>">
-                                                            <?php echo $lugar_trabajo["id"], ".-", $lugar_trabajo["lugar_trabajo"] ?></option>
-                                                        <?php } ?>
-                                                    </select>
-                                                    <span class="input-group-addon"><i class="fa fa-desktop"></i></span>
+                                                                <option value="<?php echo utf8_encode($lugar_trabajo["lugar_trabajo"]) ?>">
+                                                                    <?php echo $lugar_trabajo["id"], ".-", $lugar_trabajo["lugar_trabajo"] ?></option>
+                                                            <?php } ?>
+                                                        </select>
+                                                        <span class="input-group-addon"><i class="fa fa-desktop"></i></span>
 
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <!-- Fin Select Descripcion -->
+                                            <!-- Fin Select Descripcion -->
 
 
 
@@ -544,8 +473,7 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
                                                 <label class="col-sm-2 control-label">Fecha De Entrega </label>
                                                 <div class='col-sm-10'>
                                                     <div class="input-group">
-                                                        <input class="form-control" type="date" name="fecha_entrega"
-                                                            required>
+                                                        <input class="form-control" type="date" name="fecha_entrega">
                                                         <span class="input-group-addon"><i class="fa fa-desktop"></i></span>
 
                                                     </div>
@@ -569,9 +497,7 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
                                             <div class="form-group">
                                                 <label class="col-sm-2 control-label">Observacion</label>
                                                 <div class="col-sm-10">
-                                                    <textarea class="form-control" rows="3"
-                                                        placeholder="Se recomiendo un máximo de 3 parrafos."
-                                                        name="observaciones" required=""></textarea>
+                                                    <textarea class="form-control" rows="3" placeholder="Se recomiendo un máximo de 3 parrafos." name="observaciones"></textarea>
                                                 </div>
                                             </div>
                                             <!-- Fin Select Antecedentes -->
@@ -580,8 +506,7 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
                                             <!-- Botón para Abrir el ticket -->
                                             <div class="form-group">
                                                 <div class="col-sm-offset-2 col-sm-10">
-                                                    <button type="submit" class="btn btn-info pull-center"><b>Crear
-                                                            Formlario</b></button>
+                                                    <button type="submit" class="btn btn-info pull-center"><b>Crear Formulario</b></button>
                                                 </div>
                                             </div>
                                             <!-- Fin botón -->
@@ -602,14 +527,14 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
 
 
 
-        <?php
+    <?php
 }
-?>
+    ?>
 
     <!--********* Script *********-->
     <!-- Fecha y hora  -->
     <script type="text/javascript">
-        $(document).ready(function () {
+        $(document).ready(function() {
             $("#fechainput").datepicker();
         });
     </script>

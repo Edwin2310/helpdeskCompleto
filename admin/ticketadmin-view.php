@@ -63,7 +63,7 @@
             <div class="panel-body text-center">
               <img src="./img/ticketpro.png" alt="">
               <br>
-              <a type="button" class="btn btn-info" href="./admin.php?view=ticketenproceso&ticket=process">Tickets en
+              <a type="button" class="btn btn-info" href="./admin.php?view=ticketenproceso&ticket=process">Abrir Tickets en
                 Procesos</a>
               <br>
               <br>
@@ -90,7 +90,7 @@
         <!-- Información Ticket Rechazado-->
         <div class="col-sm-6">
           <div class="panel panel-danger">
-            <div class="panel-heading text-center"><i class="fa fa-tickett"></i>&nbsp;<strong>Tickets Rechazados</strong>
+            <div class="panel-heading text-center"><i class="fa fa-ticket"></i>&nbsp;<strong>Tickets Rechazados</strong>
             </div>
             <div class="panel-body text-center">
               <img src="./img/ticket-remove.png" alt="">

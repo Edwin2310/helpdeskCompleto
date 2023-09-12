@@ -16,6 +16,9 @@
         if (MysqlQuery::Actualizar("tbl_admin", "estado='$estado'", "id_usuario='$id_user'")) {
 
 
+            $mysqli = mysqli_connect(SERVER, USER, PASS, BD);
+            mysqli_set_charset($mysqli, "utf8");
+
 
             //CONSULTA PARA DESACTVAR ESTADO EN TABLA USUARIOS
             $sql2 = "UPDATE tbl_usuarios SET estado = '0'  WHERE id_usuario = '$id_user'";
@@ -130,24 +133,19 @@
         <div class="row">
             <div class="col-md-12 text-center">
                 <ul class="nav nav-pills nav-justified">
-                    <li><a href="./admin.php?view=users" style="color:#c1d12d;"><i class="fa fa-users"
-                                style="color:#c1d12d;"></i>&nbsp;&nbsp;Técnicos&nbsp;&nbsp;<span class="badge">
+                    <li><a href="./admin.php?view=users" style="color:#c1d12d;"><i class="fa fa-users" style="color:#c1d12d;"></i>&nbsp;&nbsp;Técnicos&nbsp;&nbsp;<span class="badge">
                                 <?php echo $num_total_usuario; ?>
                             </span></a></li>
-                    <li><a href="./admin.php?view=admin"><i
-                                class="fa fa-male"></i>&nbsp;&nbsp;Administradores&nbsp;&nbsp;<span class="badge">
+                    <li><a href="./admin.php?view=admin"><i class="fa fa-male"></i>&nbsp;&nbsp;Administradores&nbsp;&nbsp;<span class="badge">
                                 <?php echo $num_total_admin; ?>
                             </span></a></li>
-                    <li><a href="./admin.php?view=desarrolladores"><i
-                                class="fa fa-desktop"></i>&nbsp;&nbsp;Desarrolladores&nbsp;&nbsp;<span class="badge">
+                    <li><a href="./admin.php?view=desarrolladores"><i class="fa fa-desktop"></i>&nbsp;&nbsp;Desarrolladores&nbsp;&nbsp;<span class="badge">
                                 <?php echo $num_total_des; ?>
                             </span></a></li>
-                    <li><a href="./admin.php?view=userGeneral"><i
-                                class="fa fa-user"></i>&nbsp;&nbsp;Usuarios&nbsp;&nbsp;<span class="badge">
+                    <li><a href="./admin.php?view=userGeneral"><i class="fa fa-user"></i>&nbsp;&nbsp;Usuarios&nbsp;&nbsp;<span class="badge">
                                 <?php echo $num_total_userGeneral; ?>
                             </span></a></li>
-                    <li><a href="./admin.php?view=deshabilitados"><i
-                                class="fa fa-user-times"></i>&nbsp;&nbsp;Deshabilitados&nbsp;&nbsp;<span class="badge">
+                    <li><a href="./admin.php?view=deshabilitados"><i class="fa fa-user-times"></i>&nbsp;&nbsp;Deshabilitados&nbsp;&nbsp;<span class="badge">
                                 <?php echo $num_total_desac; ?>
                             </span></a></li>
 
@@ -166,15 +164,15 @@
                     //$pagina = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
                     //$regpagina = 15;
                     //$inicio = ($pagina > 1) ? (($pagina * $regpagina) - $regpagina) : 0;
-                
+
                     $selusers = mysqli_query($mysqli, "SELECT SQL_CALC_FOUND_ROWS * FROM tbl_admin WHERE id_rol='2' AND  estado='1'");
 
                     $totalregistros = mysqli_query($mysqli, "SELECT FOUND_ROWS()");
                     $totalregistros = mysqli_fetch_array($totalregistros, MYSQLI_ASSOC);
 
                     //$numeropaginas = ceil($totalregistros["FOUND_ROWS()"]/$regpagina);
-                    if (mysqli_num_rows($selusers) > 0):
-                        ?>
+                    if (mysqli_num_rows($selusers) > 0) :
+                    ?>
                         <!-- Tabla que muestra los usuarios registrados en el sistema -->
                         <table id="example" class="table table-hover table-striped table-bordered">
                             <thead>
@@ -191,8 +189,8 @@
                             <tbody>
                                 <?php
                                 $ct = 1;
-                                while ($row = mysqli_fetch_array($selusers, MYSQLI_ASSOC)):
-                                    ?>
+                                while ($row = mysqli_fetch_array($selusers, MYSQLI_ASSOC)) :
+                                ?>
                                     <tr>
                                         <td class="text-center">
                                             <?php echo $ct; ?>
@@ -213,61 +211,57 @@
                                         <td class="text-center">
 
                                             <!-- actualizar información -->
-                                            <a href="admin.php?view=adminedit&id=<?php echo $row['id_usuario']; ?>"
-                                                class="btn btn-sm btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                            <a href="admin.php?view=adminedit&id=<?php echo $row['id_usuario']; ?>" class="btn btn-sm btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i></a>
 
                                             <!-------------------------- Cambiar estado----------------------------->
-                                <?php
-                                if ($row['estado'] == 1) {
-                                    ?>
-                                <form action="" method="POST" style="display: inline-block;">
-                                    <input type="hidden" name="id_estado" value="<?php echo $row['id_usuario']; ?>">
-                                    <button type="submit" onclick="" class="btn btn-success btn-sm">
-                                        <i class="fa fa-user-circle" aria-hidden="true"></i>
-                                        <!--                 Activar
+                                            <?php
+                                            if ($row['estado'] == 1) {
+                                            ?>
+                                                <form action="" method="POST" style="display: inline-block;">
+                                                    <input type="hidden" name="id_estado" value="<?php echo $row['id_usuario']; ?>">
+                                                    <button type="submit" onclick="" class="btn btn-success btn-sm">
+                                                        <i class="fa fa-user-circle" aria-hidden="true"></i>
+                                                        <!--                 Activar
+                --> </button>
+                                                <?php
+                                            } else if ($row['estado'] == 2) {
+                                                ?>
+                                                    <form action="" method="POST" style="display: inline-block;">
+                                                        <input type="hidden" name="id_estado" value="<?php echo $row['id_usuario']; ?>">
+                                                        <button type="submit" onclick="" class="btn btn-danger btn-sm">
+                                                            <i class="fa fa-user-circle" aria-hidden="true"></i>
+                                                            <!--                 Desactivado
                 --> </button>
                                                     <?php
-                                } else if ($row['estado'] == 2) {
-                                    ?>
-                                                        <form action="" method="POST" style="display: inline-block;">
-                                                            <input type="hidden" name="id_estado" value="<?php echo $row['id_usuario']; ?>">
-                                                            <button type="submit" onclick="" class="btn btn-danger btn-sm">
-                                                                <i class="fa fa-user-circle" aria-hidden="true"></i>
-                                                                <!--                 Desactivado
-                --> </button>
-                                                        <?php
-                                }
+                                                }
 
-                                ?>
+                                                    ?>
                                                     <!-------------------------- Fin Cambiar estado----------------------------->
 
 
 
 
-                                        <!-- Cambio de contraseña -->
-                                                    <a href="admin.php?view=cambiocontadmin&id=<?php echo $row['id_usuario']; ?>"
-                                                        class="btn btn-sm btn-info"><i class="fa fa-unlock-alt"
-                                                            aria-hidden="true"></i></a>
-                                                </form>
+                                                    <!-- Cambio de contraseña -->
+                                                    <a href="admin.php?view=cambiocontadmin&id=<?php echo $row['id_usuario']; ?>" class="btn btn-sm btn-info"><i class="fa fa-unlock-alt" aria-hidden="true"></i></a>
+                                                    </form>
 
 
-                                                <!-- eliminar -->
-                                                <form action="" method="POST" style="display: inline-block;">
-                                                    <input type="hidden" name="id_del" value="<?php echo $row['id_usuario']; ?>">
-                                                    <button type="submit" class="btn btn-sm btn-danger"><i class="fa fa-trash-o"
-                                                            aria-hidden="true"></i></button>
-                                                </form>
+                                                    <!-- eliminar -->
+                                                    <form action="" method="POST" style="display: inline-block;">
+                                                        <input type="hidden" name="id_del" value="<?php echo $row['id_usuario']; ?>">
+                                                        <button type="submit" class="btn btn-sm btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                                    </form>
 
                                         </td>
                                     </tr>
-                                    <?php
+                                <?php
                                     $ct++;
                                 endwhile;
                                 ?>
                             </tbody>
                         </table>
                         <!-- Fin tabla -->
-                    <?php else: ?>
+                    <?php else : ?>
                         <h2 class="text-center">No hay usuarios registrados en el sistema</h2>
                     <?php endif; ?>
                 </div>
@@ -275,9 +269,9 @@
             </div>
         </div>
     </div>
-    <?php
+<?php
 } else {
-    ?>
+?>
     <div class="container">
         <div class="row">
             <div class="col-sm-4">
@@ -291,7 +285,7 @@
             <div class="col-sm-1">&nbsp;</div>
         </div>
     </div>
-    <?php
+<?php
 }
 ?>
 
@@ -315,8 +309,7 @@
 
 
 <script>
-
-    $(document).ready(function () {
+    $(document).ready(function() {
         var table = $('#example').DataTable({
             "responsive": true,
             "autoWidth": true,
@@ -327,7 +320,7 @@
         table.buttons().container()
             .appendTo('#example_wrapper .col-md-6:eq(0)');
     });
-    $(document).ready(function () {
+    $(document).ready(function() {
         var table = $('#example2').DataTable({
             "responsive": true,
             "autoWidth": true,
@@ -337,5 +330,4 @@
         table.buttons().container()
             .appendTo('#example_wrapper .col-md-6:eq(0)');
     });
-
 </script>

@@ -6,12 +6,13 @@
   if (isset($_POST['nom_usuario_reg']) && isset($_POST['usuario_reg']) && isset($_POST['usuario_clave_reg'])) {
 
 
-
+    $id_usuario = MysqlQuery::RequestPost('id_usuario');
     $nom_complete_save = MysqlQuery::RequestPost('nom_usuario_reg');
     $nom_usuario_save = MysqlQuery::RequestPost('usuario_reg');
     $pass_save = md5(MysqlQuery::RequestPost('usuario_clave_reg'));
     $email_save = MysqlQuery::RequestPost('usuario_email_reg');
     $telefono = MysqlQuery::RequestPost('usuario_tel_reg');
+    $regional = MysqlQuery::RequestPost('regional');
     $rol = MysqlQuery::RequestPost('rolUsuario');
     $numEE = MysqlQuery::RequestPost('numEmpleado');
 
@@ -36,15 +37,14 @@
             </div>
                 ';
     } else {
-      if (MysqlQuery::Guardar("tbl_admin", "nombre_completo, nombre_usuario, id_rol, clave, email_usuario, departamento, telefono", "'$nom_complete_save', '$nom_usuario_save', '$rol' , '$pass_save', '$email_save', '$dept', '$telefono'")) {
-
+      if (MysqlQuery::Guardar("tbl_admin", "nombre_completo, nombre_usuario, id_rol, clave, email_usuario, departamento, telefono, regional, estado", "'$nom_complete_save', '$nom_usuario_save', '$rol' , '$pass_save', '$email_save', '$dept', '$telefono', '$regional','1'")) {
 
         //Asignando a cada rol en el estado 1 que es igual a activo
 
-        $con = new mysqli('localhost', 'root', '', 'helpdesk');
+        /*     $con = new mysqli('localhost', 'root', '', 'helpdesk');
         $consulta = "UPDATE tbl_admin SET estado = '1'  WHERE estado = '0'";
         $num_estado = mysqli_query($con, $consulta);
-
+ */
         //Fin de Consulta
 
 
@@ -72,8 +72,6 @@
          ';
       }
     }
-
-
   }
   /* Fin guardar */
 
@@ -161,7 +159,7 @@
    }*/
 
   /* Fin eliminar  */
-  ?>
+?>
 
 
   <?php
@@ -197,34 +195,44 @@
               <div class="panel-body">
                 <form role="form" action="" method="post">
                   <div class="form-group">
-                    <label><i class="fa fa-male"></i>&nbsp;Nombre completo</label>
-                    <input type="text" class="form-control" name="nom_usuario_reg" placeholder="Nombre completo"
-                      required="" pattern="[a-zA-Z ]{1,40}" title="Nombre Apellido" maxlength="40">
+                    <label hidden>&nbsp;Id de Usuario</label>
+                    <input type="hidden" class="form-control" id="id_usuario" name="id_usuario" placeholder="" maxlength="40">
+
+                    <label><i class="fa fa-male"></i>&nbsp;Nombre</label>
+                    <input type="text" class="form-control" name="nom_usuario_reg" placeholder="Nombre completo" required="" pattern="[a-zA-Z ]{1,40}" title="Nombre Apellido" maxlength="40">
                   </div>
                   <div class="form-group has-success has-feedback">
                     <label class="control-label"><i class="fa fa-user"></i>&nbsp;Usuario</label>
-                    <input type="text" id="input_user" class="form-control" name="usuario_reg"
-                      placeholder="Nombre de usuario" required="" pattern="[a-zA-Z0-9]{1,15}"
-                      title="Ejemplo7 maximo 15 caracteres" maxlength="15">
+                    <input type="text" id="input_user" class="form-control" name="usuario_reg" placeholder="Nombre de usuario" required="" pattern="[a-zA-Z0-9]{1,15}" title="Ejemplo7 maximo 15 caracteres" maxlength="15">
                     <div id="com_form"></div>
                   </div>
                   <div class="form-group">
                     <label><i class="fa fa-shield"></i>&nbsp;Contraseña</label>
-                    <input type="password" class="form-control" name="usuario_clave_reg" placeholder="Contraseña"
-                      required="">
+                    <input type="password" class="form-control" name="usuario_clave_reg" placeholder="Contraseña" required="">
                   </div>
                   <div class="form-group">
                     <label><i class="fa fa-envelope"></i>&nbsp;Correo</label>
-                    <input type="email" class="form-control" name="usuario_email_reg" placeholder="correo@911.gob.hn"
-                      required="">
+                    <input type="email" class="form-control" name="usuario_email_reg" placeholder="correo@911.gob.hn" required="">
                   </div>
                   <div class="form-group">
-                    <label><i class="fa fa-envelope"></i>&nbsp;Telefono</label>
+                    <label><i class="fa fa-phone"></i>&nbsp;Telefono</label>
                     <input type="text" class="form-control" name="usuario_tel_reg" placeholder="Telefono" required="">
+                  </div>
+                  <div class="form-group">
+                    <label><i class="fa fa-globe"></i>&nbsp;Regional</label>
+                    <select class="form-control" name="regional" id="regional">
+                      <option style="font-weight:bold" value="0">Seleccionar Regional</option>
+                      <option value="1">Dirección Regional CECOP Tegucigalpa</option>
+                      <option value="2">Dirección Regional CECOP Choluteca</option>
+                      <option value="3">Dirección Regional CECOP Tela</option>
+                      <option value="4">Dirección Regional CECOP San Pedro Sula</option>
+                      <option value="5">Dirección Regional CECOP Santa Rosa de Copán</option>
+                    </select>
                   </div>
                   <div class="form-group">
                     <label><i class="fa fa-male"></i>&nbsp;Tipo Usuario</label>
                     <select class="form-control" name="rolUsuario" id="rolUsuario">
+                      <option style="font-weight:bold" value="0">Seleccionar Tipo</option>
                       <option value="1">Administrador</option>
                       <option value="2">Tecnico</option>
                       <option value="3">Desarrollador</option>
@@ -306,37 +314,28 @@
                 <form role="form" action="" method="POST">
                   <div class="form-group">
                     <label><i class="fa fa-male"></i>&nbsp;Nombre completo</label>
-                    <input type="text" class="form-control" value="<?php echo $reg1['nombre_completo']; ?>"
-                      name="nom_usuario_up" placeholder="Nombre completo" required="" pattern="[a-zA-Z ]{1,40}"
-                      title="Nombre Apellido" maxlength="40">
+                    <input type="text" class="form-control" value="<?php echo $reg1['nombre_completo']; ?>" name="nom_usuario_up" placeholder="Nombre completo" required="" pattern="[a-zA-Z ]{1,40}" title="Nombre Apellido" maxlength="40">
                   </div>
                   <!-- <div class="form-group">
                            <label><i class="fa fa-user"></i>&nbsp;Usuario anterior</label> -->
-                  <input type="hidden" readonly type="text" class="form-control"
-                    value="<?php echo $reg1['nombre_usuario']; ?>" name="old_nom__up" placeholder="Usuario Anterior"
-                    required="" pattern="[a-zA-Z0-9]{1,15}" title="Ejemplo7 maximo 15 caracteres" maxlength="15">
+                  <input type="hidden" readonly type="text" class="form-control" value="<?php echo $reg1['nombre_usuario']; ?>" name="old_nom__up" placeholder="Usuario Anterior" required="" pattern="[a-zA-Z0-9]{1,15}" title="Ejemplo7 maximo 15 caracteres" maxlength="15">
                   <!-- </div> -->
                   <div class="form-group has-success has-feedback">
                     <label class="control-label"><i class="fa fa-user"></i>&nbsp;Nombre de Usuario</label>
-                    <input value="<?php echo $reg1['nombre_usuario']; ?>" type="text" id="input_user2"
-                      class="form-control" name="usuario_up" placeholder="Nombre de Usuario" required=""
-                      pattern="[a-zA-Z0-9]{1,15}" title="Ejemplo7 maximo 15 caracteres" maxlength="15">
+                    <input value="<?php echo $reg1['nombre_usuario']; ?>" type="text" id="input_user2" class="form-control" name="usuario_up" placeholder="Nombre de Usuario" required="" pattern="[a-zA-Z0-9]{1,15}" title="Ejemplo7 maximo 15 caracteres" maxlength="15">
                     <div id="com_form2"></div>
                   </div>
                   <div class="form-group">
                     <label><i class="fa fa-shield"></i>&nbsp;Contraseña anterior</label>
-                    <input type="password" class="form-control" name="old_usuario_clave_up_v"
-                      placeholder="Contraseña anterior" required="">
+                    <input type="password" class="form-control" name="old_usuario_clave_up_v" placeholder="Contraseña anterior" required="">
                   </div>
                   <div class="form-group">
                     <label><i class="fa fa-shield"></i>&nbsp;Nueva contraseña</label>
-                    <input type="password" class="form-control" name="usuario_clave_up" placeholder="Nueva contraseña"
-                      required="">
+                    <input type="password" class="form-control" name="usuario_clave_up" placeholder="Nueva contraseña" required="">
                   </div>
                   <div class="form-group">
                     <label><i class="fa fa-envelope"></i>&nbsp;Correo</label>
-                    <input type="email" class="form-control" value="<?php echo $reg1['email_usuario']; ?>"
-                      name="usuario_email_up" placeholder="Correo" required="">
+                    <input type="email" class="form-control" value="<?php echo $reg1['email_usuario']; ?>" name="usuario_email_up" placeholder="Correo" required="">
                   </div><button type="submit" class="btn btn-info">Actualizar datos</button>
                 </form>
               </div>
@@ -347,9 +346,9 @@
     </div><!-- Fin row-->
 
   </div>
-  <?php
+<?php
 } else {
-  ?>
+?>
 
 
 
@@ -367,7 +366,7 @@
       <div class="col-sm-1">&nbsp;</div>
     </div>
   </div>
-  <?php
+<?php
 }
 ?>
 <script>

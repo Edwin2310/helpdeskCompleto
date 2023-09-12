@@ -31,20 +31,21 @@ if (isset($_POST["btnLogin"])) {
     $pass = $_POST['password'];
     $password = md5($pass);
     $tipoUser = $_POST['tipoUser'];
+    $regional = $_POST['regional'];
     $estado = $_POST['estado'];
     //  $ip = "";
 
+    // Consulta para obtener el valor de "regional" basado en el correo electrónico del usuario
     if ($tipoUser == 1) {
-      $sql = "SELECT * FROM tbl_usuarios WHERE email_usuario = '$username'";
+      $sql = "SELECT *, '1' AS regional FROM tbl_usuarios WHERE email_usuario = '$username'";
     } else {
-      $sql = "SELECT * FROM tbl_admin WHERE email_usuario = '$username'";
+      $sql = "SELECT *, '2' AS regional FROM tbl_admin WHERE email_usuario = '$username'";
     }
-
     $stmt = mysqli_query($mysqli, $sql);
 
     if ($row = mysqli_fetch_array($stmt)) {
 
-      if ($password == $row['clave'] && $row['estado'] == 1) { //Si el estado es igual a uno va a dejar ingresar 
+      if ($password == $row['clave'] && $row['estado'] == 1 && $row['regional']) { //Si el estado es igual a uno va a dejar ingresar 
         session_start();
 
 
@@ -54,14 +55,13 @@ if (isset($_POST["btnLogin"])) {
         $_SESSION['user'] = $username;
         $_SESSION['clave'] = $password;
         $_SESSION['tipoUser'] = $tipoUser;
+        $_SESSION['regional'] = $regional;
         $_SESSION["last_time"] = time();
         header('Location:index.php');
         exit;
-
       } else {
         header("Location: loginFuncional.php?error=Usuario o Contraseña Incorrecta");
       }
-
     } else {
       header("Location: loginFuncional.php?error=Usuario o Contraseña Incorrecta");
     }
@@ -83,8 +83,7 @@ if (isset($_POST["btnLogin"])) {
   <title>Soporte Tecnico 9-1-1</title>
   <?php include "./inc/links.php"; ?>
   <link rel="icon" type="image/png" href="img/911icon.ico">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
   <link rel="stylesheet" href="styleHelpDesk.css">
 
@@ -106,7 +105,7 @@ if (isset($_POST["btnLogin"])) {
                   <div class="container-fluid">
                     <div class="row">
                       <div class="col-4">
-                        <img src="img/911R.PNG" alt="" width="90px" style="margin-top:0px;">
+                        <img src="./img/911R.png" alt="" width="90px" style="margin-top:0px;">
                       </div>
                       <div class="col-8">
                         <h2 class="font-weight-bolder" style="margin-top:25px;">SISTEMA DE SOPORTE</h2>
@@ -189,7 +188,7 @@ if (isset($_POST["btnLogin"])) {
   <script src="assets/js/plugins/smooth-scrollbar.min.js"></script>
 
   <script type="text/javascript">
-    $(document).on("click", "#btnsoporte", function () {
+    $(document).on("click", "#btnsoporte", function() {
       if ($('#rol_id').val() == 1) { //input hidden
         $('#lbltitulo').html("Acceso Soporte"); //cambia titulo
         $('#btnsoporte').html("Acceso Usuario"); //cambia titulo boton

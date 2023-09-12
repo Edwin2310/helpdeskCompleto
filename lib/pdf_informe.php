@@ -340,7 +340,7 @@ $pdf->Ln();
 
 $pdf->SetFont("Arial", "B", 10);
 $pdf->SetX(33);
-$pdf->Cell(0, 5, utf8_decode('Unidad de Soporte Técnico                                                               Asesor en el área de Tecnología'), 'C', 1);
+$pdf->Cell(0, 5, utf8_decode('Unidad de Soporte Técnico                                                                        Director de Tecnología'), 'C', 1);
 $pdf->Ln();
 
 //MOSTRANDO EL NOMBRE DEL TECNICO

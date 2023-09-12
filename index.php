@@ -35,6 +35,7 @@ if (isset($_SESSION['user'])) {
       $_SESSION['tipo'] = $reg['id_rol'];
       $_SESSION['nombre'] = $reg['nombre_usuario'];
       $_SESSION['id'] = $reg['id_usuario'];
+      $_SESSION['regional'] = $reg['regional'];
     }
   }
 } else {

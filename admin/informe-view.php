@@ -11,7 +11,7 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
 
 
 
-    ?>
+?>
     <!-- Icono que se muestra en la pestaña -->
     <!DOCTYPE html>
     <html>
@@ -95,9 +95,9 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
                 if ($_FILES["anexos"]["name"][$key]) {
                     $filename = $_FILES["anexos"]["name"][$key]; //Obtenemos el nombre original del archivo
                     $source = $_FILES["anexos"]["tmp_name"][$key]; //Obtenemos un nombre temporal del archivo
-    
+
                     $directorio = 'imagenes/'; //Declaramos un  variable con la ruta donde guardaremos los archivos
-    
+
                     //Validamos si la ruta de destino existe, en caso de no existir la creamos
                     if (!file_exists($directorio)) {
                         mkdir($directorio, 0777) or die("No se puede crear el directorio de extraccion");
@@ -105,14 +105,14 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
 
                     $dir = opendir($directorio); //Abrimos el directorio de destino
                     $target_path = $directorio . '/' . $filename; //Indicamos la ruta de destino, así como el nombre del archivo
-    
+
 
                     //Movemos y validamos que el archivo se haya cargado correctamente
                     //El primer campo es el origen y el segundo el destino
                     if (move_uploaded_file($source, $target_path)) {
                         // echo "El archivo $filename se ha almacenado en forma exitosa.<br>";
                     } else {
-                        echo "Ha ocurrido un error, por favor inténtelo de nuevo.<br>";
+                        //echo "Ha ocurrido un error, por favor inténtelo de nuevo.<br>";
                     }
                     closedir($dir); //Cerramos el directorio de destino
                 }
@@ -126,9 +126,9 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
                 if ($_FILES["anexos2"]["name"][$key]) {
                     $filename2 = $_FILES["anexos2"]["name"][$key]; //Obtenemos el nombre original del archivo
                     $source = $_FILES["anexos2"]["tmp_name"][$key]; //Obtenemos un nombre temporal del archivo
-    
+
                     $directorio = 'imagenes/'; //Declaramos un  variable con la ruta donde guardaremos los archivos
-    
+
                     //Validamos si la ruta de destino existe, en caso de no existir la creamos
                     if (!file_exists($directorio)) {
                         mkdir($directorio, 0777) or die("No se puede crear el directorio de extraccion");
@@ -136,7 +136,7 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
 
                     $dir = opendir($directorio); //Abrimos el directorio de destino
                     $target_path = $directorio . '/' . $filename2; //Indicamos la ruta de destino, así como el nombre del archivo
-    
+
 
 
                     //Movemos y validamos que el archivo se haya cargado correctamente
@@ -144,7 +144,7 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
                     if (move_uploaded_file($source, $target_path)) {
                         // echo "El archivo $filename2 se ha almacenado en forma exitosa.<br>";
                     } else {
-                        echo "Ha ocurrido un error, por favor inténtelo de nuevo.<br>";
+                        // echo "Ha ocurrido un error, por favor inténtelo de nuevo.<br>";
                     }
                     closedir($dir); //Cerramos el directorio de destino
                 }
@@ -158,9 +158,9 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
                 if ($_FILES["anexos3"]["name"][$key]) {
                     $filename3 = $_FILES["anexos3"]["name"][$key]; //Obtenemos el nombre original del archivo
                     $source = $_FILES["anexos3"]["tmp_name"][$key]; //Obtenemos un nombre temporal del archivo
-    
+
                     $directorio = 'imagenes/'; //Declaramos un  variable con la ruta donde guardaremos los archivos
-    
+
                     //Validamos si la ruta de destino existe, en caso de no existir la creamos
                     if (!file_exists($directorio)) {
                         mkdir($directorio, 0777) or die("No se puede crear el directorio de extraccion");
@@ -168,14 +168,14 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
 
                     $dir = opendir($directorio); //Abrimos el directorio de destino
                     $target_path = $directorio . '/' . $filename3; //Indicamos la ruta de destino, así como el nombre del archivo
-    
+
 
                     //Movemos y validamos que el archivo se haya cargado correctamente
                     //El primer campo es el origen y el segundo el destino
                     if (move_uploaded_file($source, $target_path)) {
                         // echo "El archivo $filename3 se ha almacenado en forma exitosa.<br>";
                     } else {
-                        echo "Ha ocurrido un error, por favor inténtelo de nuevo.<br>";
+                        //echo "Ha ocurrido un error, por favor inténtelo de nuevo.<br>";
                     }
                     closedir($dir); //Cerramos el directorio de destino
                 }
@@ -191,7 +191,7 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
                 //Asignar FILES hacia una variable
                 $imagen = $_FILES['imagen'];
                 //Asignar FILES hacia una variable
-    
+
 
 
                 $fecha = MysqlQuery::RequestPost('fechaatendido');
@@ -244,7 +244,7 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
 
                 //Validar por tamaño de (300 KB Maximo)
                 $maximo = 3000 * 100; // 3000 = A 300 KB * 100 se convierte a MB
-    
+
                 if ($imagen['size'] > $maximo) {
 
                     $errores[] = 'La Imagen es muy pesada (Max : 300 KB)';
@@ -291,7 +291,7 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
         }
         ?>
 
-        <?php foreach ($errores as $error): ?>
+        <?php foreach ($errores as $error) : ?>
 
             <div class="alerta error">
                 <?php echo $error; ?>
@@ -306,24 +306,22 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
                 <div class="col-sm-3">
 
                     <!--- Boton ver informes creados --->
-                <a href="./admin.php?view=todoslosinformes" style="margin: 5px" class="btn btn-success pull-right"><i
-                        class="fa fa-pencil" style="font-size:20px;color:white"></i>&nbsp;&nbsp;Ver Los Informes
-                    Creados</a>
+                    <a href="./admin.php?view=todoslosinformes" style="margin: 5px" class="btn btn-success pull-right"><i class="fa fa-pencil" style="font-size:20px;color:white"></i>&nbsp;&nbsp;Ver Los Informes
+                        Creados</a>
 
+
+                </div>
+
+
+                <div class="col-sm-9 lead">
+                    <a href="./index.php" style="margin: 5px" class="btn btn-success pull-right"><i class="fa fa-reply"></i>&nbsp;&nbsp;Regresar a el Menú Principal</a>
+
+                    <h2 align="center" class="text-info ">Informe Técnico</h2>
+                    <h3 class="text-primary"> Creado para realizar tareas especificas de Técnicos. </h3>
+                </div>
 
             </div>
-
-
-            <div class="col-sm-9 lead">
-                <a href="./index.php" style="margin: 5px" class="btn btn-success pull-right"><i
-                        class="fa fa-reply"></i>&nbsp;&nbsp;Regresar a el Menú Principal</a>
-
-                <h2 align="center" class="text-info ">Informe Técnico</h2>
-                <h3 class="text-primary"> Creado para realizar tareas especificas de Técnicos. </h3>
-            </div>
-
-        </div>
-        <!--fin row 1-->
+            <!--fin row 1-->
 
             <!-- Imagen e instrucciones -->
             <div class="row">
@@ -361,8 +359,7 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
                                                 <label class="col-sm-2 control-label">Asunto</label>
                                                 <div class='col-sm-10'>
                                                     <div class="input-group">
-                                                        <input class="form-control" type="text" name="asunto" readonly=""
-                                                            value="Dictamen Técnico de Equipo Informático del Departamento de Dirección de Tecnología.">
+                                                        <input class="form-control" type="text" name="asunto" readonly="" value="Dictamen Técnico de Equipo Informático del Departamento de Dirección de Tecnología.">
                                                         <span class="input-group-addon"><i class="fa fa-pencil"></i></span>
                                                     </div>
                                                 </div>
@@ -375,11 +372,8 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
                                                 <label class="col-sm-2 control-label">Fecha</label>
                                                 <div class='col-sm-10'>
                                                     <div class="input-group">
-                                                        <input class="form-control" type="text" name="fechaatendido"
-                                                            readonly=""
-                                                            value="<?php echo date("Y-m-d H:i:s", strtotime("now")) . "\n"; ?>">
-                                                        <span class="input-group-addon"><i
-                                                                class="fa fa-calendar"></i></span>
+                                                        <input class="form-control" type="text" name="fechaatendido" readonly="" value="<?php echo date("Y-m-d H:i:s", strtotime("now")) . "\n"; ?>">
+                                                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -391,8 +385,7 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
                                                 <label class="col-sm-2 control-label">Tipo De Servicio</label>
                                                 <div class='col-sm-10'>
                                                     <div class="input-group">
-                                                        <input class="form-control" type="text" name="tipo_servicio"
-                                                            readonly="" value="Dictamen Técnico.">
+                                                        <input class="form-control" type="text" name="tipo_servicio" readonly="" value="Dictamen Técnico.">
                                                         <span class="input-group-addon"><i class="fa fa-desktop"></i></span>
                                                     </div>
                                                 </div>
@@ -406,11 +399,8 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
                                                 <label class="col-sm-2 control-label">Lugar de Trabajo</label>
                                                 <div class='col-sm-10'>
                                                     <div class="input-group">
-                                                        <input class="form-control" type="text" name="lugar_trabajo"
-                                                            readonly=""
-                                                            value="Sistema Nacional De Emergencias 911, Unidad De Soporte Técnico.">
-                                                        <span class="input-group-addon"><i
-                                                                class="fa fa-suitcase"></i></span>
+                                                        <input class="form-control" type="text" name="lugar_trabajo" readonly="" value="Sistema Nacional De Emergencias 911, Unidad De Soporte Técnico.">
+                                                        <span class="input-group-addon"><i class="fa fa-suitcase"></i></span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -434,9 +424,8 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
                                                             $dept = Mysql::consulta("SELECT id_departamento, departamento FROM tbl_departamento");
 
                                                             while ($departamento = mysqli_fetch_array($dept)) {
-                                                                ?>
-                                                                <option
-                                                                    value="<?php echo utf8_encode($departamento["departamento"]) ?>">
+                                                            ?>
+                                                                <option value="<?php echo utf8_encode($departamento["departamento"]) ?>">
                                                                     <?php echo $departamento["id_departamento"], ".-", $departamento["departamento"] ?></option>
                                                             <?php } ?>
                                                             <option style="text-align:center; font-weight:bold" value="0">
@@ -447,7 +436,7 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
                                                             $query2 = mysqli_query($mysqli, $cato1);
 
                                                             while ($prob1 = mysqli_fetch_array($query2)) {
-                                                                ?>
+                                                            ?>
 
                                                                 <option value="<?php echo $prob1["area_solicitud"] ?>"> <?php echo $prob1["id_area"], ".-", $prob1["area_solicitud"] ?>
                                                                 </option>
@@ -469,8 +458,7 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
                                                 <label class="col-sm-2 control-label">Nombre Del Técnico</label>
                                                 <div class='col-sm-10'>
                                                     <div class="input-group">
-                                                        <input class="form-control" type="text" name="nombre_tecnico"
-                                                            placeholder="Nombre Técnico" required>
+                                                        <input class="form-control" type="text" name="nombre_tecnico" placeholder="Nombre Técnico" required>
                                                         <span class="input-group-addon"><i class="fa fa-desktop"></i></span>
                                                     </div>
                                                 </div>
@@ -481,9 +469,7 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
                                             <div class="form-group">
                                                 <label class="col-sm-2 control-label">Antecedentes</label>
                                                 <div class="col-sm-10">
-                                                    <textarea class="form-control" rows="3"
-                                                        placeholder="Se recomiendo un máximo de 3 parrafos."
-                                                        name="antecedentes" required=""></textarea>
+                                                    <textarea class="form-control" rows="3" placeholder="Se recomiendo un máximo de 3 parrafos." name="antecedentes" required=""></textarea>
                                                 </div>
                                             </div>
                                             <!-- Fin Select Antecedentes -->
@@ -494,9 +480,7 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
                                             <div class="form-group">
                                                 <label class="col-sm-2 control-label">Análisis</label>
                                                 <div class="col-sm-10">
-                                                    <textarea class="form-control" rows="3"
-                                                        placeholder="Se recomiendo un máximo de 3 parrafos." name="analisis"
-                                                        required=""></textarea>
+                                                    <textarea class="form-control" rows="3" placeholder="Se recomiendo un máximo de 3 parrafos." name="analisis" required=""></textarea>
                                                 </div>
                                             </div>
                                             <!-- Fin Análisis -->
@@ -505,9 +489,7 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
                                             <div class="form-group">
                                                 <label class="col-sm-2 control-label">Recomendaciones</label>
                                                 <div class="col-sm-10">
-                                                    <textarea class="form-control" rows="3"
-                                                        placeholder="Se recomiendo un máximo de 3 parrafos."
-                                                        name="recomendaciones" required=""></textarea>
+                                                    <textarea class="form-control" rows="3" placeholder="Se recomiendo un máximo de 3 parrafos." name="recomendaciones" required=""></textarea>
                                                 </div>
                                             </div>
                                             <!-- Fin  Recomendaciones -->
@@ -517,9 +499,7 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
                                             <div class="form-group">
                                                 <label class="col-sm-2 control-label">Conclusiones</label>
                                                 <div class="col-sm-10">
-                                                    <textarea class="form-control" rows="3"
-                                                        placeholder="Se recomiendo un máximo de 3 parrafos."
-                                                        name="conclusiones" required=""></textarea>
+                                                    <textarea class="form-control" rows="3" placeholder="Se recomiendo un máximo de 3 parrafos." name="conclusiones" required=""></textarea>
                                                 </div>
                                             </div>
                                             <!-- Fin Conclusiones -->
@@ -532,8 +512,7 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
                                                 <label class="col-sm-7 control-label">Creado para adjuntar 3
                                                     imagenes</label>
                                                 <div class="col-sm-12">
-                                                    <input type="file" class="form-control" id="anexos" accept=".jpeg,.jpg"
-                                                        name="anexos[]" onchange="ValidarTamaño(this);" required>
+                                                    <input type="file" class="form-control" id="anexos" accept=".jpeg,.jpg" name="anexos[]" onchange="ValidarTamaño(this);" required>
 
                                                 </div>
                                             </div>
@@ -546,8 +525,7 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
                                             <div class=" form-group">
                                                 <label class="col-sm-2 control-label"></label>
                                                 <div class="col-sm-12">
-                                                    <input type="file" class="form-control" id="anexos2" accept=".jpeg,.jpg"
-                                                        name="anexos2[]" onchange="ValidarTamaño2(this);" required>
+                                                    <input type="file" class="form-control" id="anexos2" accept=".jpeg,.jpg" name="anexos2[]" onchange="ValidarTamaño2(this);" required>
                                                 </div>
 
                                             </div>
@@ -557,8 +535,7 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
                                             <div class="form-group">
                                                 <label class="col-sm-2 control-label"></label>
                                                 <div class="col-sm-12">
-                                                    <input type="file" class="form-control" id="anexos3" accept=".jpeg,.jpg"
-                                                        name="anexos3[]" onchange="ValidarTamaño3(this);" required>
+                                                    <input type="file" class="form-control" id="anexos3" accept=".jpeg,.jpg" name="anexos3[]" onchange="ValidarTamaño3(this);" required>
                                                 </div>
                                             </div>
                                             <!-- Fin  Anexos -->
@@ -596,9 +573,9 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
 
 
 
-        <?php
+    <?php
 }
-?>
+    ?>
 
 
 
@@ -607,7 +584,7 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
     <!--********* Script *********-->
     <!-- Fecha y hora  -->
     <script type="text/javascript">
-        $(document).ready(function () {
+        $(document).ready(function() {
             $("#fechainput").datepicker();
         });
     </script>
@@ -631,7 +608,7 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
                 return;
             }
             var img = new Image();
-            img.onload = function () {
+            img.onload = function() {
                 if (this.width.toFixed(0) = 1340 && this.height.toFixed(0) != 700) {
                     alert("La imagen debe ser de tamaño 1340px por 700px.");
                     $('#anexos').val("");
@@ -657,7 +634,7 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
                 return;
             }
             var img = new Image();
-            img.onload = function () {
+            img.onload = function() {
                 if (this.width.toFixed(0) = 1340 && this.height.toFixed(0) != 700) {
                     alert("La imagen debe ser de tamaño 1340px por 700px.");
                     $('#anexos2').val("");
@@ -684,7 +661,7 @@ if ($_SESSION['tipo'] == 1 || $_SESSION['tipo'] == 2) {
                 return;
             }
             var img = new Image();
-            img.onload = function () {
+            img.onload = function() {
                 if (this.width.toFixed(0) = 1340 && this.height.toFixed(0) != 700) {
                     alert("La imagen debe ser de tamaño 1340px por 700px.");
                     $('#anexos3').val("");

@@ -1,12 +1,15 @@
 <?php
-/* Archivos subidos por los usuarios */
+error_reporting(0);
+date_default_timezone_set('America/Tegucigalpa');
+
 /* Eliminar Tickets */
+
 if (isset($_POST['id_del'])) {
     $id = MysqlQuery::RequestPost('id_del');
-    if (MysqlQuery::Eliminar("tbl_dictamen", "id='$id'")) {
+    if (MysqlQuery::Eliminar("tbl_archivoespdesa", "id='$id'")) {
         echo '
             <div class="alert alert-danger alert-dismissible fade in col-sm-3 animated bounceInDown" role="alert" style="position:fixed; top:70px; right:10px; z-index:10;"> 
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">x</span></button>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
                 <h4 class="text-center">ARCHIVO ELIMINADO</h4>
                 <p class="text-center">
                     El Archivo fue eliminado con exito
@@ -16,7 +19,7 @@ if (isset($_POST['id_del'])) {
     } else {
         echo '
             <div class="alert alert-danger alert-dismissible fade in col-sm-3 animated bounceInDown" role="alert" style="position:fixed; top:70px; right:10px; z-index:10;"> 
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">x</span></button>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
                 <h4 class="text-center">OCURRIÓ UN ERROR</h4>
                 <p class="text-center">
                     No se ha podido eliminar el Archivo
@@ -28,18 +31,14 @@ if (isset($_POST['id_del'])) {
 ?>
 
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+
 <?php
 include('./archivos/conexion.php');
 
 $tmp = array();
 $res = array();
 
-$sel = $con->query("SELECT * FROM tbl_dictamen ORDER BY fecha DESC");
+$sel = $con->query("SELECT * FROM tbl_archivoespdesa ORDER BY fecha DESC");
 while ($row = $sel->fetch_assoc()) {
     $tmp = $row;
     array_push($res, $tmp);
@@ -51,42 +50,43 @@ while ($row = $sel->fetch_assoc()) {
 <head>
     <meta charset="UTF-8">
     <title></title>
+    <link rel="stylesheet">
 </head>
 
 <body>
     <div class="container">
         <div class="row well">
             <div class="col-sm-3">
-                <img src="img/reporte.png" class="img-responsive animated tada" alt="Image">
+                <img src="img/folder.png" class="img-responsive animated tada" alt="Image">
             </div>
             <div class="col-sm-9 lead">
-                <a href="./index.php" style="margin: 5px" class="btn btn-success pull-right"><i class="fa fa-reply"></i>&nbsp;&nbsp;Regresar a Inicio</a>
-                <h2 align="center" class="text-info ">Dictamen</h2>
-                <!-- <h4 class="text-primary" style="text-align:right;"> En esta seccion, se subiran los reportes una vez terminada su asignacion. De igual manera debera entregarlo de forma fisica </h4>  -->
-            </div>
-            <div class="col-sm-7 lead">
-                <h4 style="text-align:center;">
-                    <font color="maroon">Creado especialmente para subir documentos formato (doc,docx).</font>
-                </h4>
-                <br>
+                <a href="./index.php" style="margin: 5px" class="btn btn-success pull-right"><i
+                        class="fa fa-reply"></i>&nbsp;&nbsp;Regresar a Inicio</a>
+                <h2 align="center" class="text-info ">Archivos Técnicos</h2>
+                <!-- <h3 class="text-primary"> En esta sección se subirán archivos importantes  </h3>  -->
             </div>
         </div><!--fin row 1-->
 
-        <div class="container">
-            <!-- <div class="row well">
+        <!-- Container donde se encuentra la info de los técnicos y desarrolladores por separado  -->
+        <!-- <div class="container">
+          <div class="row well">
                     <div class="col-md-12 text-center">
                         <ul class="nav nav-pills nav-justified">
-                          <li><a class="nav-item nav-link active" href="./admin.php?view=reportes"><font color=#000066><i class="fa fa-male"></i>&nbsp;&nbsp;<b>T&eacute;cnicos</b></font>&nbsp;&nbsp;<span class="badge badge-primary"></span></a></li>
-                          <li><a class="nav-link active" href="./admin.php?view=archivosDes"><i class="fa fa-desktop"></i>&nbsp;&nbsp;<b> Desarrolladores </b>&nbsp;&nbsp;<span class="badge badge-warning"></span></a></li>
+                          <li><a class="nav-item nav-link active" href="./admin.php?view=archivoEs"><font color=#000066><i class="fa fa-male"></i>&nbsp;&nbsp;<b>Técnicos</b></font>&nbsp;&nbsp;<span class="badge badge-primary"></span></a></li>
+                          <li><a class="nav-link active" href="./admin.php?view=archivodesa"><i class="fa fa-desktop"></i>&nbsp;&nbsp;<b> Desarrolladores </b>&nbsp;&nbsp;<span class="badge badge-warning"></span></a></li>
                         </ul>
-            </div> -->
-        </div>
+            </div>
+          </div> -->
+        <!-- Fin Container -->
+
 
         <div class="row">
             <div class="col-sm-12">
-                <div class="panel panel-success">
+                <div class="panel panel-info">
                     <div class="panel-heading">
-                        <h3 class="panel-title text-center"><strong><i class="fa fa-ticket"></i>&nbsp;&nbsp;&nbsp;Dictamenes</strong></h3>
+                        <h3 class="panel-title text-center"><strong><i
+                                    class="fa fa-ticket"></i>&nbsp;&nbsp;&nbsp;Archivos Disponibles Técnicos</strong>
+                        </h3>
                     </div>
                     <div class="panel-body">
                         <div class="row">
@@ -96,20 +96,25 @@ while ($row = $sel->fetch_assoc()) {
                             </div>
                             <br>
                             <div class="col-sm-12">
-                                <form class="form-horizontal" role="form" action="" method="POST">
+                                <form class="form-horizontal" role="form" action="" method="POST"
+                                    action="/uploadEsp.php">
                                     <fieldset>
                                         <div class="row justify-content-md-center" style="margin: 5px">
                                             <div class="col-12">
-
-                                                <?php if ($_SESSION['tipo'] == 1) { ?>
-                                                    <button type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#exampleModal">Subir Dictamen</button>
+                                                <?php if ($_SESSION['nombre'] != "" && $_SESSION['tipo'] == "1") { ?>
+                                                    <button style="margin: 5px" type="button" class="btn btn-primary btn-mg"
+                                                        data-toggle="modal" data-target="#exampleModal">
+                                                        Subir Archivo
+                                                    </button>
                                                 <?php } ?>
-                                                <a href="" style="margin: 5px" class="btn btn-info  pull-right"><i class="fa fa-refresh"></i>&nbsp;&nbsp;<b>Actualizar</b></a>
+                                                <a href="" style="margin: 5px" class="btn btn-info  pull-right"><i
+                                                        class="fa fa-refresh"></i>&nbsp;&nbsp;<b>Actualizar</b></a>
 
 
                                                 <br></br>
                                                 <!-- Tabla que muestra los archivos subidos -->
-                                                <table id="example" class="table mt-2 table-striped table-bordered nowrap">
+                                                <table id="example"
+                                                    class="table mt-2 table-striped table-bordered nowrap">
                                                     <thead>
                                                         <tr>
                                                             <th style="text-align: center;" scope="col">#</th>
@@ -143,42 +148,39 @@ while ($row = $sel->fetch_assoc()) {
                                                                     <?php echo $val['upload'] ?>
                                                                 </td>
                                                                 <td style="text-align: center;">
-                                                                    <center><a class="btn btn-primary" target="_black" href="<?php echo '' . '' . $val['url']; ?>">Ver
+                                                                    <center><a class="btn btn-primary" target="_black"
+                                                                            href="<?php echo 'http://' . $_SERVER['HTTP_HOST'] . '/helpdeskCompleto/' . $val['url']; ?>">Ver
                                                                             Archivo</a></center>
-                                                                </td>
 
+
+                                                                </td>
                                                                 <?php if ($_SESSION['nombre'] != "" && $_SESSION['tipo'] == "1") { ?>
                                                                     <td style="text-align: center;">
 
-                                                                        <form action="" method="POST" style="display: inline-block;">
-                                                                            <input type="hidden" name="id_del" value="<?php echo $val['id']; ?>">
+                                                                        <form action="" method="POST"
+                                                                            style="display: inline-block;">
+                                                                            <input type="hidden" name="id_del"
+                                                                                value="<?php echo $val['id']; ?>">
 
-                                                                            <button type="submit" class="btn btn-sm btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                                                            <button type="submit"
+                                                                                class="btn btn-sm btn-danger"><i
+                                                                                    class="fa fa-trash-o"
+                                                                                    aria-hidden="true"></i></button>
+
                                                                         </form>
+
                                                                     </td>
                                                                 <?php } ?>
-                                                                <?php //if($_SESSION['tipo']=="2"){ 
-                                                                ?>
-                                                                <!-- <td hidden style="text-align: center; ">     
-                                                  <form action="" method="POST" style="display: inline-block;">
-                                                        <input type="hidden" name="id_del" value="<?php //echo $val['id']; 
-                                                                                                    ?>">
-
-                                                        <button type="submit" class="btn btn-sm btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-                                                    </form> 
-                                                 </td> -->
-                                                                <?php //} 
-                                                                ?>
                                                             </tr>
                                                         <?php } ?>
                                                     </tbody>
                                                 </table>
-                                                <!-- Fin Tabla que muestra los archivos subidos -->
+                                                <!-- Fin tabla  -->
                                             </div>
                                         </div>
                             </div>
 
-                            <!-- Modal para ingresar la informaciÃ³n del archivo a subir -->
+                            <!-- Modal para ingresar la información del archivo a subir -->
                             <?php
                             $aa = $_SESSION['nombre'];
 
@@ -195,9 +197,8 @@ while ($row = $sel->fetch_assoc()) {
                                 $deptInput = $recorre['departamento'];
                             }
                             ?>
-
-                            <!-- Modal para ingresar la información del archivo a subir -->
-                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -206,43 +207,52 @@ while ($row = $sel->fetch_assoc()) {
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
-
                                         <div class="modal-body">
-                                            <form enctype="multipart/form-data" id="form1" name="form1" onsubmit="return validateForm();">
+                                            <form enctype="multipart/form-data" id="form1" name="form1"
+                                                onsubmit="return validateForm();">
                                                 <div class="input-group">
-                                                    <input type="hidden" class="form-control" type="text" name="fecha" id="fecha" readonly="" value="<?php echo date("Y-m-d H:i:s", strtotime("now")) . "\n"; ?>">
+                                                    <input type="hidden" class="form-control" type="text" name="fecha"
+                                                        id="fecha" readonly=""
+                                                        value="<?php echo date('Y-m-d H:i:s', strtotime('now')) . '\n'; ?>">
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label for="title">Título</label>
-                                                    <input type="text" class="form-control" id="title" name="title" required>
+                                                    <input type="text" class="form-control" id="title" name="title"
+                                                        required>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="description">Descripción</label>
-                                                    <input type="text" class="form-control" id="description" name="description" required>
+                                                    <input type="text" class="form-control" id="description"
+                                                        name="description" required>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="description">Archivo</label>
-                                                    <input type="file" class="form-control" id="file" name="file" require>
+                                                    <input type="file" class="form-control" id="file" name="file"
+                                                        required>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="upload">Subido por</label>
-                                                    <input type="text" class="form-control" id="upload" name="upload" readonly value="<?php echo $nameInput; ?>">
+                                                    <input type="text" class="form-control" id="upload" name="upload"
+                                                        require readonly value="<?php echo $nameInput; ?>">
                                                 </div>
-
+                                                <div class="modal-group">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-dismiss="modal">Cerrar</button>
+                                                    <button type="submit" class="btn btn-primary"
+                                                        onchange="return onSubmitForm();">Guardar</button>
+                                                </div>
                                             </form>
                                         </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                            <button type="button" class="btn btn-primary" onclick="onSubmitForm()">Guardar</button>
-                                        </div>
+
                                     </div>
                                 </div>
                             </div>
-                            <!-- Fin Modal para ingresar la información del archivo a subir -->
+                            <!-- Fin modal -->
 
                             <!-- bóton para ver el archivo subido en una pastaña aparte -->
-                            <div class="modal fade" id="modalPdf" tabindex="-1" aria-labelledby="modalPdf" aria-hidden="true">
+                            <div class="modal fade" id="modalPdf" tabindex="-1" aria-labelledby="modalPdf"
+                                aria-hidden="true">
                                 <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -252,16 +262,17 @@ while ($row = $sel->fetch_assoc()) {
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <iframe id="iframePDF" frameborder="0" scrolling="no" width="100%" height="500px"></iframe>
+                                            <iframe id="iframePDF" frameborder="0" scrolling="no" width="100%"
+                                                height="500px"></iframe>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-
+                                            <button type="button" class="btn btn-secondary"
+                                                data-dismiss="modal">Cerrar</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <!-- Fin bóton para ver el archivo subido en una pastaña aparte -->
+                            <!-- Fin bóton -->
                             </fieldset>
                             </form>
                         </div>
@@ -271,16 +282,18 @@ while ($row = $sel->fetch_assoc()) {
         </div>
     </div>
     </div>
-    </div>
-    </div>
-    </div>
 
 
     <!-- Librerias -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
 
 
 
@@ -293,6 +306,7 @@ while ($row = $sel->fetch_assoc()) {
 
 
 
+
     <script>
         // EVITAR REENVIO DE DATOS.
         if (window.history.replaceState) { // verificamos disponibilidad
@@ -300,31 +314,37 @@ while ($row = $sel->fetch_assoc()) {
         }
     </script>
 
-
-    <!-- Fin Función que permite cargar el archivo PDF -->
-    <script>
+    <!-- Función que permite cargar el archivo PDF -->
+    <script type="text/javascript">
         function onSubmitForm() {
-            var frm = document.getElementById('form1');
-            var data = new FormData(frm);
+            // var frm = document.getElementById('form1');
+            // var data = $('#form1').serialize();
+            // var data = new FormData(frm);
+            var data = new FormData($('#form1')[0]);
             var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
+            xhttp.onreadystatechange = function () {
                 if (this.readyState == 4) {
                     var msg = xhttp.responseText;
                     if (msg == 'success') {
-                        alert(msg);
+                        // alert("Correcto");
+
                         $('#exampleModal').modal('hide')
                     } else {
-                        alert(msg);
+                        // alert("ERROR");
                     }
 
                 }
             };
-            xhttp.open("POST", "./uploaddictamen.php", true);
+            xhttp.open("POST", "./uploadEsp.php", true);
             xhttp.send(data);
             $('#form1').trigger('reset');
+
+
         }
     </script>
-    <!-- Fin Funci�n que permite cargar el archivo PDF -->
+    <!-- fin Script -->
+
+
 
     <!-- Funcion Creada Para Mostrar La Alerta -->
     <script type="text/javascript">
@@ -341,7 +361,7 @@ while ($row = $sel->fetch_assoc()) {
             } else {
                 event.preventDefault();
                 Swal.fire({
-                    title: '¿Desea enviar el Dictamen?',
+                    title: '¿Desea enviar el archivo?',
                     type: 'warning',
                     showCancelButton: true,
                     confirmButtonText: 'Si',
@@ -353,19 +373,19 @@ while ($row = $sel->fetch_assoc()) {
 
                         var data = new FormData($('#form1')[0]);
                         var xhttp = new XMLHttpRequest();
-                        xhttp.onreadystatechange = function() {
+                        xhttp.onreadystatechange = function () {
                             if (this.readyState == 4) {
                                 var msg = xhttp.responseText;
                                 if (msg == 'success') {
-                                    alert("Reporte Subido Correctamente");
+                                    // alert("Reporte Subido Correctamente");
                                     $('#exampleModal').modal('hide')
                                 } else {
-                                    alert("Error validateForm");
+                                    // alert("Error");
                                 }
 
                             }
                         };
-                        xhttp.open("POST", "./uploaddictamen.php", true);
+                        xhttp.open("POST", "./uploadEsp.php", true);
                         xhttp.send(data);
                         $('#form1').trigger('reset');
 
@@ -378,9 +398,11 @@ while ($row = $sel->fetch_assoc()) {
     </script>
     <!-- Fin De Funcion Creada Para Mostrar La Alerta -->
 
+
+
     <!-- Fecha y hora  -->
     <script type="text/javascript">
-        $(document).ready(function() {
+        $(document).ready(function () {
             const today = new Date();
             var options = {
                 day: 'numeric',
@@ -392,6 +414,7 @@ while ($row = $sel->fetch_assoc()) {
         });
     </script>
     <!-- Fin Fecha y hora -->
+
 </body>
 
 </html>

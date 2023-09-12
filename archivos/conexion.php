@@ -1,6 +1,6 @@
 <?php
 
-$con = new mysqli('localhost', 'root', '', 'helpdesk');
+$con = new mysqli("localhost", "root", "!Sistemas911**", "helpdesk", 3306);
 if ($con->connect_errno) {
     die('fail');
 }

@@ -43,6 +43,7 @@
     $departamento_ticket = utf8_encode(MysqlQuery::RequestPost('id_dept'));
     $asunto_ticket = MysqlQuery::RequestPost('asunto_ticket');
     $descripcion = MysqlQuery::RequestPost('descripcion');
+    $regional = MysqlQuery::RequestPost('regional');
     $solucion = "Pendiente";
     $ticket_asignado = "No asignado";
     $atendido = "Sin Atender";
@@ -53,8 +54,8 @@
 
 
     if (
-      MysqlQuery::Guardar("tbl_ticket", "fecha, serie, estado_ticket, nombre_usuario, email, id_dept, asunto,solucion,descripcion,atendidopor,asignar_ticket, fechaatendido", "'$fecha','$id_ticket','$estado_ticket','$nombre_usuario', '$email_ticket', 
-              '$departamento_ticket','$asunto_ticket', '$solucion','$descripcion','$ticket_asignado', '$atendido','$fechaatendido'")
+      MysqlQuery::Guardar("tbl_ticket", "fecha, serie, estado_ticket, nombre_usuario, email, id_dept, asunto,solucion,descripcion,atendidopor,asignar_ticket, regional,fechaatendido", "'$fecha','$id_ticket','$estado_ticket','$nombre_usuario', '$email_ticket', 
+              '$departamento_ticket','$asunto_ticket', '$solucion','$descripcion','$ticket_asignado', '$atendido','$regional','$fechaatendido'")
     ) {
 
       echo '
@@ -139,9 +140,9 @@
                     $aa = $_SESSION['user'];
 
                     if ($_SESSION['tipoUser'] == 2) {
-                      $nameU = "SELECT nombre_completo, email_usuario, departamento FROM tbl_admin WHERE email_usuario = '$aa'";
+                      $nameU = "SELECT nombre_completo, regional, email_usuario, departamento FROM tbl_admin WHERE email_usuario = '$aa'";
                     } else {
-                      $nameU = "SELECT nombre_completo, email_usuario, departamento FROM tbl_usuarios WHERE email_usuario = '$aa'";
+                      $nameU = "SELECT nombre_completo, regional, email_usuario, departamento FROM tbl_usuarios WHERE email_usuario = '$aa'";
                     }
 
                     $nameImprimir = mysqli_query($mysqli, $nameU);
@@ -149,9 +150,20 @@
                       $nameInput = $recorre['nombre_completo'];
                       $emailInput = $recorre['email_usuario'];
                       $deptInput = $recorre['departamento'];
+                      $regional = $recorre['regional'];
                     }
                     ?>
                     <!-- nombre del usuario que hace el ticket -->
+                    <div class="form-group">
+                      <label class="col-sm-2 control-label">Regional</label>
+                      <div class="col-sm-10">
+                        <div class='input-group'>
+                          <input readonly type="text" class="form-control" placeholder="regional" name="regional" value="<?php echo $regional; ?>">
+                          <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Fin nombre del usuario que hace el ticket -->
 
 
                     <div class="form-group">
@@ -266,6 +278,9 @@
   <!-- Llamado del correo Usuarios -->
   <?php include "./lib/enviarmail_usuarios.php"; ?>
   <!-- Fin envío de correo -->
+
+
+
 
 
 
